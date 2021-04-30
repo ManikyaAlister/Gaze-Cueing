@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#PBS -A UQ-SBS-Psy
+
+#PBS -l select=1:ncpus=1:intel=true:mem=60GB,walltime=10:00
+
+module load R/3.6.0+tidyverse+rstan+rtdists
+
+cat /30days/s4590609/exp_2_analysis/2.3_run_loglik.sh | shell -s ${RUN} 
