@@ -76,7 +76,7 @@ load(paste("Data/Gregory-and-Jackson-(2020)/P",useSub,".Rdata",sep=""))
 for(useSub in 1:nSub) {
   
   
-  load(paste("Fits_Simple/P",useSub,"Simple_Model.Rdata", sep = "")) #Loads through the datasets of each participant in nSub
+  load(paste("Modelling/07_Outputs/P",useSub,"Simple_Model.Rdata", sep = "")) #Loads through the datasets of each participant in nSub
   #posterior_means = apply(theta, 2, mean) #This code just gets the mean parameter estimates of each data set (not necessary for the loop)
   
   

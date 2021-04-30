@@ -4,7 +4,7 @@ library(tidyverse)
 library(rtdists)
 library(msm)
 setwd("~/Dropbox/2021/Gaze-Cueing")
-source("Modelling/02_megaBackground.R")
+source("02_megaBackground.R")
 
 
 conds=c(1,2)
@@ -66,7 +66,7 @@ for (useSub in 1:nSub) {
   theta.names=c("a","t0",
                 paste("v",conds,sep="."), "z")
   
-  savefile=paste("Fits_Complex/P",useSub,"Complex_Model.Rdata",sep="")
+  savefile=paste("Modelling/07_Outputs/P",useSub,"Complex_Model.Rdata",sep="")
   
   source("Modelling/03_background.R")
   source("Modelling/04_runIterativeProcess.R")
@@ -95,7 +95,7 @@ nSub = 41
 for(useSub in 1:nSub) {
   
   
-  load(paste("Fits_Complex/P",useSub,"Complex_Model.Rdata", sep = "")) #Loads through the datasets of each participant in nSub
+  load(paste("Modelling/07_Outputs/P",useSub,"Complex_Model.Rdata", sep = "")) #Loads through the datasets of each participant in nSub
   #posterior_means = apply(theta, 2, mean) #This code just gets the mean parameter estimates of each data set (not necessary for the loop)
   
   
