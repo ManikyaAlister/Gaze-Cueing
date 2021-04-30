@@ -183,3 +183,7 @@ weight=weight[burnin:nmc,]
 
 
 
+
+
+
+

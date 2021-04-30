@@ -345,3 +345,7 @@ legend("bottom", legend = c("v varies", "v does not vary"),
        inset=c(0,0),
        horiz = T,
        cex = .73)
+       
+       
+       
+       

@@ -44,3 +44,5 @@ migration.crossover=function(pars,use.theta,use.like,data,hyper,par.names){
   }
   cbind(use.like,use.theta)
 }
+
+

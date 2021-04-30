@@ -3,6 +3,8 @@ setwd("~/Dropbox/2021/Gaze-Cueing")
 rm(list=ls())
 library(tidyverse)
 
+
+
 #Load data
 P = read_csv("Data/Gregory-and-Jackson-(2020)/Study1RawData .csv")
 
