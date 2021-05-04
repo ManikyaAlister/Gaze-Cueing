@@ -22,6 +22,8 @@ for (useSub in 1:nSub) {
   set.seed(as.numeric(newSeed))
   
   
+  s
+  
   log.dens.like = function (x,data,par.names) {
     out=0
     names(x)=par.names
