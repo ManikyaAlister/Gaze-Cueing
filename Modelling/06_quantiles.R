@@ -8,7 +8,13 @@ rm(list = ls())
 setwd("~/Dropbox/2021/Gaze-Cueing")
 library(tidyverse)
 library(jtools)
-nSub = 41
+
+n_datasets = 1 #number of data sets being run 
+dataset_lengths = c(1) #number of participants in each data set
+
+for (dataset in 1:n_datasets) {
+  
+  nSub = dataset_lengths[dataset]
 
 ####### Observed Data ########
 all.data=list() 
@@ -60,7 +66,7 @@ nsub = 41
 all.data_c = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/P",useSub,"_complex.RData",sep=""))
+  load(paste("Data/model_predictions/DS",dataset,"_P",useSub,"_complex.RData",sep=""))
   
   all.data_c[[useSub]]=sim
   
@@ -113,7 +119,7 @@ quantiles_complex = ggplot()+
   geom_line(aes(x = q.mean.2.2_c, y = qs*p.mean.2_c))+
   theme_apa()
 quantiles_complex #View plot 
-ggsave("Modelling/07_Plots/quantiles-complex.png", plot = quantiles_complex)
+ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-complex.png", sep = ""), plot = quantiles_complex)
 
 #Separated across conditions
 ggplot()+
@@ -140,7 +146,7 @@ all.data_z = list()
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/P",useSub,"_z.RData",sep=""))
+  load(paste("Data/model_predictions/DS",dataset,"_P",useSub,"_z.RData",sep=""))
   
   all.data_z[[useSub]]=sim
   
@@ -191,7 +197,7 @@ quantiles_z = ggplot()+
   labs(title = "z") +
   theme_apa()
 quantiles_z #view plot 
-ggsave("Modelling/07_Plots/quantiles-z.png", plot = quantiles_z)  
+ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-z.png", sep = ""), plot = quantiles_z)  
 
 #Separated across conditions
 ggplot()+
@@ -218,7 +224,7 @@ nsub = 41
 all.data_v = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/P",useSub,"_v.RData",sep=""))
+  load(paste("Data/Model_Predictions/DS", dataset, "_P",useSub,"_v.RData",sep=""))
   
   all.data_v[[useSub]]=sim
   
@@ -270,7 +276,7 @@ quantiles_v = ggplot()+
   labs(title = "v")+
   theme_apa()
 quantiles_v # view plot
-ggsave("Modelling/07_Plots/quantiles-v.png", plot = quantiles_v)
+ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-v.png", sep = ""), plot = quantiles_v)
 
 #Separated across conditions:
 
@@ -298,7 +304,7 @@ nsub = 41
 all.data_s = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/P",useSub,"_simple.RData",sep=""))
+  load(paste("Data/model_predictions/DS",dataset,"_P",useSub,"_simple.RData",sep=""))
   
   all.data_s[[useSub]]=sim
   
@@ -351,7 +357,7 @@ quantiles_simple = ggplot()+
   labs(title = "Simple Model")+
   theme_apa()
 quantiles_simple #view plot
-ggsave("Modelling/07_Plots/quantiles-simple.png", plot = quantiles_simple)
+ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-simple.png", sep = ""), plot = quantiles_simple)
 #Separated across conditions
 
 ggplot()+
@@ -378,7 +384,7 @@ all.data_zinter = list()
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/P",useSub,"_zinter.RData",sep=""))
+  load(paste("Data/model_predictions/DS",dataset,"_P",useSub,"_zinter.RData",sep=""))
   
   all.data_zinter[[useSub]]=sim
   
@@ -429,7 +435,7 @@ quantiles_zinter = ggplot()+
   ggtitle("Z Interference")+
   theme_apa()
 quantiles_zinter #view plot
-ggsave("Modelling/07_Plots/quantiles-zinter.png", plot = quantiles_zinter)
+ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-zinter.png", sep = ""), plot = quantiles_zinter)
 
 #Separated across conditions
 
@@ -457,7 +463,7 @@ all.data_zfacil = list()
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/P",useSub,"_zfacil.RData",sep=""))
+  load(paste("Data/model_predictions/SD", dataset, "_P",useSub,"_zfacil.RData",sep=""))
   
   all.data_zfacil[[useSub]]=sim
   
@@ -508,7 +514,7 @@ quantiles_zfacil = ggplot()+
   labs(title = "z Facilitation")+
   theme_apa()
 quantiles_zfacil #view plot
-ggsave("Modelling/07_Plots/quantiles-zfacil.png", plot = quantiles_zfacil)
+gggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-zfacil.png", sep = ""), plot = quantiles_zfacil)
 
 #Separated across conditions
 ggplot()+
@@ -525,7 +531,7 @@ ggplot()+
   labs(title = "z Facilitation", subtitle = "Incongruent")+
   theme_apa()
 
-
+}
 
 
 # > tapply(sim_matrix_complex$Time,list(sim_matrix_complex$Resp,sim_matrix_complex$Cond),quantile,c(0.1,0.3,0.5,0.7,0.9))[2,1][[1]]

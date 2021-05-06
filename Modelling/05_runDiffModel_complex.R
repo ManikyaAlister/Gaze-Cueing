@@ -9,8 +9,8 @@ source("Modelling/02_megaBackground.R")
 
 conds=c(1,2)
 
-n_datasets = 1
-dataset_lengths = c(1)
+n_datasets = 1 #number of data sets being run 
+dataset_lengths = c(1) #number of participants in each data set
 
 for (dataset in 1:n_datasets) {
 
@@ -131,7 +131,7 @@ for(useSub in 1:nSub) {
   
   sim = as.data.frame(simData) # Convert the simulated data from List format to data frame format
   
-  save(sim, file = paste("Data/model_predictions/ds",dataset,"_P",useSub,"_complex.Rdata", sep = ""))
+  save(sim, file = paste("Data/Model_Predictions/DS",dataset,"_P",useSub,"_complex.Rdata", sep = ""))
   
 }
 }
