@@ -8,7 +8,13 @@ source("Modelling/02_megaBackground.R")
 
 
 conds=c(1,2)
-nSub = 41
+
+n_datasets = 1 #number of data sets being run 
+dataset_lengths = c(1) #number of participants in each data set
+
+for (dataset in 1:n_datasets) {
+  
+  nSub = dataset_lengths[dataset]
 
 ####################
 ####V Model#########
@@ -55,7 +61,7 @@ for (useSub in 1:nSub) {
   theta.names=c("a","t0",
                 paste("v",conds,sep=".")) 
   
-  savefile=paste("Fits_v/P",useSub,"V_Model.Rdata",sep="")
+  savefile=paste("Modelling/07_Outputs/DS",dataset,"_P",useSub,"_vModel.Rdata",sep="")
   
   source("Modelling/03_background.R")
   source("Modelling/04_runIterativeProcess.R")
@@ -74,11 +80,10 @@ for (useSub in 1:nSub) {
 
 ##### Simulate Data Using Estimated Parameters ####
 conds = c(1,2)
-nSub = 41
 for(useSub in 1:nSub) {
   
   
-  load(paste("Fits_v/P",useSub,"V_Model.Rdata", sep = "")) #Loads through the datasets of each participant in nSub
+  load(paste("Modelling/07_Outputs/DS",dataset,"_P",useSub,"_vModel.Rdata", sep = "")) #Loads through the datasets of each participant in nSub
   #posterior_means = apply(theta, 2, mean) #This code just gets the mean parameter estimates of each data set (not necessary for the loop)
   
   
@@ -104,10 +109,10 @@ for(useSub in 1:nSub) {
   
   sim = as.data.frame(simData) # Convert the simulated data from List format to data frame format
   
-  save(sim, file = paste("Data/model_predictions/P",useSub,"_v.Rdata", sep = ""))
+  save(sim, file = paste("Data/Model_Predictions/DS",dataset,"_P",useSub,"_v.Rdata", sep = ""))
   
 }
-
+}
 
 
 
