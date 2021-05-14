@@ -47,7 +47,7 @@ for (cond in conds) {
 
 }
 
-save(simData, file = "Data/Hier_model_predictions/complex.RData")
+save(simData, file = "Data/Hier-Model-Predictions/complex.RData")
 
 
 # For later 

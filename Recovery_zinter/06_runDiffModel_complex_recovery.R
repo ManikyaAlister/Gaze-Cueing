@@ -1,4 +1,4 @@
-
+### Z Interference ####
 rm(list=ls())
 library(tidyverse)
 library(rtdists)
@@ -38,9 +38,9 @@ for (useSub in 1:nSub) {
   log.dens.like = function (x,data,par.names) {
     out=0
     names(x)=par.names
-    if (x["z"] < 0.5) { # Makes sure that starting point is never less than 0.5 for congruent condition
-      return(-Inf)
-    }
+    # if (x["z"] < 0.5) { # Makes sure that starting point is never less than 0.5 for congruent condition
+    #   return(-Inf)
+    # }
     for (cond in conds) {
       a=x["a"]
       t0=x["t0"]

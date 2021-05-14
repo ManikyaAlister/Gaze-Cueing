@@ -61,7 +61,7 @@ p.mean.1.1=mean(allP[2,]) #I'm not sure if this is indexed properly. See below.
 ########### Redo everything for simData (simulated data) ###########
 
 # Load in predicted data generated from complex DDM (simData)
-load("Data/Hier_model_predictions/complex.RData")
+load("Data/Hier-Model-Predictions/complex.RData")
 
 
 tmp=lapply(simData,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))

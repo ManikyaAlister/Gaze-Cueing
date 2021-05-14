@@ -1,8 +1,16 @@
 rm(list = ls())
 library(tidyverse)
-n = 41
+
+n_datasets = 1 #number of data sets being run 
+dataset_lengths = c(41) #number of participants in each data set
+
+for (dataset in 1:n_datasets) {
+
+n = dataset_lengths[n_datasets]
 S = n
 setwd("~/Dropbox/2021/Gaze-Cueing")
+
+
  
 ######## Load AIC and BIC for Each Model #######
 #Or Skip to lines 83/84 if already saved
@@ -16,7 +24,7 @@ BIC_C = NULL
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:n) { 
-  load(paste("Fits_Complex/P",p,"Complex_Model.RData", sep = ""))
+  load(paste("Modelling/07_Outputs/P",p,"Complex_Model.RData", sep = ""))
   AIC_C = rbind(AIC, AIC_C)
   BIC_C = rbind(BIC, BIC_C)
 }
@@ -30,7 +38,7 @@ AIC_S = NULL
 BIC_S = NULL 
 
 for (p in 1:n) { 
-  load(paste("Fits_Simple/P",p,"Simple_Model.RData", sep = ""))
+  load(paste("Modelling/07_Outputs/P",p,"Simple_Model.RData", sep = ""))
   AIC_S = rbind(AIC, AIC_S)
   BIC_S = rbind(BIC, BIC_S)
 }
@@ -43,7 +51,7 @@ AIC_v = NULL
 BIC_v = NULL 
 
 for (p in 1:n) { 
-  load(paste("Fits_v/P",p,"V_Model.RData", sep = ""))
+  load(paste("Modelling/07_Outputs/P",p,"V_Model.RData", sep = ""))
   AIC_v = rbind(AIC, AIC_v)
   BIC_v = rbind(BIC, BIC_v)
 }
@@ -58,7 +66,7 @@ BIC_z = NULL
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:n) { #Loop in each data set
-  load(paste("Fits_z/P",p,"z_Model.RData", sep = ""))
+  load(paste("Modelling/07_Outputs/P",p,"z_Model.RData", sep = ""))
   AIC_z = rbind(AIC, AIC_z)
   BIC_z = rbind(BIC, BIC_z)
 }
@@ -73,7 +81,7 @@ BIC_zinter = NULL
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:n) { #Loop in each data set
-  load(paste("Fits_zinter/P",p,"zinter_Model.RData", sep = ""))
+  load(paste("Modelling/07_Outputs/P",p,"zinter_Model.RData", sep = ""))
   AIC_zinter = rbind(AIC, AIC_zinter)
   BIC_zinter = rbind(BIC, BIC_zinter)
 }
@@ -86,7 +94,7 @@ BIC_zfacil = NULL
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:n) { #Loop in each data set
-  load(paste("Fits_zfacil/P",p,"zfacil_Model.RData", sep = ""))
+  load(paste("Modelling/07_Outputs/DS1_P",p,"_zfacil_Model.RData", sep = ""))
   AIC_zfacil = rbind(AIC, AIC_zfacil)
   BIC_zfacil = rbind(BIC, BIC_zfacil)
 }
@@ -100,15 +108,17 @@ colnames(AIC_comp) = c("complex", "none", "v", "z", "zinter", "zfacil")
 BIC_comp = cbind(BIC_C, BIC_S, BIC_v, BIC_z, BIC_zinter, BIC_zfacil)
 colnames(BIC_comp) = c("complex", "none", "v", "z", "zinter", "zfacil")
 
-save(AIC_comp, file = "Data/AICs.Rdata")
-save(BIC_comp, file = "Data/BICs.Rdata")
+save(AIC_comp, file = paste("Data/Model-Comparisons/DS",dataset,"_AICs.Rdata", sep = ""))
+save(BIC_comp, file = paste("Data/Model-Comparisons/DS",dataset,"_BICs.Rdata", sep = ""))
+
+}
 
 ###########################
 ### Model Probabilities ##
 ###########################
 
-load("Data/BICs.Rdata")
-load("Data/AICs.Rdata")
+load("Data/Model-Comparisons/DS1_BICs.Rdata")
+load("Data/Model-Comparisons/DS1_AICs.Rdata")
 
 getWeights=function(x) {
   useX = x*(-0.5) # Transform BIC/AIC to a chi square distribution
@@ -160,7 +170,7 @@ for (i in 1:S) {
   
   col=hcl(h=150,c=100,l=40) 
   rect(i-0.5,sumThing,i+0.5,sumThing+BFweights[use.i,"zfacil"], border = col, col = col)
-  sumThing=sumThing+BFweights[use.i,"zfacil"]
+  sumThing=sumThing+BFweights[use.i,"zfacil"] 
   
   col=hcl(h=330,c=100,l=40) #Purple
   rect(i-0.5,sumThing,i+0.5,sumThing+BFweights[use.i,"none"], border = col, col = col)

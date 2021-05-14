@@ -1,4 +1,4 @@
-
+### Z Interference ####
 rm(list=ls())
 setwd("~/Dropbox/2021/Gaze-Cueing/Recovery_zinter")
 
@@ -33,7 +33,7 @@ use.range["v.centre",]=c(0.1,4)
 use.range["v.change",]=c(-2,2)
 use.range["b",]=c(0.45,1.75)
 use.range["t0",]=c(0.1,0.6)
-use.range["z",]=c(0.5,0.9) #Changed to 0.5 as lower limit for zinter model 
+use.range["z",]=c(0.1,0.9) #Changed to 0.5 as lower limit for zinter model 
 
 for (useParam in colnames(use.LHS)) {
   use.LHS[,useParam]=use.range[useParam,"Min"]+
@@ -62,7 +62,7 @@ for (i in 1:nrow(use.LHS)) {
     # Defining z based on condition
     tmp=NA
     if (cond==-0.5) {
-      tmp=as.numeric(use.LHS[i,"z"])
+      tmp=0.5
     } else if (cond==0.5) {
       tmp=(1-as.numeric(use.LHS[i,"z"]))
     }

@@ -66,7 +66,7 @@ nsub = 41
 all.data_c = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/DS",dataset,"_P",useSub,"_complex.RData",sep=""))
+  load(paste("Data/Model-Predictions/DS",dataset,"_P",useSub,"_complex.RData",sep=""))
   
   all.data_c[[useSub]]=sim
   
@@ -146,7 +146,7 @@ all.data_z = list()
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/DS",dataset,"_P",useSub,"_z.RData",sep=""))
+  load(paste("Data/Model-Predictions/DS",dataset,"_P",useSub,"_z.RData",sep=""))
   
   all.data_z[[useSub]]=sim
   
@@ -224,7 +224,7 @@ nsub = 41
 all.data_v = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/Model_Predictions/DS", dataset, "_P",useSub,"_v.RData",sep=""))
+  load(paste("Data/Model-Predictions/DS", dataset, "_P",useSub,"_v.RData",sep=""))
   
   all.data_v[[useSub]]=sim
   
@@ -304,7 +304,7 @@ nsub = 41
 all.data_s = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/DS",dataset,"_P",useSub,"_simple.RData",sep=""))
+  load(paste("Data/Model-Predictions/DS",dataset,"_P",useSub,"_simple.RData",sep=""))
   
   all.data_s[[useSub]]=sim
   
@@ -384,7 +384,7 @@ all.data_zinter = list()
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/DS",dataset,"_P",useSub,"_zinter.RData",sep=""))
+  load(paste("Data/Model-Predictions/DS",dataset,"_P",useSub,"_zinter.RData",sep=""))
   
   all.data_zinter[[useSub]]=sim
   
@@ -463,7 +463,7 @@ all.data_zfacil = list()
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/model_predictions/SD", dataset, "_P",useSub,"_zfacil.RData",sep=""))
+  load(paste("Data/Model-Predictions/DS", dataset, "_P",useSub,"_zfacil.RData",sep=""))
   
   all.data_zfacil[[useSub]]=sim
   
@@ -485,6 +485,7 @@ for (s in 1:41) {
   }
 }
 
+
 allQ_zfacil=array(unlist(tmp),c(length(qs),2,2,41))
 
 tmp=lapply(simData_zfacil,function(x) tapply(x$Resp==2,x$Cond,mean))
@@ -500,7 +501,7 @@ q.mean.2.2_zfacil=apply(allQ_zfacil[,2,2,],1,mean)
 p.mean.2_zfacil=mean(allP_zfacil[2,]) 
 
 #------------------------------
-#--- Plotting Z interference---
+#--- Plotting Z Facilitation---
 #------------------------------
 
 #all in one 

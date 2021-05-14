@@ -131,7 +131,7 @@ for(useSub in 1:nSub) {
   
   sim = as.data.frame(simData) # Convert the simulated data from List format to data frame format
   
-  save(sim, file = paste("Data/Model_Predictions/DS",dataset,"_P",useSub,"_complex.Rdata", sep = ""))
+  save(sim, file = paste("Data/Model-Predictions/DS",dataset,"_P",useSub,"_complex.Rdata", sep = ""))
   
 }
 }

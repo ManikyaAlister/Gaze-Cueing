@@ -117,7 +117,7 @@ for(useSub in 1:nSub) {
   
   sim = as.data.frame(simData) # Convert the simulated data from List format to data frame format
   
-  save(sim, file = paste("Data/model_predictions/P",useSub,"_zinter.Rdata", sep = ""))
+  save(sim, file = paste("Data/Model-Predictions/P",useSub,"_zinter.Rdata", sep = ""))
   
 }
  

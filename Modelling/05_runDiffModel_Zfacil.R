@@ -15,7 +15,7 @@ conds=c(1,2)
 
 
 n_datasets = 1 #number of data sets being run 
-dataset_lengths = c(1) #number of participants in each data set
+dataset_lengths = c(41) #number of participants in each data set
 
 for (dataset in 1:n_datasets) {
   
@@ -42,7 +42,7 @@ for (useSub in 1:nSub) {
       if (cond==conds[2]) { #Z not estimated in the incongruent condition
         z=0.5
       } else if (cond==conds[1]) {
-        z=(1-x["z"])
+        z=x["z"]
       } else {
         stop("Error")
       }
@@ -96,7 +96,7 @@ for(useSub in 1:nSub) {
   
   simData=list(Time=NULL,Cond=NULL,Resp=NULL) #Sets up a list with the correct headings in preparation for the simulation
   
-  #blah=apply(theta,2,mean)
+  blah=apply(theta,2,mean)
   
   tmp1=apply(weight,2,max)
   tmp2=which.max(tmp1)
@@ -122,7 +122,7 @@ for(useSub in 1:nSub) {
   
   sim = as.data.frame(simData) # Convert the simulated data from List format to data frame format
   
-  save(sim, file = paste("Data/Model_Predictions/DS",dataset,"_P",useSub,"_zfacil.Rdata", sep = ""))
+  save(sim, file = paste("Data/Model-Predictions/DS",dataset,"_P",useSub,"_zfacil.Rdata", sep = ""))
   
 }
 }
