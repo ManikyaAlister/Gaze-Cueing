@@ -42,7 +42,7 @@ log.dens.like = function (x,data,par.names) {
   names(x)=par.names
   for (cond in conds) {
     a=x["a"]
-    t0=x["t0"]
+    t0=x[paste("t0",cond,sep=".")]
     v=x[paste("v",cond,sep=".")]
     if (cond==conds[1]) {
       z=x["z"]
@@ -72,7 +72,7 @@ log.dens.like = function (x,data,par.names) {
 
 
 
-theta.names=c("a","t0",
+theta.names=c("a",paste("t0",conds,sep="."),
               paste("v",conds,sep="."), "z")
 
 phi.names=paste(rep(theta.names,each=2),rep(c("mu","sigma"),length(theta.names)),sep=".")

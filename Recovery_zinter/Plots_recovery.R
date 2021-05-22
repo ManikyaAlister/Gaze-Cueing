@@ -34,8 +34,8 @@ save(allGenParams, file = "All_Fits/zinter_Generated_Paramaters.RData")
 save(allMeanTheta, file = "All_Fits/zinter_Estimated_Paramaters.RData")
 
 #If I want to reload
-load("~/Dropbox/2021/Gaze-Cueing/Recovery/All_Fits/zinter_Estimated_Paramaters.RData")
-load("~/Dropbox/2021/Gaze-Cueing/Recovery/All_Fits/zinter_Generated_Paramaters.RData")
+load("All_Fits/zinter_Estimated_Paramaters.RData")
+load("All_Fits/zinter_Generated_Paramaters.RData")
 
 cor_zinter = cor(allGenParams[,"z"], allMeanTheta["z"])
 

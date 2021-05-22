@@ -3,7 +3,7 @@ rm(list=ls())
 library(tidyverse)
 library(rtdists)
 library(msm)
-setwd("~/Dropbox/2021/Gaze Cueing/Recovery")
+setwd("~/Dropbox/2021/Gaze-Cueing/Recovery")
 
 source("04_megaBackground.R")
 
@@ -43,7 +43,7 @@ for (useSub in 1:nSub) {
     names(x)=par.names
     for (cond in conds) {
       a=x["a"]
-      t0=x["t0"]
+      t0=x[paste("t0",cond,sep=".")]
       v=x[paste("v",cond,sep=".")]
       if (cond==conds[2]) { #Because incongruent is first
         z=x["z"]
@@ -70,7 +70,7 @@ for (useSub in 1:nSub) {
   
   
   
-  theta.names=c("a","t0",
+  theta.names=c("a",paste("t0",conds,sep="."),
                 paste("v",conds,sep="."), "z")
   
   savefile=paste("Fits_recovery/fits_recovery_P",useSub,".RData",sep="")

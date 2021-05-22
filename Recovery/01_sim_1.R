@@ -1,6 +1,6 @@
 
 rm(list=ls())
-setwd("~/Dropbox/2021/Gaze Cueing/Recovery")
+setwd("~/Dropbox/2021/Gaze-Cueing/Recovery")
 
 library(msm)
 source("02_simulate-DIFF.R")
@@ -14,15 +14,15 @@ library(lhs)
 
 # Set up hypercube
 
-use.LHS=randomLHS(n=100, k=5)
+use.LHS=randomLHS(n=100, k=6) # = n params
 
 colnames(use.LHS)=c("v.centre","v.change",
-                    "b","t0","z")
+                    "b","t0.centre","t0.change","z")
 
-use.range=array(NA,c(5,2))
+use.range=array(NA,c(6,2)) #c(nparams, 2)
 
 rownames(use.range)=c("v.centre","v.change",
-                      "b","t0","z")
+                      "b","t0.centre", "t0.change","z")
 colnames(use.range)=c("Min","Max")
 
 
@@ -32,7 +32,8 @@ colnames(use.range)=c("Min","Max")
 use.range["v.centre",]=c(0.1,4)
 use.range["v.change",]=c(-2,2)
 use.range["b",]=c(0.45,1.75)
-use.range["t0",]=c(0.1,0.6)
+use.range["t0.centre",]=c(0.1,0.6)
+use.range["t0.change",]=c(-0.2, 0.2)
 use.range["z",]=c(0.1,0.9)
 
 for (useParam in colnames(use.LHS)) {
@@ -70,7 +71,7 @@ for (i in 1:nrow(use.LHS)) {
     # Define generating parameters for this condition
     genParams[,paste(cond)] = c(tmp,
                                 as.numeric(use.LHS[i,"b"]),
-                                as.numeric(use.LHS[i,"t0"]),
+                                as.numeric(use.LHS[i,"t0.centre"]) + (cond*as.numeric(use.LHS[i,"t0.change"])),
                                 as.numeric(use.LHS[i,"v.centre"]) + (cond*as.numeric(use.LHS[i,"v.change"])),
                                 1,0,0,0)
     
