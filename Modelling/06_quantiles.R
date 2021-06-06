@@ -11,10 +11,10 @@ library(jtools)
 
 n_datasets = 1 #number of data sets being run 
 dataset_lengths = c(1) #number of participants in each data set
-
-for (dataset in 1:n_datasets) {
+nSub = 41
+#for (dataset in 1:n_datasets) {
   
-  nSub = dataset_lengths[dataset]
+#  nSub = dataset_lengths[dataset]
 
 ####### Observed Data ########
 all.data=list() 
@@ -218,8 +218,6 @@ ggplot()+
 ######### V Model #########
 ###########################
 
-
-# Load in predicted data generated from z DDM (simData)
 nsub = 41
 all.data_v = list()
 for (useSub in 1:nSub) {
@@ -293,6 +291,73 @@ ggplot()+
   geom_line(aes(x = q.mean.2.2_v, y = qs*p.mean.2_v))+
   labs(title = "v", subtitle = "Incongruent")+
   theme_apa()
+
+###########################
+######### t0 Model #########
+###########################
+
+
+# Load in predicted data generated from z DDM (simData)
+nsub = 41
+all.data_t0 = list()
+dataset = 1 
+for (useSub in 1:nSub) {
+  
+  load(paste("Data/Model-Predictions/DS", dataset, "_P",useSub,"_t0.RData",sep=""))
+  
+  all.data_t0[[useSub]]=sim
+  
+}
+ 
+simData_t0=all.data_t0
+rm(all.data_t0)
+
+tmp=lapply(simData_t0,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
+
+for (s in 1:41) {
+  if (nrow(tmp[[s]])==1) {
+    tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
+    rownames(tmp[[s]])=c(1,2)
+  }
+  for (i in 1:2) {
+    for (j in 1:2) {
+      if (is.null(tmp[[s]][paste(i),paste(j)][[1]])) tmp[[s]][paste(i),paste(j)][[1]]=rep(NA,length(qs))
+    }
+  }
+}
+
+allQ_t0=array(unlist(tmp),c(length(qs),2,2,41))
+
+tmp=lapply(simData_t0,function(x) tapply(x$Resp==2,x$Cond,mean))
+
+allP_t0=array(unlist(tmp),c(2,41))
+
+#Means for congruent cue condition
+q.mean.2.1_t0=apply(allQ_t0[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_t0[,2,COND,]...)
+p.mean.1_t0=mean(allP_t0[1,])
+
+#Means for incongruent cue condition
+q.mean.2.2_t0=apply(allQ_t0[,2,2,],1,mean) 
+p.mean.2_t0=mean(allP_t0[2,]) 
+
+#------------------------------
+#----------- Plotting t0--------
+#------------------------------
+
+#all in one 
+quantiles_t0 = ggplot()+
+  geom_point(aes(x = q.mean.2.1, y = qs*p.mean.1))+
+  geom_point(aes(x = q.mean.2.1_t0, y = qs*p.mean.1_t0),shape = 1)+
+  geom_line(aes(x = q.mean.2.1_t0, y = qs*p.mean.1_t0))+
+  geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
+  geom_point(aes(x = q.mean.2.2_t0, y = qs*p.mean.2_t0),shape = 0)+
+  geom_line(aes(x = q.mean.2.2_t0, y = qs*p.mean.2_t0))+
+  labs(title = "t0")+
+  theme_apa()
+quantiles_t0 # view plot
+ggsave(filename = paste("Modelling/08_Plots/DS",dataset,"_quantiles-t0.png", sep = ""), plot = quantiles_t0)
+ggsave("Modelling/07_Plots/DS1_quantiles-t0.png")
+
 
 ###########################
 ####### Simple Model ######
@@ -532,7 +597,7 @@ ggplot()+
   labs(title = "z Facilitation", subtitle = "Incongruent")+
   theme_apa()
 
-}
+#}
 
 
 # > tapply(sim_matrix_complex$Time,list(sim_matrix_complex$Resp,sim_matrix_complex$Cond),quantile,c(0.1,0.3,0.5,0.7,0.9))[2,1][[1]]
