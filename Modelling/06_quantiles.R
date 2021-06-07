@@ -358,6 +358,75 @@ quantiles_t0 # view plot
 ggsave(filename = paste("Modelling/08_Plots/DS",dataset,"_quantiles-t0.png", sep = ""), plot = quantiles_t0)
 ggsave("Modelling/07_Plots/DS1_quantiles-t0.png")
 
+###########################
+######### v-t0 Model #########
+###########################
+
+
+# Load in predicted data generated from z DDM (simData)
+nsub = 41
+all.data_v_t0 = list()
+dataset = 1 
+for (useSub in 1:nSub) {
+  
+  load(paste("Data/Model-Predictions/DS", dataset, "_P",useSub,"_v-t0.RData",sep=""))
+  
+  all.data_v_t0[[useSub]]=sim
+  
+}
+
+simData_v_t0=all.data_v_t0
+rm(all.data_v_t0)
+
+tmp=lapply(simData_v_t0,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
+
+for (s in 1:41) {
+  if (nrow(tmp[[s]])==1) {
+    tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
+    rownames(tmp[[s]])=c(1,2)
+  }
+  for (i in 1:2) {
+    for (j in 1:2) {
+      if (is.null(tmp[[s]][paste(i),paste(j)][[1]])) tmp[[s]][paste(i),paste(j)][[1]]=rep(NA,length(qs))
+    }
+  }
+}
+
+allQ_v_t0=array(unlist(tmp),c(length(qs),2,2,41))
+
+tmp=lapply(simData_v_t0,function(x) tapply(x$Resp==2,x$Cond,mean))
+
+allP_v_t0=array(unlist(tmp),c(2,41))
+
+#Means for congruent cue condition
+q.mean.2.1_v_t0=apply(allQ_v_t0[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_v0_t0[,2,COND,]...)
+p.mean.1_v_t0=mean(allP_v_t0[1,])
+
+#Means for incongruent cue condition
+q.mean.2.2_v_t0=apply(allQ_v_t0[,2,2,],1,mean) 
+p.mean.2_v_t0=mean(allP_v_t0[2,]) 
+
+#------------------------------
+#----------- Plotting v-t0-----
+#------------------------------
+
+#all in one 
+quantiles_t0 = ggplot()+
+  geom_point(aes(x = q.mean.2.1, y = qs*p.mean.1))+
+  geom_point(aes(x = q.mean.2.1_t0, y = qs*p.mean.1_t0),shape = 1)+
+  geom_line(aes(x = q.mean.2.1_t0, y = qs*p.mean.1_t0))+
+  geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
+  geom_point(aes(x = q.mean.2.2_t0, y = qs*p.mean.2_t0),shape = 0)+
+  geom_line(aes(x = q.mean.2.2_t0, y = qs*p.mean.2_t0))+
+  labs(title = "t0")+
+  theme_apa()
+quantiles_t0 # view plot
+ggsave(filename = paste("Modelling/08_Plots/DS",dataset,"_quantiles-t0.png", sep = ""), plot = quantiles_t0)
+ggsave("Modelling/07_Plots/DS1_quantiles-t0.png")
+
+
+
+
 
 ###########################
 ####### Simple Model ######
