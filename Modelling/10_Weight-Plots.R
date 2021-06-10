@@ -3,7 +3,10 @@ library(tidyverse)
 n = 41
 S = n
 setwd("~/Dropbox/2021/Gaze-Cueing")
- 
+
+#n_datasets = 1
+#models = c(`_all-params`) 
+#for (dataset in 1:n_datasets) {
 ######## Load AIC and BIC for Each Model #######
 #Or Skip to lines 83/84 if already saved
 #---------------------------------------------------------------------------------------------------
@@ -16,7 +19,7 @@ BIC_C = NULL
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:n) { 
-  load(paste("Fits_Complex/P",p,"Complex_Model.RData", sep = ""))
+  load(paste("Modelling/07_Outputs/P",p,"Complex_Model.RData", sep = ""))
   AIC_C = rbind(AIC, AIC_C)
   BIC_C = rbind(BIC, BIC_C)
 }
@@ -30,7 +33,7 @@ AIC_S = NULL
 BIC_S = NULL 
 
 for (p in 1:n) { 
-  load(paste("Fits_Simple/P",p,"Simple_Model.RData", sep = ""))
+  load(paste("Modelling/07_Outputs/P",p,"Simple_Model.RData", sep = ""))
   AIC_S = rbind(AIC, AIC_S)
   BIC_S = rbind(BIC, BIC_S)
 }
@@ -43,7 +46,7 @@ AIC_v = NULL
 BIC_v = NULL 
 
 for (p in 1:n) { 
-  load(paste("Fits_v/P",p,"V_Model.RData", sep = ""))
+  load(paste("Modelling/07_Outputs/P",p,"V_Model.RData", sep = ""))
   AIC_v = rbind(AIC, AIC_v)
   BIC_v = rbind(BIC, BIC_v)
 }
@@ -58,47 +61,70 @@ BIC_z = NULL
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:n) { #Loop in each data set
-  load(paste("Fits_z/P",p,"z_Model.RData", sep = ""))
+  load(paste("Modelling/07_Outputs/P",p,"z_Model.RData", sep = ""))
   AIC_z = rbind(AIC, AIC_z)
   BIC_z = rbind(BIC, BIC_z)
 }
 #save(AIC_z, file = "Comparisons/AIC_z.RData")
 #save(BIC_z, file = "Comparisons/BIC_z.RData")
-
 #---------------------------------------------------------------------------------------------------
-## z Interference Model ##
+## t0 Model ##
 
-AIC_zinter = NULL
-BIC_zinter = NULL 
+AIC_t0 = NULL
+BIC_t0 = NULL 
+
+for (p in 1:n) { 
+  load(paste("Modelling/07_Outputs/DS1_P",p,"_t0Model.RData", sep = ""))
+  AIC_t0 = rbind(AIC, AIC_t0)
+  BIC_t0 = rbind(BIC, BIC_t0)
+}
+#---------------------------------------------------------------------------------------------------
+## z-t0 model##
+
+AIC_z_t0 = NULL
+BIC_z_t0 = NULL 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:n) { #Loop in each data set
-  load(paste("Fits_zinter/P",p,"zinter_Model.RData", sep = ""))
-  AIC_zinter = rbind(AIC, AIC_zinter)
-  BIC_zinter = rbind(BIC, BIC_zinter)
+  load(paste("Modelling/07_outputs/DS1_P",p,"_z-t0_Model.RData", sep = ""))
+  AIC_z_t0 = rbind(AIC, AIC_z_t0)
+  BIC_z_t0 = rbind(BIC, BIC_z_t0)
 }
 
 #---------------------------------------------------------------------------------------------------
-## z Facilitation Model ##
+## v-t0 Model ##
 
-AIC_zfacil = NULL
-BIC_zfacil = NULL 
+AIC_v_t0 = NULL
+BIC_v_t0 = NULL 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:n) { #Loop in each data set
-  load(paste("Fits_zfacil/P",p,"zfacil_Model.RData", sep = ""))
-  AIC_zfacil = rbind(AIC, AIC_zfacil)
-  BIC_zfacil = rbind(BIC, BIC_zfacil)
+  load(paste("Modelling/07_Outputs/DS1_P",p,"_v-t0_Model.RData", sep = ""))
+  AIC_v_t0 = rbind(AIC, AIC_v_t0)
+  BIC_v_t0 = rbind(BIC, BIC_v_t0)
+}
+
+#---------------------------------------------------------------------------------------------------
+## all-parameters model##
+
+AIC_ap = NULL
+BIC_ap = NULL 
+
+#Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
+for (p in 1:n) { #Loop in each data set
+  load(paste("Modelling/07_Outputs/DS1_P",p,"_all-params_Model.RData", sep = ""))
+  AIC_ap = rbind(AIC, AIC_ap)
+  BIC_ap = rbind(BIC, BIC_ap)
 }
 
 #---------------------------------------------------------------------------------------------------
 #Compare AIC of each model for each participant 
 
-AIC_comp = cbind(AIC_C, AIC_S, AIC_v, AIC_z, AIC_zinter, AIC_zfacil)
-colnames(AIC_comp) = c("complex", "none", "v", "z", "zinter", "zfacil")
+AIC_comp = cbind(AIC_C, AIC_S, AIC_v, AIC_z, AIC_z_t0, AIC_v_t0, AIC_ap, AIC_t0)
+colnames(AIC_comp) = c("complex", "none", "v", "z", "_z_t0", "v_t0", "all-params", "t0")
 
-BIC_comp = cbind(BIC_C, BIC_S, BIC_v, BIC_z, BIC_zinter, BIC_zfacil)
-colnames(BIC_comp) = c("complex", "none", "v", "z", "zinter", "zfacil")
+BIC_comp = cbind(BIC_C, BIC_S, BIC_v, BIC_z, BIC_z_t0, BIC_v_t0, BIC_ap, BIC_t0)
+colnames(BIC_comp) = c("complex", "none", "v", "z", "_z_t0", "v_t0", "all-params", "t0")
 
 save(AIC_comp, file = "Data/AICs.Rdata")
 save(BIC_comp, file = "Data/BICs.Rdata")
@@ -130,11 +156,11 @@ getWeights=function(x) {
 
 ########## BIC ###########
 
-BFweights=array(NA,c(,4))
+BFweights=array(NA,c(S,8))
 for (s in 1:S) {
   BFweights[s,]= getWeights(BIC_comp[s,])
 }
-colnames(BFweights) = c("complex", "none", "v", "z", "zinter", "zfacil")
+colnames(BFweights) = c("complex", "none", "v", "z", "_z_t0", "v_t0", "all_params", "t0")
 
 
 #save(BFweights, file = "Data/BF-Weights.RData")
@@ -169,37 +195,55 @@ for (i in 1:S) {
   col=hcl(h=420,c=100,l=70)
   rect(i-0.5,sumThing,i+0.5,sumThing+BFweights[use.i,"complex"], border = col, col = col)
   sumThing=sumThing+BFweights[use.i,"complex"] #Blue 
+  
+  col=hcl(h=180,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BFweights[use.i,"t0"], border = col, col = col)
+  sumThing=sumThing+BFweights[use.i,"t0"] 
+  
+  col=hcl(h=280,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BFweights[use.i,"_z_t0"], border = col, col = col)
+  sumThing=sumThing+BFweights[use.i,"_z_t0"] 
+  
+  col=hcl(h=380,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BFweights[use.i,"v_t0"], border = col, col = col)
+  sumThing=sumThing+BFweights[use.i,"v_t0"] 
+  
+  col=hcl(h=80,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BFweights[use.i,"all_params"], border = col, col = col)
+  sumThing=sumThing+BFweights[use.i,"all_params"] 
+  
 }
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 legend("bottom", 
-       legend = c("Complex", "Simple", "v", "z"), 
-       col = c(hcl(h=420,c=100,l=70),hcl(h=330,c=100,l=40), hcl(h=220,c=100,l=40), hcl(h=130,c=100,l=70)),
+       legend = c("z-v", "Simple", "v", "z", "t0", "_z_t0", "v_t0", "all-params"), 
+       col = c(hcl(h=420,c=100,l=70),hcl(h=330,c=100,l=40), hcl(h=220,c=100,l=40), hcl(h=130,c=100,l=70), hcl(h=180,c=100,l=70), hcl(h=280,c=100,l=70), hcl(h=380,c=100,l=70), hcl(h=80,c=100,l=70)),
        pch = 15,
        horiz = T,
-       cex = .73,
+       cex = .55,
        inset=c(0,.0))
        
-
 ########## AIC ###########
 
-AICweights=array(NA,c(S,4))
+AICweights=array(NA,c(S,8))
 for (s in 1:S) {
   AICweights[s,]= getWeights(AIC_comp[s,])
 }
-AIC_weights = getWeights(AICweights)
+colnames(AICweights) = c("complex", "none", "v", "z", "_z_t0", "v_t0", "all_params", "t0")
 
-colnames(AICweights) = c("complex", "none", "v", "z")
+
 #save(AICweights, file = "Data/BF-Weights.RData")
-#save(AIC_comp, file = "Data/BICs.RData")
+#save(BIC_comp, file = "Data/BICs.RData")
 
 #If I want to order by V model 
 # AICweights = AICweights[order(AICweights[,4]),]
 
 # Plot
 
-S = 41
+S = 41 #n participants
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="AIC",xaxt="n",yaxt="n")
+
+# Plotting
 
 for (i in 1:S) {
   use.i=i
@@ -220,21 +264,41 @@ for (i in 1:S) {
   col=hcl(h=420,c=100,l=70)
   rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"complex"], border = col, col = col)
   sumThing=sumThing+AICweights[use.i,"complex"] #Blue 
+  
+  col=hcl(h=180,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"t0"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"t0"] 
+  
+  col=hcl(h=280,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"_z_t0"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"_z_t0"] 
+  
+  col=hcl(h=380,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"v_t0"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"v_t0"] 
+  
+  col=hcl(h=80,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"all_params"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"all_params"] 
+  
 }
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
-legend("bottom",legend = c("Complex", "Simple", "v", "z"), 
-       col = c(hcl(h=420,c=100,l=70),hcl(h=330,c=100,l=40), hcl(h=220,c=100,l=40), hcl(h=130,c=100,l=70)),
-       pch = 15, 
-       inset=c(0,0),
+legend("bottom", 
+       legend = c("z-v", "Simple", "v", "z", "t0", "_z_t0", "v_t0", "all-params"), 
+       col = c(hcl(h=420,c=100,l=70),hcl(h=330,c=100,l=40), hcl(h=220,c=100,l=40), hcl(h=130,c=100,l=70), hcl(h=180,c=100,l=70), hcl(h=280,c=100,l=70), hcl(h=380,c=100,l=70), hcl(h=80,c=100,l=70)),
+       pch = 15,
        horiz = T,
-       cex = .73)
+       cex = .55,
+       inset=c(0.3,.0))
 
 ####################################
 #####Inclusion Probability #########
 ####################################
 
 ### BIC ####
+
+#### z #####
 
 #To get a inclusion probability for z, we just add the models that have z and don’t have z:
   
@@ -243,11 +307,11 @@ for (i in 1:S) {
   use.i=i
   sumThing=0
   col=hcl(h=330,c=100,l=0)
-  currWeight=sum(BFweights[use.i,c("none","v")])
+  currWeight=sum(BFweights[use.i,c("none","v","t0", "v_t0")])
   rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
   col=hcl(h=110,c=100,l=40)
-  currWeight=sum(BFweights[use.i,c("z","complex")])
+  currWeight=sum(BFweights[use.i,c("z","complex", "all_params", "_z_t0")])
   rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
 }
@@ -260,7 +324,7 @@ legend("bottom", legend = c("z varies", "z does not vary"),
        horiz = T,
        cex = .73)
 
-
+##### v ######
 #And same principle for v:
   
   plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="v Inclusion Probability BIC",xaxt="n",yaxt="n")
@@ -268,17 +332,43 @@ for (i in 1:S) {
   use.i=i
   sumThing=0
   col=hcl(h=330,c=100,l=1)
-  currWeight=sum(BFweights[use.i,c("none","z")])
+  currWeight=sum(BFweights[use.i,c("none","z", "_z_t0", "t0")])
   rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
   col=hcl(h=110,c=100,l=60)
-  currWeight=sum(BFweights[use.i,c("v","complex")])
+  currWeight=sum(BFweights[use.i,c("v","complex", "v_t0", "all_params")])
   rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
 }
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 legend("bottom", legend = c("v varies", "v does not vary"), 
+       col = c(hcl(h=110,c=100,l=40),hcl(h=330,c=100,l=0)),
+       pch = 15, 
+       inset=c(0,0),
+       horiz = T,
+       cex = .73)
+
+
+#### t0 #####
+#And same principle for t0:
+
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="t0 Inclusion Probability BIC",xaxt="n",yaxt="n")
+for (i in 1:S) {
+  use.i=i
+  sumThing=0
+  col=hcl(h=330,c=100,l=0)
+  currWeight=sum(BFweights[use.i,c("none","z", "complex", "v")])
+  rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
+  sumThing=sumThing+currWeight
+  col=hcl(h=110,c=100,l=60)
+  currWeight=sum(BFweights[use.i,c("t0","_z_t0", "v_t0", "all_params")])
+  rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
+  sumThing=sumThing+currWeight
+}
+axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
+axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
+legend("bottom", legend = c("t0 varies", "t0 does not vary"), 
        col = c(hcl(h=110,c=100,l=40),hcl(h=330,c=100,l=0)),
        pch = 15, 
        inset=c(0,0),
@@ -287,6 +377,8 @@ legend("bottom", legend = c("v varies", "v does not vary"),
 
 ### AIC ####
 
+#### z #####
+
 #To get a inclusion probability for z, we just add the models that have z and don’t have z:
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="z Inclusion Probability AIC",xaxt="n",yaxt="n")
@@ -294,11 +386,11 @@ for (i in 1:S) {
   use.i=i
   sumThing=0
   col=hcl(h=330,c=100,l=0)
-  currWeight=sum(AICweights[use.i,c("none","v")])
+  currWeight=sum(AICweights[use.i,c("none","v","t0", "v_t0")])
   rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
   col=hcl(h=110,c=100,l=40)
-  currWeight=sum(AICweights[use.i,c("z","complex")])
+  currWeight=sum(AICweights[use.i,c("z","complex", "all_params", "_z_t0")])
   rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
 }
@@ -311,7 +403,7 @@ legend("bottom", legend = c("z varies", "z does not vary"),
        horiz = T,
        cex = .73)
 
-
+##### v ######
 #And same principle for v:
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="v Inclusion Probability AIC",xaxt="n",yaxt="n")
@@ -319,17 +411,43 @@ for (i in 1:S) {
   use.i=i
   sumThing=0
   col=hcl(h=330,c=100,l=1)
-  currWeight=sum(AICweights[use.i,c("none","z")])
+  currWeight=sum(AICweights[use.i,c("none","z", "_z_t0", "t0")])
   rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
   col=hcl(h=110,c=100,l=60)
-  currWeight=sum(AICweights[use.i,c("v","complex")])
+  currWeight=sum(AICweights[use.i,c("v","complex", "v_t0", "all_params")])
   rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
 }
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 legend("bottom", legend = c("v varies", "v does not vary"), 
+       col = c(hcl(h=110,c=100,l=40),hcl(h=330,c=100,l=0)),
+       pch = 15, 
+       inset=c(0,0),
+       horiz = T,
+       cex = .73)
+
+
+#### t0 #####
+#And same principle for t0:
+
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="t0 Inclusion Probability AIC",xaxt="n",yaxt="n")
+for (i in 1:S) {
+  use.i=i
+  sumThing=0
+  col=hcl(h=330,c=100,l=0)
+  currWeight=sum(AICweights[use.i,c("none","z", "complex", "v")])
+  rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
+  sumThing=sumThing+currWeight
+  col=hcl(h=110,c=100,l=60)
+  currWeight=sum(AICweights[use.i,c("t0","_z_t0", "v_t0", "all_params")])
+  rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
+  sumThing=sumThing+currWeight
+}
+axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
+axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
+legend("bottom", legend = c("t0 varies", "t0 does not vary"), 
        col = c(hcl(h=110,c=100,l=40),hcl(h=330,c=100,l=0)),
        pch = 15, 
        inset=c(0,0),
