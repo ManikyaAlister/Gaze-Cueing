@@ -40,6 +40,15 @@ rm(all.data)
 log.dens.like = function (x,data,par.names) {
   out=0
   names(x)=par.names
+  if (x[paste("v",conds[1],sep=".")] < x[paste("v",conds[2],sep=".")]) {
+    return(-Inf)
+  } 
+  if (x["z"] < 0.5) { ### For complex model 
+    return(-Inf)
+  }
+  if (x[paste("t0",conds[1],sep=".")] > x[paste("t0",conds[2],sep=".")]) {
+    return(-Inf)
+  } 
   for (cond in conds) {
     a=x["a"]
     t0=x[paste("t0",cond,sep=".")]
