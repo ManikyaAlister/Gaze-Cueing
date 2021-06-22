@@ -9,6 +9,8 @@ setwd("~/Dropbox/2021/Gaze-Cueing")
 library(tidyverse)
 library(jtools)
 
+load("data/participants_alt.Rdata") #This is a list of the participants who were less than 
+# 50% likely for the null model to be their best model
 n_datasets = 1 #number of data sets being run 
 dataset_lengths = c(1) #number of participants in each data set
 nSub = 41
@@ -27,12 +29,13 @@ for (useSub in 1:nSub) {
   
 }
 
+all.data = all.data[participants_alt] #only interested in participants that didn't overwhelmingly favor the null model
 
 qs=seq(0.1,0.9,0.1) #Define quantiles 
 
 tmp=lapply(all.data,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs)) 
 
-for (s in 1:41) {
+for (s in 1:length(participants_alt)) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -44,12 +47,12 @@ for (s in 1:41) {
   }
 }
 
-allQ=array(unlist(tmp),c(length(qs),2,2,41))
+allQ=array(unlist(tmp),c(length(qs),2,2,length(participants_alt)))
 
 
 tmp=lapply(all.data,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP=array(unlist(tmp),c(2,41))
+allP=array(unlist(tmp),c(2,length(participants_alt)))
 
 #Means for congruent condition
 q.mean.2.1=apply(allQ[,2,1,],1,mean)
@@ -60,24 +63,24 @@ q.mean.2.2=apply(allQ[,2,2,],1,mean)
 p.mean.2=mean(allP[2,])  
 
 ############################
-###### Complex Model ######
+###### Z-V Model ######
 ###########################
 nsub = 41
-all.data_c = list()
+all.data_z_v = list()
 for (useSub in 1:nSub) {
   
   load(paste("Data/Model-Predictions/DS",dataset,"_P",useSub,"_complex.RData",sep=""))
   
-  all.data_c[[useSub]]=sim
+  all.data_z_v[[useSub]]=sim
   
 }
 
-simData_c=all.data_c
-rm(all.data_c)
+simData_z_v=all.data_z_v[participants_alt]
+rm(all.data_z_v)
 #theta
-tmp=lapply(simData_c,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
+tmp=lapply(simData_z_v,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in 1:41) {
+for (s in 1:length(participants_alt)) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -89,58 +92,41 @@ for (s in 1:41) {
   }
 }
 
-allQ_c=array(unlist(tmp),c(length(qs),2,2,41))
+allQ_z_v=array(unlist(tmp),c(length(qs),2,2,41))
 
-tmp=lapply(simData_c,function(x) tapply(x$Resp==2,x$Cond,mean))
+tmp=lapply(simData_z_v,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_c=array(unlist(tmp),c(2,41))
+allP_z_v=array(unlist(tmp),c(2,41))
 
 #Means for congruent cue condition
-q.mean.2.1_c=apply(allQ_c[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_c[,2,COND,]...)
-p.mean.1_c=mean(allP_c[1,])
+q.mean.2.1_z_v=apply(allQ_z_v[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_z_v[,2,COND,]...)
+p.mean.1_z_v=mean(allP_z_v[1,])
 
 #Means for incongruent cue condition
-q.mean.2.2_c=apply(allQ_c[,2,2,],1,mean) 
-p.mean.2_c=mean(allP_c[2,]) 
+q.mean.2.2_z_v=apply(allQ_z_v[,2,2,],1,mean) 
+p.mean.2_z_v=mean(allP_z_v[2,]) 
 
 #------------------------------
 #------ Plotting Complex-------
 #------------------------------
 
-#plot(q.mean.2.1,qs*p.mean.2.1,pch=16,xlim=c(0.2,0.5)) 
-
 #all in one 
-quantiles_complex = ggplot()+
+quantiles_z_v = ggplot()+
   geom_point(aes(x = q.mean.2.1, y = qs*p.mean.1))+
-  geom_point(aes(x = q.mean.2.1_c, y = qs*p.mean.1_c),shape = 1)+
-  geom_line(aes(x = q.mean.2.1_c, y = qs*p.mean.1_c))+
+  geom_point(aes(x = q.mean.2.1_z_v, y = qs*p.mean.1_z_v),shape = 1)+
+  geom_line(aes(x = q.mean.2.1_z_v, y = qs*p.mean.1_z_v))+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
-  geom_point(aes(x = q.mean.2.2_c, y = qs*p.mean.2_c),shape = 0)+
-  geom_line(aes(x = q.mean.2.2_c, y = qs*p.mean.2_c))+
+  geom_point(aes(x = q.mean.2.2_z_v, y = qs*p.mean.2_z_v),shape = 0)+
+  geom_line(aes(x = q.mean.2.2_z_v, y = qs*p.mean.2_z_v))+
   theme_apa()
-quantiles_complex #View plot 
-ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-complex.png", sep = ""), plot = quantiles_complex)
-
-#Separated across conditions
-ggplot()+
-  geom_point(aes(x = q.mean.2.1, y = qs*p.mean.1))+
-  geom_point(aes(x = q.mean.2.1_c, y = qs*p.mean.1_c),shape = 1)+
-  geom_line(aes(x = q.mean.2.1_c, y = qs*p.mean.1_c))+
-  theme_apa()
-
-ggplot()+
-  geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
-  geom_point(aes(x = q.mean.2.2_c, y = qs*p.mean.2_c),shape = 0)+
-  geom_line(aes(x = q.mean.2.2_c, y = qs*p.mean.2_c))+
-  theme_apa()
-
+quantiles_z_v #View plot 
+ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-z-v-alt.png", sep = ""), plot = quantiles_complex)
 
 ###########################
 ######### Z Model #########
 ###########################
 
-
-# Load in only the predicted predicted data generated from z DDM (simData)
+# Load in only the predicted data generated from z DDM (simData)
 nsub = 41
 all.data_z = list()
 
@@ -151,13 +137,12 @@ for (useSub in 1:nSub) {
   all.data_z[[useSub]]=sim
   
 }
-#Something wrong with how I generated the Z data 
-simData_z=all.data_z
+simData_z=all.data_z[participants_alt]
 rm(all.data_z)
 
 tmp=lapply(simData_z,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in 1:41) {
+for (s in length(participants_alt)) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -176,7 +161,7 @@ tmp=lapply(simData_z,function(x) tapply(x$Resp==2,x$Cond,mean))
 allP_z=array(unlist(tmp),c(2,41))
 
 #Means for congruent cue condition
-q.mean.2.1_z=apply(allQ_z[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_z[,2,COND,]...)
+q.mean.2.1_z=apply(allQ_z[,2,1,],1,mean) 
 p.mean.1_z=mean(allP_z[1,])
 
 #Means for incongruent cue condition
@@ -197,22 +182,8 @@ quantiles_z = ggplot()+
   labs(title = "z") +
   theme_apa()
 quantiles_z #view plot 
-ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-z.png", sep = ""), plot = quantiles_z)  
+ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-z-alt.png", sep = ""), plot = quantiles_z)  
 
-#Separated across conditions
-ggplot()+
-  geom_point(aes(x = q.mean.2.1, y = qs*p.mean.1))+
-  geom_point(aes(x = q.mean.2.1_z, y = qs*p.mean.1_z),shape = 1)+
-  geom_line(aes(x = q.mean.2.1_z, y = qs*p.mean.1_z))+
-  labs(title = "z", subtitle = "Congrunet")+
-  theme_apa()
-
-ggplot()+
-  geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
-  geom_point(aes(x = q.mean.2.2_z, y = qs*p.mean.2_z),shape = 0)+
-  geom_line(aes(x = q.mean.2.2_z, y = qs*p.mean.2_z))+
-  labs(title = "z", subtitle = "Incongrunet") +
-  theme_apa()
 
 ###########################
 ######### V Model #########
@@ -228,12 +199,12 @@ for (useSub in 1:nSub) {
   
 }
 #Something wrong with how I generated the Z data 
-simData_v=all.data_v
+simData_v=all.data_v[participants_alt]
 rm(all.data_v)
 
 tmp=lapply(simData_v,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in 1:41) {
+for (s in length[participants_alt]) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -274,23 +245,8 @@ quantiles_v = ggplot()+
   labs(title = "v")+
   theme_apa()
 quantiles_v # view plot
-ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-v.png", sep = ""), plot = quantiles_v)
+ggsave(paste("Modelling/07_Plots/DS",dataset,"_quantiles-v-alt.png", sep = ""), plot = quantiles_v)
 
-#Separated across conditions:
-
-ggplot()+
-  geom_point(aes(x = q.mean.2.1, y = qs*p.mean.1))+
-  geom_point(aes(x = q.mean.2.1_v, y = qs*p.mean.1_v),shape = 1)+
-  geom_line(aes(x = q.mean.2.1_v, y = qs*p.mean.1_v))+
-  labs("v", subtitle = "Congruent")+
-  theme_apa()
-
-ggplot()+
-  geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
-  geom_point(aes(x = q.mean.2.2_v, y = qs*p.mean.2_v),shape = 0)+
-  geom_line(aes(x = q.mean.2.2_v, y = qs*p.mean.2_v))+
-  labs(title = "v", subtitle = "Incongruent")+
-  theme_apa()
 
 ###########################
 ######### t0 Model #########
@@ -309,12 +265,12 @@ for (useSub in 1:nSub) {
   
 }
  
-simData_t0=all.data_t0
+simData_t0=all.data_t0[participants_alt]
 rm(all.data_t0)
 
 tmp=lapply(simData_t0,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in 1:41) {
+for (s in 1:length(participants_alt)) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -326,11 +282,11 @@ for (s in 1:41) {
   }
 }
 
-allQ_t0=array(unlist(tmp),c(length(qs),2,2,41))
+allQ_t0=array(unlist(tmp),c(length(qs),2,2,length(participants_alt)))
 
 tmp=lapply(simData_t0,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_t0=array(unlist(tmp),c(2,41))
+allP_t0=array(unlist(tmp),c(2,length(participants_alt)))
 
 #Means for congruent cue condition
 q.mean.2.1_t0=apply(allQ_t0[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_t0[,2,COND,]...)
@@ -355,8 +311,8 @@ quantiles_t0 = ggplot()+
   labs(title = "t0")+
   theme_apa()
 quantiles_t0 # view plot
-ggsave(filename = paste("Modelling/08_Plots/DS",dataset,"_quantiles-t0.png", sep = ""), plot = quantiles_t0)
-ggsave("Modelling/07_Plots/DS1_quantiles-t0.png")
+ggsave(filename = paste("Modelling/08_Plots/DS",dataset,"_quantiles-t0-alt.png", sep = ""), plot = quantiles_t0)
+ggsave("Modelling/07_Plots/DS1_quantiles-t0-alt.png")
 
 ###########################
 ######### v-t0 Model #########
@@ -375,12 +331,12 @@ for (useSub in 1:nSub) {
   
 }
 
-simData_v_t0=all.data_v_t0
+simData_v_t0=all.data_v_t0[participants_alt]
 rm(all.data_v_t0)
 
 tmp=lapply(simData_v_t0,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in 1:41) {
+for (s in 1:length[participants_alt]) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -421,8 +377,8 @@ quantiles_v_t0 = ggplot()+
   labs(title = "v-t0")+
   theme_apa()
 quantiles_v_t0 # view plot
-ggsave(filename = paste("Modelling/08_Plots/DS",dataset,"_quantiles_v-t0.png", sep = ""), plot = quantiles_v_t0)
-ggsave("Modelling/07_Plots/DS1_quantiles-t0.png")
+ggsave(filename = paste("Modelling/08_Plots/DS",dataset,"_quantiles_v-t0-alt.png", sep = ""), plot = quantiles_v_t0)
+ggsave("Modelling/07_Plots/DS1_quantiles-t0-alt.png")
 
 
 ###########################
@@ -442,12 +398,12 @@ for (useSub in 1:nSub) {
   
 }
 
-simData_z_t0=all.data_z_t0
+simData_z_t0=all.data_z_t0[participants_alt]
 rm(all.data_z_t0)
 
 tmp=lapply(simData_z_t0,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in 1:41) {
+for (s in 1:length(participants_alt)) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -565,7 +521,7 @@ nsub = 41
 all.data_s = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/Model-Predictions/DS",dataset,"_P",useSub,"_simple.RData",sep=""))
+  load(paste("Data/Model-Predictions/P",useSub,"_simple.RData",sep=""))
   
   all.data_s[[useSub]]=sim
   

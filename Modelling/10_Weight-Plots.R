@@ -162,6 +162,21 @@ for (s in 1:S) {
 }
 colnames(BFweights) = c("complex", "none", "v", "z", "_z_t0", "v_t0", "all_params", "t0")
 
+### Sort participants into those who were best fitted by the null model v not the null model for model fitting: ###
+### Only doing for BIC
+
+BFweights_tmp = BFweights
+BFweights_tmp=as.data.frame(BFweights) 
+BFweights_tmp$ID = 1:41
+
+BFweights_alt = filter(BFweights_tmp, none < .5) #participants for which the null model is less than 50% likely
+BFweights_null = filter(BFweights_tmp, none >= .5) #participants for which the null model is more than 50% likely
+
+participants_alt = BFweights_alt$ID #Create a vector of all the participants who best fitted alternative models 
+participants_null = BFweights_null$ID #And then for null 
+
+save(participants_alt, file = "data/participants_alt.Rdata")
+save(participants_null, file = "data/participants_null.Rdata")
 
 #save(BFweights, file = "Data/BF-Weights.RData")
 #save(BIC_comp, file = "Data/BICs.RData")
