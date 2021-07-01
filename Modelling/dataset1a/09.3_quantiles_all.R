@@ -57,7 +57,7 @@ nsub = 41
 all.data_v_z = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1a/model-predictions-unconstrained/P",useSub,"_v-z.RData",sep=""))
+  load(paste("Data/dataset1a/model-predictions/P",useSub,"_v-z.RData",sep=""))
   
   all.data_v_z[[useSub]]=sim
   
@@ -108,7 +108,7 @@ quantiles_v_z = ggplot()+
   geom_line(aes(x = q.mean.2.2_v_z, y = qs*p.mean.2_v_z))+
   theme_apa()
 quantiles_v_z #View plot 
-ggsave(paste("Modelling-Unconstrained/dataset1a/08_Plots/quantiles-v-z.png", sep = ""), plot = quantiles_v_z)
+ggsave(paste("Modelling/dataset1a/08_Plots/quantiles-v-z.png", sep = ""), plot = quantiles_v_z)
 
 ###########################
 ######### Z Model #########
@@ -120,7 +120,7 @@ all.data_z = list()
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1a/model-predictions-unconstrained/P",useSub,"_z.RData",sep=""))
+  load(paste("Data/dataset1a/model-predictions/P",useSub,"_z.RData",sep=""))
   
   all.data_z[[useSub]]=sim
   
@@ -167,10 +167,10 @@ quantiles_z = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_z, y = qs*p.mean.2_z),shape = 0)+
   geom_line(aes(x = q.mean.2.2_z, y = qs*p.mean.2_z))+
-  labs(title = "Unc. z") +
+  labs(title = " z") +
   theme_apa()
 quantiles_z #view plot 
-ggsave(paste("Modelling-Unconstrained/dataset1a/08_Plots/quantiles-z.png", sep = ""), plot = quantiles_z)  
+ggsave(paste("Modelling/dataset1a/08_Plots/quantiles-z.png", sep = ""), plot = quantiles_z)  
 
 
 ###########################
@@ -181,7 +181,7 @@ nsub = 41
 all.data_v = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1a/model-predictions-unconstrained/P",useSub,"_v.RData",sep=""))
+  load(paste("Data/dataset1a/model-predictions/P",useSub,"_v.RData",sep=""))
   
   all.data_v[[useSub]]=sim
   
@@ -230,10 +230,10 @@ quantiles_v = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_v, y = qs*p.mean.2_v),shape = 0)+
   geom_line(aes(x = q.mean.2.2_v, y = qs*p.mean.2_v))+
-  labs(title = "Unc. v")+
+  labs(title = "v")+
   theme_apa()
 quantiles_v # view plot
-ggsave(paste("Modelling-Unconstrained/dataset1a/08_Plots/quantiles-v.png", sep = ""), plot = quantiles_v)
+ggsave(paste("Modelling/dataset1a/08_Plots/quantiles-v.png", sep = ""), plot = quantiles_v)
 
 
 ###########################
@@ -247,7 +247,7 @@ all.data_t0 = list()
 dataset = 1 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1a/model-predictions-unconstrained/P",useSub,"_t0.RData",sep=""))
+  load(paste("Data/dataset1a/model-predictions/P",useSub,"_t0.RData",sep=""))
   
   all.data_t0[[useSub]]=sim
   
@@ -296,10 +296,10 @@ quantiles_t0 = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_t0, y = qs*p.mean.2_t0),shape = 0)+
   geom_line(aes(x = q.mean.2.2_t0, y = qs*p.mean.2_t0))+
-  labs(title = "Unc. t0")+
+  labs(title = "t0")+
   theme_apa()
 quantiles_t0 # view plot
-ggsave("Modelling-Unconstrained/dataset1a/08_Plots/quantiles-t0.png", plot = quantiles_t0)
+ggsave("Modelling/dataset1a/08_Plots/quantiles-t0.png", plot = quantiles_t0)
 
 
 ###########################
@@ -313,7 +313,7 @@ all.data_v_t0 = list()
 dataset = 1 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1a/model-predictions-unconstrained/P",useSub,"_v-t0.RData",sep=""))
+  load(paste("Data/dataset1a/model-predictions/P",useSub,"_v-t0.RData",sep=""))
   
   all.data_v_t0[[useSub]]=sim
   
@@ -362,10 +362,10 @@ quantiles_v_t0 = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_v_t0, y = qs*p.mean.2_v_t0),shape = 0)+
   geom_line(aes(x = q.mean.2.2_v_t0, y = qs*p.mean.2_v_t0))+
-  labs(title = "Unc. v-t0")+
+  labs(title = "v-t0")+
   theme_apa()
 quantiles_v_t0 # view plot
-ggsave("Modelling-Unconstrained/dataset1a/08_Plots/quantiles-v-t0.png", plot = quantiles_v_t0)
+ggsave("Modelling/dataset1a/08_Plots/quantiles-v-t0.png", plot = quantiles_v_t0)
 
 
 ###########################
@@ -379,7 +379,7 @@ all.data_z_t0 = list()
 dataset = 1 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1a/model-predictions-unconstrained/P",useSub,"_z-t0.RData",sep=""))
+  load(paste("Data/dataset1a/model-predictions/P",useSub,"_z-t0.RData",sep=""))
   
   all.data_z_t0[[useSub]]=sim
   
@@ -428,10 +428,10 @@ quantiles_z_t0 = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_z_t0, y = qs*p.mean.2_z_t0),shape = 0)+
   geom_line(aes(x = q.mean.2.2_z_t0, y = qs*p.mean.2_z_t0))+
-  labs(title = "Unc. z-t0")+
+  labs(title = "z-t0")+
   theme_apa()
 quantiles_z_t0 # view plot
-ggsave(filename = "Modelling-Unconstrained/dataset1a/08_Plots/quantiles_z-t0.png", plot = quantiles_z_t0)
+ggsave(filename = "Modelling/dataset1a/08_Plots/quantiles_z-t0.png", plot = quantiles_z_t0)
 
 
 ###################################
@@ -444,7 +444,7 @@ nsub = 41
 all.data_ap= list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1a/model-predictions-unconstrained/P",useSub,"_all-params.RData",sep=""))
+  load(paste("Data/dataset1a/model-predictions/P",useSub,"_all-params.RData",sep=""))
   
   all.data_ap[[useSub]]=sim
   
@@ -494,10 +494,10 @@ quantiles_all_params = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_ap, y = qs*p.mean.2_ap),shape = 0)+
   geom_line(aes(x = q.mean.2.2_ap, y = qs*p.mean.2_ap))+
-  labs(title = "Unc. All Paramaters Model")+
+  labs(title = "All Paramaters Model")+
   theme_apa()
 quantiles_all_params #view plot
-ggsave("Modelling-Unconstrained/dataset1a/08_Plots/quantiles-all-params.png", plot = quantiles_all_params)
+ggsave("Modelling/dataset1a/08_Plots/quantiles-all-params.png", plot = quantiles_all_params)
 
 ###########################
 ####### Simple Model ######
@@ -508,7 +508,7 @@ nsub = 41
 all.data_s = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1a/model-predictions-unconstrained/P",useSub,"_simple.RData",sep=""))
+  load(paste("Data/dataset1a/model-predictions/P",useSub,"_simple.RData",sep=""))
   
   all.data_s[[useSub]]=sim
   
@@ -558,8 +558,8 @@ quantiles_simple = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_s, y = qs*p.mean.2_s),shape = 0)+
   geom_line(aes(x = q.mean.2.2_s, y = qs*p.mean.2_s))+
-  labs(title = "Unc. Simple Model")+
+  labs(title = "Simple Model")+
   theme_apa()
 quantiles_simple #view plot
-ggsave("Modelling-Unconstrained/dataset1a/08_Plots/quantiles-simple.png", plot = quantiles_simple)
+ggsave("Modelling/dataset1a/08_Plots/quantiles-simple.png", plot = quantiles_simple)
 
