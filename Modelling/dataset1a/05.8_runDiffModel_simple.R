@@ -85,7 +85,7 @@ for(useSub in 1:nSub) {
     names(currParams)=c("a","z","v","t0")  # Sets the names of the parameters
     
     
-    tmp=rdiffusion(n=100000,a=currParams["a"],v=currParams["v"],t0=currParams["t0"],z=currParams["z"]*currParams["a"]) # Runs diffusion model to generated data with estimated parameters
+    tmp=rdiffusion(n=10000,a=currParams["a"],v=currParams["v"],t0=currParams["t0"],z=currParams["z"]*currParams["a"]) # Runs diffusion model to generated data with estimated parameters
     simData$Time=c(simData$Time,tmp$rt) # Populates the RT column in the simulated data
     simData$Resp=c(simData$Resp,tmp$response) # Populates the Resp column in the simulated data 
     simData$Cond=c(simData$Cond,rep(cond,length(tmp$rt)))} # Populates the Cond column in the simulated data

@@ -157,7 +157,6 @@ colnames(BICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "all_params", 
 
 ### Sort participants into those who were best fitted by the null model v not the null model for model fitting: ###
 ### Only doing for BIC
-
 BICweights_tmp = BICweights
 BICweights_tmp=as.data.frame(BICweights) 
 BICweights_tmp$ID = 1:41

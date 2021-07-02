@@ -31,6 +31,10 @@ for (s in 1:S) {
 colnames(BICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "all_params", "t0")
 
 #Get inclusion probabilities of all of the parameters
+prob_z = NULL
+prob_v = NULL
+prob_t0 = NULL
+
 for (i in 1:S) {
 prob_z[i]=sum(BICweights[i,c("z","v_z", "all_params", "z_t0")])
 prob_v[i]=sum(BICweights[i,c("v","v_z", "all_params", "v_t0")])
@@ -74,3 +78,12 @@ params.diff = select(params, z, v.diff, t0.diff)
 
 table = cbind(magnitude, params.diff, prob_z, prob_v, prob_t0)
 save(table, file = "data/dataset1a/derived/magnitudes-params-incl.probs.RData")
+
+
+cor(table$t0.diff, table$prob_t0)
+plot(table$t0.diff, table$prob_t0)
+
+cor(table$prob_t0, table$t0.diff)
+plot(table$prob_t0, table$magnitude)
+
+

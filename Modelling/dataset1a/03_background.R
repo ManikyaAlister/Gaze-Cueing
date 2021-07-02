@@ -2,12 +2,12 @@
 n.pars=length(theta.names)
 n.chains=n.pars*3
 
-nmc=3000
-burnin=1000
+nmc=4000
+burnin=2000
 mutation=.001
-migration.freq=10
-migration.start=300
-migration.end=800
+migration.freq=25
+migration.start=700
+migration.end=1700
 
 theta=array(NA,c(n.chains,n.pars,nmc))
 weight=array(-Inf,c(nmc,n.chains))
