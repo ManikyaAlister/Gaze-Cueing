@@ -1,6 +1,6 @@
 
 rm(list=ls())
-setwd("~/Dropbox/2021/Gaze-Cueing/Recovery")
+setwd("~/Documents/2021/Gaze-Cueing/Recovery")
 
 library(msm)
 source("02_simulate-DIFF.R")

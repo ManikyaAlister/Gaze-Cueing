@@ -1,6 +1,6 @@
 rm(list = ls())
 library(tidyverse)
-setwd("~/Dropbox/2021/Gaze-Cueing")
+setwd("~/Documents/2021/Gaze-Cueing")
 
 load("Data/dataset1a/derived/BICs.Rdata")
 
@@ -41,11 +41,11 @@ prob_v[i]=sum(BICweights[i,c("v","v_z", "all_params", "v_t0")])
 prob_t0[i]=sum(BICweights[i,c("t0","z_t0", "all_params", "v_t0")])
 }
 BIC_incl_prob = cbind(prob_z, prob_v, prob_t0)
-save(BIC_incl_prob, file = "data/dataset1a/derived/BIC_inclusion_probabilities.RData")
+save(BIC_incl_prob, file = "Data/dataset1a/derived/BIC_inclusion_probabilities.RData")
 
 #Get gaze cueing magnitudes
 library(tidyverse)
-load("~/Dropbox/2021/Gaze-Cueing/Data/dataset1a/clean/all-participants.RData")
+load("Data/dataset1a/clean/all-participants.RData")
 data = P
 data = data %>%
   select(ID, Time, Cond) %>%
@@ -74,16 +74,32 @@ params$t0.diff = params$t0.2-params$t0.1
 params$v.diff = params$v.2-params$v.1
 params.diff = select(params, z, v.diff, t0.diff)
 
+#Get mean parameter SD
+params_SD =array(NA,c(S,6))
+for (i in 1:S) {
+  load(paste("Modelling/dataset1a/07_Outputs/P",i,"_all-params_Model.Rdata", sep = "")) 
+  params_SD[i,]  = apply(theta, 2, sd)
+}
+colnames(params_SD) = theta.names
+params_SD = as.data.frame(params_SD)
+table = cbind(magnitude, params.diff, prob_z, prob_v, prob_t0)
+cor(table$magnitude, params_SD$t0.1)
+plot(table$magnitude, params_SD$t0.1)
+
+cor(table$magnitude, params_SD$t0.2)
+plot(table$magnitude, params_SD$t0.2)
 # Combine all together: 
 
+
 table = cbind(magnitude, params.diff, prob_z, prob_v, prob_t0)
-save(table, file = "data/dataset1a/derived/magnitudes-params-incl.probs.RData")
+save(table, file = "Data/dataset1a/derived/magnitudes-params-incl.probs.RData")
 
+table = as.data.frame(table)
 
-cor(table$t0.diff, table$prob_t0)
+t0.diffVt0prob = cor(table$t0.diff, table$prob_t0)
 plot(table$t0.diff, table$prob_t0)
 
-cor(table$prob_t0, table$t0.diff)
+t0probVmag = cor(table$prob_t0, table$magnitude)
 plot(table$prob_t0, table$magnitude)
 
 

@@ -3,11 +3,11 @@ rm(list=ls())
 library(tidyverse)
 library(rtdists)
 library(msm)
-setwd("~/Dropbox/2021/Gaze-Cueing")
+setwd("~/Documents/2021/Gaze-Cueing")
 source("Modelling-Unconstrained/dataset1a/02_megaBackground.R")
 
 ############################
-####All Parameters Model ###
+####Complex Model ###
 ############################
 ## Unconstrained ##
 
@@ -57,7 +57,7 @@ for (useSub in 1:nSub) {
   theta.names=c("a", paste("t0",conds,sep="."),
                 paste("v",conds,sep="."), "z")
   
-  savefile=paste("Modelling-Unconstrained/dataset1a/07_Outputs/P",useSub,"_all-params_Model.Rdata",sep="")
+  savefile=paste("Modelling-Unconstrained/dataset1a/07_Outputs/P",useSub,"_complex_Model.Rdata",sep="")
   
   source("Modelling-Unconstrained/dataset1a/03_background.R")
   source("Modelling-Unconstrained/dataset1a/04_runIterativeProcess.R")
@@ -77,7 +77,7 @@ conds = c(1,2)
 for(useSub in 1:41) {
   
   
-  load(paste("Modelling-Unconstrained/dataset1a/07_Outputs/P",useSub,"_all-params_Model.Rdata", sep = "")) #Loads through the datasets of each participant in nSub
+  load(paste("Modelling-Unconstrained/dataset1a/07_Outputs/P",useSub,"_complex_Model.Rdata", sep = "")) #Loads through the datasets of each participant in nSub
   #posterior_means = apply(theta, 2, mean) #This code just gets the mean parameter estimates of each data set (not necessary for the loop)
   
   
@@ -109,7 +109,7 @@ for(useSub in 1:41) {
   
   sim = as.data.frame(simData) # Convert the simulated data from List format to data frame format
   
-  save(sim, file = paste("Data/dataset1a/Model-Predictions-Unconstrained/P",useSub,"_all-params.Rdata", sep = ""))
+  save(sim, file = paste("Data/dataset1a/Model-Predictions-Unconstrained/P",useSub,"_complex.Rdata", sep = ""))
   
 }
 

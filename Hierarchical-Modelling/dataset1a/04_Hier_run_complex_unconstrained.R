@@ -3,7 +3,7 @@ rm(list=ls())
 library(tidyverse)
 library(rtdists)
 library(msm)
-setwd("~/Dropbox/2021/Gaze-Cueing")
+setwd("~/Documents/2021/Gaze-Cueing")
 source("Hierarchical-Modelling/01_Hier_Megabackground.R")
 
 

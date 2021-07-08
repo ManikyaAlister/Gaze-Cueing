@@ -1,7 +1,7 @@
 rm(list = ls())
 library(tidyverse)
 S = 41 #subjects
-setwd("~/Dropbox/2021/Gaze-Cueing")
+setwd("~/Documents/2021/Gaze-Cueing")
 
 ######## Load AIC and BIC for Each Model #######
 #Or Skip to lines 83/84 if already saved
@@ -10,14 +10,14 @@ setwd("~/Dropbox/2021/Gaze-Cueing")
 
 # Create blank vectors so the loop knows what to fill in
 
-AIC_v_z = NULL
-BIC_v_z = NULL 
+AIC_v_z = rep(NA,S)
+BIC_v_z = rep(NA,S) 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v-z_Model.RData", sep = ""))
-  AIC_v_z = rbind(AIC, AIC_v_z)
-  BIC_v_z = rbind(BIC, BIC_v_z)
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v-z_Model.Rdata", sep = ""))
+  AIC_v_z[p] = AIC 
+  BIC_v_z[p] = BIC
   
 }
 
@@ -26,98 +26,98 @@ for (p in 1:S) {
 #Repeat for other models
 #---------------------------------------------------------------------------------------------------
 ## Simple Model ##
-AIC_S = NULL
-BIC_S = NULL 
+AIC_S = rep(NA,S)
+BIC_S = rep(NA,S) 
 
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"Simple_Model.RData", sep = ""))
-  AIC_S = rbind(AIC, AIC_S)
-  BIC_S = rbind(BIC, BIC_S)
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"Simple_Model.Rdata", sep = ""))
+  AIC_S[p] = AIC
+  BIC_S[p] = BIC
 
 }
 
 #---------------------------------------------------------------------------------------------------
 ## v Model ##
 
-AIC_v = NULL
-BIC_v = NULL 
+AIC_v = rep(NA,S)
+BIC_v = rep(NA,S)
 
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v_Model.RData", sep = ""))
-  AIC_v = rbind(AIC, AIC_v)
-  BIC_v = rbind(BIC, BIC_v)
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v_model.Rdata", sep = ""))
+  AIC_v[p] = AIC
+  BIC_v[p] = BIC 
 }
 
 #---------------------------------------------------------------------------------------------------
 ## z Model ##
 
-AIC_z = NULL
-BIC_z = NULL 
+AIC_z = rep(NA,S)
+BIC_z = rep(NA,S) 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"z_Model.RData", sep = ""))
-  AIC_z = rbind(AIC, AIC_z)
-  BIC_z = rbind(BIC, BIC_z)
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_z_Model.Rdata", sep = ""))
+  AIC_z[p] = AIC
+  BIC_z[p] = BIC
 }
 #---------------------------------------------------------------------------------------------------
 ## t0 Model ##
 
-AIC_t0 = NULL
-BIC_t0 = NULL 
+AIC_t0 = rep(NA,S)
+BIC_t0 = rep(NA,S)
 
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_t0_Model.RData", sep = ""))
-  AIC_t0 = rbind(AIC, AIC_t0)
-  BIC_t0 = rbind(BIC, BIC_t0)
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_t0_Model.Rdata", sep = ""))
+  AIC_t0[p] = AIC
+  BIC_t0[p] = BIC
 }
 #---------------------------------------------------------------------------------------------------
 ## z_t0 model##
 
-AIC_z_t0 = NULL
-BIC_z_t0 = NULL 
+AIC_z_t0 = rep(NA,S)
+BIC_z_t0 = rep(NA,S) 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_outputs/P",p,"_z-t0_Model.RData", sep = ""))
-  AIC_z_t0 = rbind(AIC, AIC_z_t0)
-  BIC_z_t0 = rbind(BIC, BIC_z_t0)
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_z-t0_Model.Rdata", sep = ""))
+  AIC_z_t0[p] = AIC
+  BIC_z_t0[p] = BIC
 }
 
 #---------------------------------------------------------------------------------------------------
 ## v-t0 Model ##
 
-AIC_v_t0 = NULL
-BIC_v_t0 = NULL 
+AIC_v_t0 = rep(NA,S)
+BIC_v_t0 = rep(NA,S)
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v-t0_Model.RData", sep = ""))
-  AIC_v_t0 = rbind(AIC, AIC_v_t0)
-  BIC_v_t0 = rbind(BIC, BIC_v_t0)
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_z-t0_Model.Rdata", sep = ""))
+  AIC_v_t0[p] = AIC
+  BIC_v_t0[p] = BIC
 }
 
 #---------------------------------------------------------------------------------------------------
 ## all-parameters model##
 
-AIC_ap = NULL
-BIC_ap = NULL 
+AIC_C = rep(NA,S)
+BIC_C = rep(NA,S) 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_all-params_Model.RData", sep = ""))
-  AIC_ap = rbind(AIC, AIC_ap)
-  BIC_ap = rbind(BIC, BIC_ap)
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_complex_Model.Rdata", sep = ""))
+  AIC_C[p] = AIC
+  BIC_C[p] = BIC
 }
 
 #---------------------------------------------------------------------------------------------------
 #Compare AIC of each model for each participant 
 
-AIC_comp = cbind(AIC_v_z, AIC_S, AIC_v, AIC_z, AIC_z_t0, AIC_v_t0, AIC_ap, AIC_t0)
-colnames(AIC_comp) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "all-params", "t0")
+AIC_comp = cbind(AIC_v_z, AIC_S, AIC_v, AIC_z, AIC_z_t0, AIC_v_t0, AIC_C, AIC_t0)
+colnames(AIC_comp) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0")
 
-BIC_comp = cbind(BIC_v_z, BIC_S, BIC_v, BIC_z, BIC_z_t0, BIC_v_t0, BIC_ap, BIC_t0)
-colnames(BIC_comp) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "all-params", "t0")
+BIC_comp = cbind(BIC_v_z, BIC_S, BIC_v, BIC_z, BIC_z_t0, BIC_v_t0, BIC_C, BIC_t0)
+colnames(BIC_comp) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0")
 
 save(AIC_comp, file = "Data/dataset1a/derived/AICs.Rdata")
 save(BIC_comp, file = "Data/dataset1a/derived/BICs.Rdata")
@@ -153,7 +153,7 @@ BICweights=array(NA,c(S,8))
 for (s in 1:S) {
   BICweights[s,]= getWeights(BIC_comp[s,])
 }
-colnames(BICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "all_params", "t0")
+colnames(BICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0")
 
 ### Sort participants into those who were best fitted by the null model v not the null model for model fitting: ###
 ### Only doing for BIC
@@ -217,14 +217,14 @@ for (i in 1:S) {
   sumThing=sumThing+BICweights[use.i,"v_t0"] 
   
   col=hcl(h=80,c=100,l=70)
-  rect(i-0.5,sumThing,i+0.5,sumThing+BICweights[use.i,"all_params"], border = col, col = col)
-  sumThing=sumThing+BICweights[use.i,"all_params"] 
+  rect(i-0.5,sumThing,i+0.5,sumThing+BICweights[use.i,"complex"], border = col, col = col)
+  sumThing=sumThing+BICweights[use.i,"complex"] 
   
 }
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 legend("bottom", 
-       legend = c("v_z", "Simple", "v", "z", "t0", "z_t0", "v_t0", "all-params"), 
+       legend = c("v_z", "Simple", "v", "z", "t0", "z_t0", "v_t0", "complex"), 
        col = c(hcl(h=420,c=100,l=70),hcl(h=330,c=100,l=40), hcl(h=220,c=100,l=40), hcl(h=130,c=100,l=70), hcl(h=180,c=100,l=70), hcl(h=280,c=100,l=70), hcl(h=380,c=100,l=70), hcl(h=80,c=100,l=70)),
        pch = 15,
        horiz = T,
@@ -237,7 +237,7 @@ AICweights=array(NA,c(S,8))
 for (s in 1:S) {
   AICweights[s,]= getWeights(AIC_comp[s,])
 }
-colnames(AICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "all_params", "t0")
+colnames(AICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0")
 
 
 #save(AICweights, file = "Data/dataset1a/derived/BF-Weights.RData")
@@ -287,14 +287,14 @@ for (i in 1:S) {
   sumThing=sumThing+AICweights[use.i,"v_t0"] 
   
   col=hcl(h=80,c=100,l=70)
-  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"all_params"], border = col, col = col)
-  sumThing=sumThing+AICweights[use.i,"all_params"] 
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"complex"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"complex"] 
   
 }
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 legend("bottom", 
-       legend = c("v_z", "Simple", "v", "z", "t0", "z_t0", "v_t0", "all-params"), 
+       legend = c("v_z", "Simple", "v", "z", "t0", "z_t0", "v_t0", "complex"), 
        col = c(hcl(h=420,c=100,l=70),hcl(h=330,c=100,l=40), hcl(h=220,c=100,l=40), hcl(h=130,c=100,l=70), hcl(h=180,c=100,l=70), hcl(h=280,c=100,l=70), hcl(h=380,c=100,l=70), hcl(h=80,c=100,l=70)),
        pch = 15,
        horiz = T,
@@ -320,7 +320,7 @@ for (i in 1:S) {
   rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
   col=hcl(h=110,c=100,l=40)
-  currWeight=sum(BICweights[use.i,c("z","v_z", "all_params", "z_t0")])
+  currWeight=sum(BICweights[use.i,c("z","v_z", "complex", "z_t0")])
   rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
 }
@@ -345,7 +345,7 @@ for (i in 1:S) {
   rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
   col=hcl(h=110,c=100,l=60)
-  currWeight=sum(BICweights[use.i,c("v","v_z", "v_t0", "all_params")])
+  currWeight=sum(BICweights[use.i,c("v","v_z", "v_t0", "complex")])
   rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
 }
@@ -371,7 +371,7 @@ for (i in 1:S) {
   rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
   col=hcl(h=110,c=100,l=60)
-  currWeight=sum(BICweights[use.i,c("t0","z_t0", "v_t0", "all_params")])
+  currWeight=sum(BICweights[use.i,c("t0","z_t0", "v_t0", "complex")])
   rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
 }
@@ -399,7 +399,7 @@ for (i in 1:S) {
   rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
   col=hcl(h=110,c=100,l=40)
-  currWeight=sum(AICweights[use.i,c("z","v_z", "all_params", "z_t0")])
+  currWeight=sum(AICweights[use.i,c("z","v_z", "complex", "z_t0")])
   rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
 }
@@ -424,7 +424,7 @@ for (i in 1:S) {
   rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
   col=hcl(h=110,c=100,l=60)
-  currWeight=sum(AICweights[use.i,c("v","v_z", "v_t0", "all_params")])
+  currWeight=sum(AICweights[use.i,c("v","v_z", "v_t0", "complex")])
   rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
 }
@@ -450,7 +450,7 @@ for (i in 1:S) {
   rect(i-0.5,0,i+0.5,currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
   col=hcl(h=110,c=100,l=60)
-  currWeight=sum(AICweights[use.i,c("t0","z_t0", "v_t0", "all_params")])
+  currWeight=sum(AICweights[use.i,c("t0","z_t0", "v_t0", "complex")])
   rect(i-0.5,sumThing,i+0.5,sumThing+currWeight, border = col, col = col)
   sumThing=sumThing+currWeight
 }
@@ -469,7 +469,7 @@ dev.off()
 
 mean_AICweights = apply(AICweights,2,mean) ##Check mean BIC weight of each model
 save(mean_AICweights, file = "Data/dataset1a/derived/mean_AICweights.Rdata")
-#v_z           none          v          z       z_t0       v_t0     all_params    t0 
+#v_z           none          v          z       z_t0       v_t0     complex    t0 
 #0.08022601 0.15017886 0.09736894 0.14654650 0.11403436 0.10362599 0.03862628 0.26939305 
 
 best_AIC = max.col(AICweights)
@@ -480,7 +480,7 @@ best_AIC = case_when(best_AIC == 1 ~ "v-z",
                      best_AIC == 4 ~ "z (starting point) Model",
                      best_AIC == 5 ~ "z-t0",
                      best_AIC == 6 ~ "v-t0",
-                     best_AIC == 7 ~ "all-params",
+                     best_AIC == 7 ~ "complex",
                      best_AIC == 8 ~ "t0")
 best_AIC = as.factor(best_AIC)
 best_AIC = summary(best_AIC)
@@ -490,7 +490,7 @@ save(best_AIC, file = "Data/dataset1a/derived/best_AIC.Rdata")
 
 mean_BICweights = apply(BICweights,2,mean) ##Check mean BIC weight of each model averaged across participants
 save(mean_BICweights, file = "Data/dataset1a/derived/mean_BICweights.Rdata")
-#v_z            none           v             z          z_t0    v_t0      all_params      t0 
+#v_z            none           v             z          z_t0    v_t0      complex      t0 
 #0.031704996 0.424263748 0.063179785 0.110303738 0.022516675 0.021236614 0.001318609 0.325475833 
 
 best_BIC = max.col(BICweights)
@@ -501,7 +501,7 @@ best_BIC = case_when(best_BIC == 1 ~ "v-z",
                      best_BIC == 4 ~ "z (starting point) Model",
                      best_BIC == 5 ~ "z-t0",
                      best_BIC == 6 ~ "v-t0",
-                     best_BIC == 7 ~ "all-params",
+                     best_BIC == 7 ~ "complex",
                      best_BIC == 8 ~ "t0")
 best_BIC = as.factor(best_BIC)
 best_BIC = summary(best_BIC) #No. of participants for which "x" model was best according to BIC  

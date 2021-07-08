@@ -6,7 +6,7 @@ rm(list = ls())
 library(tidyverse)
 library(sm)
 library(jtools)
-setwd("~/Dropbox/2021/Gaze-Cueing")
+setwd("~/Documents/2021/Gaze-Cueing")
 
 ##load in the model predictions and observed data ##
 

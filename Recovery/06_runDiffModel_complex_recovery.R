@@ -3,7 +3,7 @@ rm(list=ls())
 library(tidyverse)
 library(rtdists)
 library(msm)
-setwd("~/Dropbox/2021/Gaze-Cueing/Recovery")
+setwd("~/Documents/2021/Gaze-Cueing/Recovery")
 
 source("04_megaBackground.R")
 

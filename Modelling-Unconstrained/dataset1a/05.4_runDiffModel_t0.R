@@ -4,7 +4,7 @@ rm(list=ls())
 library(tidyverse)
 library(rtdists)
 library(msm)
-setwd("~/Dropbox/2021/Gaze-Cueing")
+setwd("~/Documents/2021/Gaze-Cueing")
 source("Modelling-Unconstrained/dataset1a/02_megaBackground.R")
 
 ####################

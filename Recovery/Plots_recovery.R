@@ -1,6 +1,6 @@
 
 rm(list = ls())
-setwd("~/Dropbox/2021/Gaze-Cueing/Recovery")
+setwd("~/Documents/2021/Gaze-Cueing/Recovery")
 
 # Set up empty data frames for generated parameters (allGenParamas) and estimated parameters (allMeanTheta)
 
@@ -36,8 +36,8 @@ save(allGenParams, file = "All_Fits/Generated_Paramaters.RData")
 save(allMeanTheta, file = "All_Fits/Estimated_Paramaters.RData")
 
 #If I want to reload
-load("~/Dropbox/2021/Gaze-Cueing/Recovery/All_Fits/Estimated_Paramaters.RData")
-load("~/Dropbox/2021/Gaze-Cueing/Recovery/All_Fits/Generated_Paramaters.RData")
+load("~/Documents/2021/Gaze-Cueing/Recovery/All_Fits/Estimated_Paramaters.RData")
+load("~/Documents/2021/Gaze-Cueing/Recovery/All_Fits/Generated_Paramaters.RData")
 
 cor_vDiff = cor(allGenParams[,"vDiff"],allMeanTheta[,"vDiff"])
 cor_z = cor(allGenParams[,"z"],allMeanTheta[,"z"])

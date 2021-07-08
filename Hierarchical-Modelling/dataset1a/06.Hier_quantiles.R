@@ -1,5 +1,5 @@
 rm(list = ls())
-setwd("~/Dropbox/2021/Gaze-Cueing")
+setwd("~/Documents/2021/Gaze-Cueing")
 library(tidyverse)
 library(jtools)
 nSub = 41

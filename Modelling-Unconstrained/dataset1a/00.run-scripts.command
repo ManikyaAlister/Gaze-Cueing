@@ -1,5 +1,5 @@
 #! /bin/bash
-cd ~/Dropbox/2021/Gaze-Cueing/Modelling-Unconstrained/dataset1a
+cd ~/Documents/2021/Gaze-Cueing/Modelling-Unconstrained/dataset1a
 Rscript 05.1_runDiffModel_V-Z.R
 Rscript 05.2_runDiffModel_Z.R
 Rscript 05.3_runDiffModel_Z-t0.R

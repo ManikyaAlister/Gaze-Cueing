@@ -2,7 +2,7 @@
 ## Dataset1c ##
 
 rm(list = ls())
-setwd("~/Dropbox/2021/Gaze-Cueing")
+setwd("~/Documents/2021/Gaze-Cueing")
 library(tidyverse)
 library(jtools)
 
@@ -460,25 +460,25 @@ ggsave("Modelling/dataset1c/08_Plots/quantiles_z-t0-alt.png", plot = quantiles_z
 
 
 ###################################
-####### All Parameters Model ######
+####### Complex Model ######
 ###################################
 
 
 # Load in predicted data generated from z DDM (simData)
 nsub = 41
-all.data_ap= list()
+all.dataComplex= list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1c/Model-Predictions/P",useSub,"_all-params.RData",sep=""))
+  load(paste("Data/dataset1c/Model-Predictions/P",useSub,"_complex.RData",sep=""))
   
-  all.data_ap[[useSub]]=sim
+  all.dataComplex[[useSub]]=sim
   
 }
 #Something wrong with how I generated the Z data 
-simData_ap=all.data_ap
-rm(all.data_ap)
+simDataComplex=all.dataComplex
+rm(all.dataComplex)
 
-tmp=lapply(simData_ap,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
+tmp=lapply(simDataComplex,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
 for (s in 1:41) {
   if (nrow(tmp[[s]])==1) {
@@ -492,37 +492,37 @@ for (s in 1:41) {
   }
 }
 
-allQ_ap=array(unlist(tmp),c(length(qs),2,2,41))
+allQComplex=array(unlist(tmp),c(length(qs),2,2,41))
 
-tmp=lapply(simData_ap,function(x) tapply(x$Resp==2,x$Cond,mean))
+tmp=lapply(simDataComplex,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_ap=array(unlist(tmp),c(2,41))
+allPComplex=array(unlist(tmp),c(2,41))
 
 #Means for congruent cue condition
-q.mean.2.1_ap=apply(allQ_ap[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_ap[,2,COND,]...)
-p.mean.1_ap=mean(allP_ap[1,])
+q.mean.2.1Complex=apply(allQComplex[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQComplex[,2,COND,]...)
+p.mean.1Complex=mean(allPComplex[1,])
 
 #Means for incongruent cue condition
-q.mean.2.2_ap=apply(allQ_ap[,2,2,],1,mean) 
-p.mean.2_ap=mean(allP_ap[2,]) 
+q.mean.2.2Complex=apply(allQComplex[,2,2,],1,mean) 
+p.mean.2Complex=mean(allPComplex[2,]) 
 
 #--------------------------------------
-#---- Plotting All Parameters Model----
+#---- Plotting Complex Model----
 #--------------------------------------
 
 #plot(q.mean.2.1,qs*p.mean.2.1,pch=16,xlim=c(0.2,0.5)) 
 #all in one 
-quantiles_all_params = ggplot()+
+quantiles_complex = ggplot()+
   geom_point(aes(x = q.mean.2.1, y = qs*p.mean.1))+
-  geom_point(aes(x = q.mean.2.1_ap, y = qs*p.mean.1_ap),shape = 1)+
-  geom_line(aes(x = q.mean.2.1_ap, y = qs*p.mean.1_ap))+
+  geom_point(aes(x = q.mean.2.1Complex, y = qs*p.mean.1Complex),shape = 1)+
+  geom_line(aes(x = q.mean.2.1Complex, y = qs*p.mean.1Complex))+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
-  geom_point(aes(x = q.mean.2.2_ap, y = qs*p.mean.2_ap),shape = 0)+
-  geom_line(aes(x = q.mean.2.2_ap, y = qs*p.mean.2_ap))+
+  geom_point(aes(x = q.mean.2.2Complex, y = qs*p.mean.2Complex),shape = 0)+
+  geom_line(aes(x = q.mean.2.2Complex, y = qs*p.mean.2Complex))+
   labs(title = "Arrow All Paramaters Model")+
   theme_apa()
-quantiles_all_params #view plot
-ggsave("Modelling/dataset1c/08_Plots/quantiles-all-params-alt.png", plot = quantiles_all_params)
+quantiles_complex #view plot
+ggsave("Modelling/dataset1c/08_Plots/quantiles-complex-alt.png", plot = quantiles_complex)
 
 ###########################
 ####### Simple Model ######

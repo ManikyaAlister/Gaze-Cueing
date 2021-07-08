@@ -1,7 +1,7 @@
 rm(list = ls())
 #### Script to generate predictided data with the complex model ###
 library(rtdists)
-setwd("~/Dropbox/2021/Gaze-Cueing")
+setwd("~/Documents/2021/Gaze-Cueing")
 
 # v = drift rate 
 # z = starting point
