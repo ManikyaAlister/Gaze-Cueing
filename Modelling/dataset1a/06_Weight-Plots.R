@@ -2,7 +2,7 @@ rm(list = ls())
 library(tidyverse)
 S = 41 #subjects
 setwd("~/Documents/2021/Gaze-Cueing")
-
+## Dataset  1b ##
 ######## Load AIC and BIC for Each Model #######
 #Or Skip to lines 83/84 if already saved
 #---------------------------------------------------------------------------------------------------
@@ -10,14 +10,14 @@ setwd("~/Documents/2021/Gaze-Cueing")
 
 # Create blank vectors so the loop knows what to fill in
 
-AIC_v_z = rep(NA,S)
-BIC_v_z = rep(NA,S) 
+AIC_v_z = NULL
+BIC_v_z = NULL 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v-z_Model.Rdata", sep = ""))
-  AIC_v_z[p] = AIC 
-  BIC_v_z[p] = BIC
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v-z_Model.RData", sep = ""))
+  AIC_v_z = rbind(AIC, AIC_v_z)
+  BIC_v_z = rbind(BIC, BIC_v_z)
   
 }
 
@@ -26,88 +26,88 @@ for (p in 1:S) {
 #Repeat for other models
 #---------------------------------------------------------------------------------------------------
 ## Simple Model ##
-AIC_S = rep(NA,S)
-BIC_S = rep(NA,S) 
+AIC_S = NULL
+BIC_S = NULL 
 
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"Simple_Model.Rdata", sep = ""))
-  AIC_S[p] = AIC
-  BIC_S[p] = BIC
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"Simple_Model.RData", sep = ""))
+  AIC_S = rbind(AIC, AIC_S)
+  BIC_S = rbind(BIC, BIC_S)
 
 }
 
 #---------------------------------------------------------------------------------------------------
 ## v Model ##
 
-AIC_v = rep(NA,S)
-BIC_v = rep(NA,S)
+AIC_v = NULL
+BIC_v = NULL 
 
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v_model.Rdata", sep = ""))
-  AIC_v[p] = AIC
-  BIC_v[p] = BIC 
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v_Model.RData", sep = ""))
+  AIC_v = rbind(AIC, AIC_v)
+  BIC_v = rbind(BIC, BIC_v)
 }
 
 #---------------------------------------------------------------------------------------------------
 ## z Model ##
 
-AIC_z = rep(NA,S)
-BIC_z = rep(NA,S) 
+AIC_z = NULL
+BIC_z = NULL 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_z_Model.Rdata", sep = ""))
-  AIC_z[p] = AIC
-  BIC_z[p] = BIC
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_z_Model.RData", sep = ""))
+  AIC_z = rbind(AIC, AIC_z)
+  BIC_z = rbind(BIC, BIC_z)
 }
 #---------------------------------------------------------------------------------------------------
 ## t0 Model ##
 
-AIC_t0 = rep(NA,S)
-BIC_t0 = rep(NA,S)
+AIC_t0 = NULL
+BIC_t0 = NULL 
 
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_t0_Model.Rdata", sep = ""))
-  AIC_t0[p] = AIC
-  BIC_t0[p] = BIC
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_t0_Model.RData", sep = ""))
+  AIC_t0 = rbind(AIC, AIC_t0)
+  BIC_t0 = rbind(BIC, BIC_t0)
 }
 #---------------------------------------------------------------------------------------------------
 ## z_t0 model##
 
-AIC_z_t0 = rep(NA,S)
-BIC_z_t0 = rep(NA,S) 
+AIC_z_t0 = NULL
+BIC_z_t0 = NULL 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_z-t0_Model.Rdata", sep = ""))
-  AIC_z_t0[p] = AIC
-  BIC_z_t0[p] = BIC
+  load(paste("Modelling/dataset1a/07_outputs/P",p,"_z-t0_Model.RData", sep = ""))
+  AIC_z_t0 = rbind(AIC, AIC_z_t0)
+  BIC_z_t0 = rbind(BIC, BIC_z_t0)
 }
 
 #---------------------------------------------------------------------------------------------------
 ## v-t0 Model ##
 
-AIC_v_t0 = rep(NA,S)
-BIC_v_t0 = rep(NA,S)
+AIC_v_t0 = NULL
+BIC_v_t0 = NULL 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_z-t0_Model.Rdata", sep = ""))
-  AIC_v_t0[p] = AIC
-  BIC_v_t0[p] = BIC
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v-t0_Model.RData", sep = ""))
+  AIC_v_t0 = rbind(AIC, AIC_v_t0)
+  BIC_v_t0 = rbind(BIC, BIC_v_t0)
 }
 
 #---------------------------------------------------------------------------------------------------
 ## all-parameters model##
 
-AIC_C = rep(NA,S)
-BIC_C = rep(NA,S) 
+AIC_C = NULL
+BIC_C = NULL 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_complex_Model.Rdata", sep = ""))
-  AIC_C[p] = AIC
-  BIC_C[p] = BIC
+  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_complex_Model.RData", sep = ""))
+  AIC_C = rbind(AIC, AIC_C)
+  BIC_C = rbind(BIC, BIC_C)
 }
 
 #---------------------------------------------------------------------------------------------------
@@ -157,6 +157,7 @@ colnames(BICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0
 
 ### Sort participants into those who were best fitted by the null model v not the null model for model fitting: ###
 ### Only doing for BIC
+
 BICweights_tmp = BICweights
 BICweights_tmp=as.data.frame(BICweights) 
 BICweights_tmp$ID = 1:41
@@ -181,7 +182,7 @@ save(participants_null, file = "Data/dataset1a/derived/participants_null.Rdata")
 S = 41 #n participants
 
 png("Modelling/dataset1a/08_Plots/weighted-prob-BIC.png")
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="BIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow BIC",xaxt="n",yaxt="n")
 
 # Plotting
 for (i in 1:S) {
@@ -250,7 +251,7 @@ colnames(AICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0
 
 S = 41 #n participants
 png("Modelling/dataset1a/08_Plots/weighted-prob-AIC.png")
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="AIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow AIC",xaxt="n",yaxt="n")
 
 # Plotting
 
@@ -311,7 +312,7 @@ dev.off()
 
 #To get a inclusion probability for z, we just add the models that have z and don’t have z:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-BIC-z.png")  
-  plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="z Inclusion Probability BIC",xaxt="n",yaxt="n")
+  plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow z Inclusion Probability BIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -336,7 +337,7 @@ dev.off()
 ##### v ######
 #And same principle for v:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-BIC-v.png")    
-  plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="v Inclusion Probability BIC",xaxt="n",yaxt="n")
+  plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow v Inclusion Probability BIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -362,7 +363,7 @@ dev.off()
 #### t0 #####
 #And same principle for t0:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-BIC-t0.png")  
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="t0 Inclusion Probability BIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow t0 Inclusion Probability BIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -390,7 +391,7 @@ dev.off()
 
 #To get a inclusion probability for z, we just add the models that have z and don’t have z:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-AIC-z.png")  
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="z Inclusion Probability AIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow z Inclusion Probability AIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -415,7 +416,7 @@ dev.off()
 ##### v ######
 #And same principle for v:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-AIC-v.png")  
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="v Inclusion Probability AIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow v Inclusion Probability AIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -441,7 +442,7 @@ dev.off()
 #### t0 #####
 #And same principle for t0:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-AIC-t0.png")  
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="t0 Inclusion Probability AIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow t0 Inclusion Probability AIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
