@@ -160,7 +160,6 @@ colnames(BICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0
 
 BICweights_tmp = BICweights
 BICweights_tmp=as.data.frame(BICweights) 
-BICweights_tmp$ID = 1:41
 
 BICweights_alt = filter(BICweights_tmp, none < .5) #participants for which the null model is less than 50% likely
 BICweights_null = filter(BICweights_tmp, none >= .5) #participants for which the null model is more than 50% likely
@@ -171,8 +170,8 @@ participants_null = BICweights_null$ID #And then for null
 save(participants_alt, file = "Data/dataset1a/derived/participants_alt.Rdata")
 save(participants_null, file = "Data/dataset1a/derived/participants_null.Rdata")
 
-#save(BICweights, file = "Data/dataset1a/derived/BF-Weights.RData")
-#save(BIC_comp, file = "Data/dataset1a/derived/BICs.RData")
+save(BICweights, file = "Data/dataset1a/derived/BIC-Weights.RData")
+save(BIC_comp, file = "Data/dataset1a/derived/BICs.RData")
 
 #If I want to order by V model 
 # BICweights = BICweights[order(BICweights[,4]),]
@@ -182,7 +181,7 @@ save(participants_null, file = "Data/dataset1a/derived/participants_null.Rdata")
 S = 41 #n participants
 
 png("Modelling/dataset1a/08_Plots/weighted-prob-BIC.png")
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow BIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face BIC",xaxt="n",yaxt="n")
 
 # Plotting
 for (i in 1:S) {
@@ -241,8 +240,8 @@ for (s in 1:S) {
 colnames(AICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0")
 
 
-#save(AICweights, file = "Data/dataset1a/derived/BF-Weights.RData")
-#save(BIC_comp, file = "Data/dataset1a/derived/BICs.RData")
+save(AICweights, file = "Data/dataset1a/derived/AIC-Weights.RData")
+save(BIC_comp, file = "Data/dataset1a/derived/BICs.RData")
 
 #If I want to order by V model 
 # AICweights = AICweights[order(AICweights[,4]),]
@@ -251,7 +250,7 @@ colnames(AICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0
 
 S = 41 #n participants
 png("Modelling/dataset1a/08_Plots/weighted-prob-AIC.png")
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow AIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face AIC",xaxt="n",yaxt="n")
 
 # Plotting
 
@@ -312,7 +311,7 @@ dev.off()
 
 #To get a inclusion probability for z, we just add the models that have z and don’t have z:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-BIC-z.png")  
-  plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow z Inclusion Probability BIC",xaxt="n",yaxt="n")
+  plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face z Inclusion Probability BIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -337,7 +336,7 @@ dev.off()
 ##### v ######
 #And same principle for v:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-BIC-v.png")    
-  plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow v Inclusion Probability BIC",xaxt="n",yaxt="n")
+  plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face v Inclusion Probability BIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -363,7 +362,7 @@ dev.off()
 #### t0 #####
 #And same principle for t0:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-BIC-t0.png")  
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow t0 Inclusion Probability BIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face t0 Inclusion Probability BIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -391,7 +390,7 @@ dev.off()
 
 #To get a inclusion probability for z, we just add the models that have z and don’t have z:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-AIC-z.png")  
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow z Inclusion Probability AIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face z Inclusion Probability AIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -416,7 +415,7 @@ dev.off()
 ##### v ######
 #And same principle for v:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-AIC-v.png")  
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow v Inclusion Probability AIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face v Inclusion Probability AIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -442,7 +441,7 @@ dev.off()
 #### t0 #####
 #And same principle for t0:
 png("Modelling/dataset1a/08_Plots/inclusion-prob-AIC-t0.png")  
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Arrow t0 Inclusion Probability AIC",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face t0 Inclusion Probability AIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -464,6 +463,7 @@ legend("bottom", legend = c("t0 varies", "t0 does not vary"),
        horiz = T,
        cex = .73)
 dev.off()
+
 #### Quantitative Evaluations #####
 
 ## AIC ##

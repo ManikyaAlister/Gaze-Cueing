@@ -1,4 +1,4 @@
-#### Dataset1b ####
+#### Dataset1a ####
 
 #Load Packages
 setwd("~/Documents/2021/Gaze-Cueing")
@@ -9,9 +9,8 @@ library(tidyverse)
 
 #Load data
 P = read_csv("Data/dataset1-raw/Study1RawData .csv")
-
-#For now, I'm only interested in trials with a face cue, rather than a line or arrow
-P = filter(P, CueType == "Arrow") 
+P = filter(P, Block == "Main") 
+P = filter(P, CueType == "Face") 
 
 #Wrangle and rename variables into a format that DDM script will recognize
 P = cbind(ID = P$ParticipantID,
@@ -31,13 +30,13 @@ P$Time=as.numeric(P$Time)
 P$Resp=as.numeric(P$Resp)
 n = max(P$ID)
 
-save(P, file = "Data/dataset1b/clean/all-participants.RData")
+save(P, file = "Data/dataset1a/clean/all-participants.RData")
 
 
 for(i in 1:n) {
   PID = paste("P",i, sep ="")
   data =  filter(P, ID == i)
   assign(PID, data)
-  save(data, file = paste("Data/dataset1b/clean/P",i,".Rdata",sep=""))
+  save(data, file = paste("Data/dataset1a/clean/P",i,".Rdata",sep=""))
 }
 

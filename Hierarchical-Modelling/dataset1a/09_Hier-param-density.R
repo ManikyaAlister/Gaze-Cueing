@@ -10,7 +10,7 @@
 rm(list = ls())
 
 #load("Hierarchical-Modelling/07_Output/Hier_Complex_Model.RDdta")
-load("~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset1a/07_Output/Hier_Complex_Model.Rdata")
+load("~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling-Unconstrained/dataset1a/07_Output/Hier_Complex_Model_Unconstrained.Rdata")
 
 CI_z = quantile(phi[,"z.mu",],c(0.025,0.975))
 plot(density(phi[,"z.mu",],n = 4096),

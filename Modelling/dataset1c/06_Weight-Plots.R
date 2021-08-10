@@ -171,8 +171,8 @@ participants_null = BICweights_null$ID #And then for null
 save(participants_alt, file = "Data/dataset1c/derived/participants_alt.Rdata")
 save(participants_null, file = "Data/dataset1c/derived/participants_null.Rdata")
 
-#save(BICweights, file = "Data/dataset1c/derived/BF-Weights.RData")
-#save(BIC_comp, file = "Data/dataset1c/derived/BICs.RData")
+save(BICweights, file = "Data/dataset1c/derived/BIC-Weights.RData")
+save(BIC_comp, file = "Data/dataset1c/derived/BICs.RData")
 
 #If I want to order by V model 
 # BICweights = BICweights[order(BICweights[,4]),]
@@ -241,8 +241,8 @@ for (s in 1:S) {
 colnames(AICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0")
 
 
-#save(AICweights, file = "Data/dataset1c/derived/BF-Weights.RData")
-#save(BIC_comp, file = "Data/dataset1c/derived/BICs.RData")
+save(AICweights, file = "Data/dataset1c/derived/AIC-Weights.RData")
+save(AIC_comp, file = "Data/dataset1c/derived/AICs.RData")
 
 #If I want to order by V model 
 # AICweights = AICweights[order(AICweights[,4]),]

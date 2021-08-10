@@ -65,7 +65,7 @@ magnitude = data$Time.2 - data$Time.1
 #Get mean parameter differences for each participant
 params =array(NA,c(S,6))
 for (i in 1:S) {
-  load(paste("Modelling/dataset1a/07_Outputs/P",i,"_all-params_Model.RData", sep = "")) 
+  load(paste("Modelling/dataset1a/07_Outputs/P",i,"_complex_Model.RData", sep = "")) 
 params[i,]  = apply(theta, 2, mean)
 }
 colnames(params) = theta.names
@@ -77,7 +77,7 @@ params.diff = select(params, z, v.diff, t0.diff)
 #Get mean parameter SD
 params_SD =array(NA,c(S,6))
 for (i in 1:S) {
-  load(paste("Modelling/dataset1a/07_Outputs/P",i,"_all-params_Model.Rdata", sep = "")) 
+  load(paste("Modelling/dataset1a/07_Outputs/P",i,"_complex_Model.Rdata", sep = "")) 
   params_SD[i,]  = apply(theta, 2, sd)
 }
 colnames(params_SD) = theta.names

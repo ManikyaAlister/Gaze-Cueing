@@ -4,7 +4,7 @@ library(tidyverse)
 library(rtdists)
 library(msm)
 setwd("~/Documents/2021/Gaze-Cueing")
-source("Hierarchical-Modelling/01_Hier_Megabackground.R")
+source("Hierarchical-Modelling/dataset1a/01_Hier_Megabackground.R")
 
 
 
@@ -24,7 +24,7 @@ all.data=list()
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/Gregory-and-Jackson-(2020)/P",useSub,".Rdata",sep=""))
+  load(paste("Data/dataset1a/clean/P",useSub,".Rdata",sep=""))
   
   newSeed=Sys.time()
   set.seed(as.numeric(newSeed))
@@ -43,7 +43,7 @@ log.dens.like = function (x,data,par.names) {
   if (x[paste("v",conds[1],sep=".")] < x[paste("v",conds[2],sep=".")]) {
     return(-Inf)
   } 
-  if (x["z"] < 0.5) { ### For complex model 
+  if (x["z"] < 0.5) {  
     return(-Inf)
   }
   if (x[paste("t0",conds[1],sep=".")] > x[paste("t0",conds[2],sep=".")]) {
@@ -86,18 +86,16 @@ theta.names=c("a",paste("t0",conds,sep="."),
 
 phi.names=paste(rep(theta.names,each=2),rep(c("mu","sigma"),length(theta.names)),sep=".")
 
-savefile=paste("Hierarchical-Modelling/07_Output/Hier_Complex_Model.Rdata",sep="")
+savefile=paste("Hierarchical-Modelling/dataset1a/07_Output/Hier_Complex_Model.Rdata",sep="")
 
 
 
 
-source("Hierarchical-Modelling/02_Hier_Background.R")
-source("Hierarchical-Modelling/03_Hier_iterative.R")
+source("Hierarchical-Modelling/dataset1a/02_Hier_Background.R")
+source("Hierarchical-Modelling/dataset1a/03_Hier_iterative.R")
 
 save(theta,phi,weight,data,burnin,nmc,n.chains,theta.names,phi.names,conds,S,#logMarginalLikelihood,
      file=savefile)
 
 
-hist(phi[,"z.mu",])
-hist(phi[,"v.1.mu",]-phi[,"v.2.mu",])
 
