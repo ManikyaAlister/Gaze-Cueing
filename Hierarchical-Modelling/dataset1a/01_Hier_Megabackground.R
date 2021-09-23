@@ -59,7 +59,7 @@ migration.crossover=function(pars,use.theta,use.like,data,hyper,par.names){
 log.dens.hyper=function(theta,phi,prior,p){
   out=0
   out = out+sum((dtnorm(theta,phi[1],phi[2],lower.bounds[p],upper.bounds[p],log=TRUE)))
-  out = out+(dtnorm(phi[1],prior$mu[1],prior$mu[2],lower.bounds[p],upper.bounds[p],log=TRUE)) +
+  out = out+(dnorm(phi[1],prior$mu[1],prior$mu[2],log=TRUE)) +
     (dgamma(phi[2],prior$sigma[1],prior$sigma[2],log=TRUE))
   out
 }

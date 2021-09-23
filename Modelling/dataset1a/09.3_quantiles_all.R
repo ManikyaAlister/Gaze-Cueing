@@ -563,3 +563,49 @@ quantiles_simple = ggplot()+
 quantiles_simple #view plot
 ggsave("Modelling/dataset1a/08_Plots/quantiles-simple.png", plot = quantiles_simple)
 
+### Save Quantile Data for Manuscript Figure ###
+
+save(p.mean.1, file = "Data/dataset1a/derived/p.mean.1.Rdata")
+save(p.mean.1_s, file = "Data/dataset1a/derived/p.mean.1_simple.Rdata")
+save(p.mean.1_t0, file = "Data/dataset1a/derived/p.mean.1_t0.Rdata")
+save(p.mean.1_z, file = "Data/dataset1a/derived/p.mean.1_z.Rdata")
+save(p.mean.1_v, file = "Data/dataset1a/derived/p.mean.1_v.Rdata")
+save(p.mean.1_z_t0, file = "Data/dataset1a/derived/p.mean.1_t0-z.Rdata")
+save(p.mean.1_v_t0, file = "Data/dataset1a/derived/p.mean.1_t0-v.Rdata")
+save(p.mean.1_v_z, file = "Data/dataset1a/derived/p.mean.1_z-v.Rdata")
+save(p.mean.1Complex, file = "Data/dataset1a/derived/p.mean.1_complex.Rdata")
+
+save(p.mean.2, file = "Data/dataset1a/derived/p.mean.2.Rdata")
+save(p.mean.2_s, file = "Data/dataset1a/derived/p.mean.2_simple.Rdata")
+save(p.mean.2_t0, file = "Data/dataset1a/derived/p.mean.2_t0.Rdata")
+save(p.mean.2_z, file = "Data/dataset1a/derived/p.mean.2_z.Rdata")
+save(p.mean.2_v, file = "Data/dataset1a/derived/p.mean.2_v.Rdata")
+save(p.mean.2_z_t0, file = "Data/dataset1a/derived/p.mean.2_t0-z.Rdata")
+save(p.mean.2_v_t0, file = "Data/dataset1a/derived/p.mean.2_t0-v.Rdata")
+save(p.mean.2_v_z, file = "Data/dataset1a/derived/p.mean.2_z-v.Rdata")
+save(p.mean.2Complex, file = "Data/dataset1a/derived/p.mean.2_complex.Rdata")
+
+#Q Meens
+
+save(q.mean.2.1, file = "Data/dataset1a/derived/q.mean.2.1.Rdata")
+save(q.mean.2.1_s, file = "Data/dataset1a/derived/q.mean.2.1_simple.Rdata")
+save(q.mean.2.1_t0, file = "Data/dataset1a/derived/q.mean.2.1_t0.Rdata")
+save(q.mean.2.1_z, file = "Data/dataset1a/derived/q.mean.2.1_z.Rdata")
+save(q.mean.2.1_v, file = "Data/dataset1a/derived/q.mean.2.1_v.Rdata")
+save(q.mean.2.1_z_t0, file = "Data/dataset1a/derived/q.mean.2.1_t0-z.Rdata")
+save(q.mean.2.1_v_t0, file = "Data/dataset1a/derived/q.mean.2.1_t0-v.Rdata")
+save(q.mean.2.1_v_z, file = "Data/dataset1a/derived/q.mean.2.1_z-v.Rdata")
+save(q.mean.2.1Complex, file = "Data/dataset1a/derived/q.mean.2.1_complex.Rdata")
+
+save(q.mean.2.2, file = "Data/dataset1a/derived/q.mean.2.2.Rdata")
+save(q.mean.2.2_s, file = "Data/dataset1a/derived/q.mean.2.2_simple.Rdata")
+save(q.mean.2.2_t0, file = "Data/dataset1a/derived/q.mean.2.2_t0.Rdata")
+save(q.mean.2.2_z, file = "Data/dataset1a/derived/q.mean.2.2_z.Rdata")
+save(q.mean.2.2_v, file = "Data/dataset1a/derived/q.mean.2.2_v.Rdata")
+save(q.mean.2.2_z_t0, file = "Data/dataset1a/derived/q.mean.2.2_t0-z.Rdata")
+save(q.mean.2.2_v_t0, file = "Data/dataset1a/derived/q.mean.2.2_t0-v.Rdata")
+save(q.mean.2.2_v_z, file = "Data/dataset1a/derived/q.mean.2.2_z-v.Rdata")
+save(q.mean.2.2Complex, file = "Data/dataset1a/derived/q.mean.2.2_complex.Rdata")
+
+
+

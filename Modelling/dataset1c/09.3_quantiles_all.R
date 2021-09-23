@@ -58,7 +58,7 @@ nsub = 41
 all.data_v_z = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1c/model-predictions-unconstrained/P",useSub,"_v-z.RData",sep=""))
+  load(paste("Data/dataset1c/model-predictions/P",useSub,"_v-z.RData",sep=""))
   
   all.data_v_z[[useSub]]=sim
   
@@ -109,7 +109,7 @@ quantiles_v_z = ggplot()+
   geom_line(aes(x = q.mean.2.2_v_z, y = qs*p.mean.2_v_z))+
   theme_apa()
 quantiles_v_z #View plot 
-ggsave(paste("Modelling-Unconstrained/dataset1c/08_Plots/quantiles-v-z.png", sep = ""), plot = quantiles_v_z)
+ggsave(paste("Modelling/dataset1c/08_Plots/quantiles-v-z.png", sep = ""), plot = quantiles_v_z)
 
 ###########################
 ######### Z Model #########
@@ -121,7 +121,7 @@ all.data_z = list()
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1c/model-predictions-unconstrained/P",useSub,"_z.RData",sep=""))
+  load(paste("Data/dataset1c/model-predictions/P",useSub,"_z.RData",sep=""))
   
   all.data_z[[useSub]]=sim
   
@@ -171,7 +171,7 @@ quantiles_z = ggplot()+
   labs(title = "Arrow z") +
   theme_apa()
 quantiles_z #view plot 
-ggsave(paste("Modelling-Unconstrained/dataset1c/08_Plots/quantiles-z.png", sep = ""), plot = quantiles_z)  
+ggsave(paste("Modelling/dataset1c/08_Plots/quantiles-z.png", sep = ""), plot = quantiles_z)  
 
 
 ###########################
@@ -182,7 +182,7 @@ nsub = 41
 all.data_v = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1c/model-predictions-unconstrained/P",useSub,"_v.RData",sep=""))
+  load(paste("Data/dataset1c/model-predictions/P",useSub,"_v.RData",sep=""))
   
   all.data_v[[useSub]]=sim
   
@@ -234,7 +234,7 @@ quantiles_v = ggplot()+
   labs(title = "Arrow  v")+
   theme_apa()
 quantiles_v # view plot
-ggsave(paste("Modelling-Unconstrained/dataset1c/08_Plots/quantiles-v.png", sep = ""), plot = quantiles_v)
+ggsave(paste("Modelling/dataset1c/08_Plots/quantiles-v.png", sep = ""), plot = quantiles_v)
 
 
 ###########################
@@ -248,7 +248,7 @@ all.data_t0 = list()
 dataset = 1 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1c/model-predictions-unconstrained/P",useSub,"_t0.RData",sep=""))
+  load(paste("Data/dataset1c/model-predictions/P",useSub,"_t0.RData",sep=""))
   
   all.data_t0[[useSub]]=sim
   
@@ -300,7 +300,7 @@ quantiles_t0 = ggplot()+
   labs(title = "Arrow  t0")+
   theme_apa()
 quantiles_t0 # view plot
-ggsave("Modelling-Unconstrained/dataset1c/08_Plots/quantiles-t0.png", plot = quantiles_t0)
+ggsave("Modelling/dataset1c/08_Plots/quantiles-t0.png", plot = quantiles_t0)
 
 
 ###########################
@@ -314,7 +314,7 @@ all.data_v_t0 = list()
 dataset = 1 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1c/model-predictions-unconstrained/P",useSub,"_v-t0.RData",sep=""))
+  load(paste("Data/dataset1c/model-predictions/P",useSub,"_v-t0.RData",sep=""))
   
   all.data_v_t0[[useSub]]=sim
   
@@ -366,7 +366,7 @@ quantiles_v_t0 = ggplot()+
   labs(title = "Arrow  v-t0")+
   theme_apa()
 quantiles_v_t0 # view plot
-ggsave("Modelling-Unconstrained/dataset1c/08_Plots/quantiles-v-t0.png", plot = quantiles_v_t0)
+ggsave("Modelling/dataset1c/08_Plots/quantiles-v-t0.png", plot = quantiles_v_t0)
 
 
 ###########################
@@ -380,7 +380,7 @@ all.data_z_t0 = list()
 dataset = 1 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1c/model-predictions-unconstrained/P",useSub,"_z-t0.RData",sep=""))
+  load(paste("Data/dataset1c/model-predictions/P",useSub,"_z-t0.RData",sep=""))
   
   all.data_z_t0[[useSub]]=sim
   
@@ -432,7 +432,7 @@ quantiles_z_t0 = ggplot()+
   labs(title = "Arrow  z-t0")+
   theme_apa()
 quantiles_z_t0 # view plot
-ggsave(filename = "Modelling-Unconstrained/dataset1c/08_Plots/quantiles_z-t0.png", plot = quantiles_z_t0)
+ggsave(filename = "Modelling/dataset1c/08_Plots/quantiles_z-t0.png", plot = quantiles_z_t0)
 
 
 ###################################
@@ -445,7 +445,7 @@ nsub = 41
 all.dataComplex= list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1c/model-predictions-unconstrained/P",useSub,"_complex.RData",sep=""))
+  load(paste("Data/dataset1c/model-predictions/P",useSub,"_complex.RData",sep=""))
   
   all.dataComplex[[useSub]]=sim
   
@@ -498,7 +498,7 @@ quantiles_complex = ggplot()+
   labs(title = "Arrow  All Paramaters Model")+
   theme_apa()
 quantiles_complex #view plot
-ggsave("Modelling-Unconstrained/dataset1c/08_Plots/quantiles-complex.png", plot = quantiles_complex)
+ggsave("Modelling/dataset1c/08_Plots/quantiles-complex.png", plot = quantiles_complex)
 
 ###########################
 ####### Simple Model ######
@@ -509,7 +509,7 @@ nsub = 41
 all.data_s = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1c/model-predictions-unconstrained/P",useSub,"_simple.RData",sep=""))
+  load(paste("Data/dataset1c/model-predictions/P",useSub,"_simple.RData",sep=""))
   
   all.data_s[[useSub]]=sim
   
@@ -562,5 +562,50 @@ quantiles_simple = ggplot()+
   labs(title = "Arrow  Simple Model")+
   theme_apa()
 quantiles_simple #view plot
-ggsave("Modelling-Unconstrained/dataset1c/08_Plots/quantiles-simple.png", plot = quantiles_simple)
+ggsave("Modelling/dataset1c/08_Plots/quantiles-simple.png", plot = quantiles_simple)
+
+
+save(p.mean.1, file = "Data/dataset1c/derived/p.mean.1.Rdata")
+save(p.mean.1_s, file = "Data/dataset1c/derived/p.mean.1_simple.Rdata")
+save(p.mean.1_t0, file = "Data/dataset1c/derived/p.mean.1_t0.Rdata")
+save(p.mean.1_z, file = "Data/dataset1c/derived/p.mean.1_z.Rdata")
+save(p.mean.1_v, file = "Data/dataset1c/derived/p.mean.1_v.Rdata")
+save(p.mean.1_z_t0, file = "Data/dataset1c/derived/p.mean.1_t0-z.Rdata")
+save(p.mean.1_v_t0, file = "Data/dataset1c/derived/p.mean.1_t0-v.Rdata")
+save(p.mean.1_v_z, file = "Data/dataset1c/derived/p.mean.1_z-v.Rdata")
+save(p.mean.1Complex, file = "Data/dataset1c/derived/p.mean.1_complex.Rdata")
+
+save(p.mean.2, file = "Data/dataset1c/derived/p.mean.2.Rdata")
+save(p.mean.2_s, file = "Data/dataset1c/derived/p.mean.2_simple.Rdata")
+save(p.mean.2_t0, file = "Data/dataset1c/derived/p.mean.2_t0.Rdata")
+save(p.mean.2_z, file = "Data/dataset1c/derived/p.mean.2_z.Rdata")
+save(p.mean.2_v, file = "Data/dataset1c/derived/p.mean.2_v.Rdata")
+save(p.mean.2_z_t0, file = "Data/dataset1c/derived/p.mean.2_t0-z.Rdata")
+save(p.mean.2_v_t0, file = "Data/dataset1c/derived/p.mean.2_t0-v.Rdata")
+save(p.mean.2_v_z, file = "Data/dataset1c/derived/p.mean.2_z-v.Rdata")
+save(p.mean.2Complex, file = "Data/dataset1c/derived/p.mean.2_complex.Rdata")
+
+#Q Meens
+
+save(q.mean.2.1, file = "Data/dataset1c/derived/q.mean.2.1.Rdata")
+save(q.mean.2.1_s, file = "Data/dataset1c/derived/q.mean.2.1_simple.Rdata")
+save(q.mean.2.1_t0, file = "Data/dataset1c/derived/q.mean.2.1_t0.Rdata")
+save(q.mean.2.1_z, file = "Data/dataset1c/derived/q.mean.2.1_z.Rdata")
+save(q.mean.2.1_v, file = "Data/dataset1c/derived/q.mean.2.1_v.Rdata")
+save(q.mean.2.1_z_t0, file = "Data/dataset1c/derived/q.mean.2.1_t0-z.Rdata")
+save(q.mean.2.1_v_t0, file = "Data/dataset1c/derived/q.mean.2.1_t0-v.Rdata")
+save(q.mean.2.1_v_z, file = "Data/dataset1c/derived/q.mean.2.1_z-v.Rdata")
+save(q.mean.2.1Complex, file = "Data/dataset1c/derived/q.mean.2.1_complex.Rdata")
+
+save(q.mean.2.2, file = "Data/dataset1c/derived/q.mean.2.2.Rdata")
+save(q.mean.2.2_s, file = "Data/dataset1c/derived/q.mean.2.2_simple.Rdata")
+save(q.mean.2.2_t0, file = "Data/dataset1c/derived/q.mean.2.2_t0.Rdata")
+save(q.mean.2.2_z, file = "Data/dataset1c/derived/q.mean.2.2_z.Rdata")
+save(q.mean.2.2_v, file = "Data/dataset1c/derived/q.mean.2.2_v.Rdata")
+save(q.mean.2.2_z_t0, file = "Data/dataset1c/derived/q.mean.2.2_t0-z.Rdata")
+save(q.mean.2.2_v_t0, file = "Data/dataset1c/derived/q.mean.2.2_t0-v.Rdata")
+save(q.mean.2.2_v_z, file = "Data/dataset1c/derived/q.mean.2.2_z-v.Rdata")
+save(q.mean.2.2Complex, file = "Data/dataset1c/derived/q.mean.2.2_complex.Rdata")
+
+
 
