@@ -33,7 +33,7 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(-0.1,0.1),xlab="",ylab="",main= "Dataset 1c",xaxt="n",yaxt="n")
-load("Data/dataset1c/derived/magnitudes-params-incl.probs.RData")
+load("Data/dataset2/derived/magnitudes-params-incl.probs.RData")
 for (i in 1:S) {
   col=hcl(h=330,c=100,l=40) #Purple
   rect(i-0.5,0,i+0.5,table[i,"magnitude"], border = col, col = col)

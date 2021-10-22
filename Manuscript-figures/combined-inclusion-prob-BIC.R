@@ -162,7 +162,7 @@ S = 41 #n participants
 #And same principle for t0:
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
-load("~/Documents/2021/Gaze-Cueing/Data/dataset1c/derived/BIC-Weights.RData")
+load("~/Documents/2021/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
   use.i=i
@@ -183,7 +183,7 @@ mtext(side=2,line=3,datasets[3],cex=1, font = 2)
 
 ### z ###
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
-load("~/Documents/2021/Gaze-Cueing/Data/dataset1c/derived/BIC-Weights.RData")
+load("~/Documents/2021/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
   use.i=i
@@ -203,7 +203,7 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 ##### v ######
 #And same principle for v:
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
-load("~/Documents/2021/Gaze-Cueing/Data/dataset1c/derived/BIC-Weights.RData")
+load("~/Documents/2021/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
 for (i in 1:S) {
   use.i=i
   sumThing=0

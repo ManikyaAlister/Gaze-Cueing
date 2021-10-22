@@ -75,7 +75,7 @@ mtext(side=1,line=3.5,paste("M = ",round(CI_v[2], 3), ", CI Lower = ", round(CI_
 
 ###### Dataset 1c ##########
 
-load("~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset1c/07_Output/Hier_Complex_Model.Rdata")
+load("~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset2/07_Output/Hier_Complex_Model.Rdata")
 
 CI_t0 = quantile(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],c(0.025,0.5,0.975))
 plot(density(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],n = 4096), main = "", ylab = "")

@@ -206,7 +206,7 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
 
-load("~/Documents/2021/Gaze-Cueing/Data/dataset1c/derived/BIC-Weights.RData")
+load("~/Documents/2021/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
 
 # Plotting
 for (i in 1:S) {
@@ -253,7 +253,7 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 mtext(side=2,line=3,datasets[3],cex=1, font = 2)
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
-load("~/Documents/2021/Gaze-Cueing/Data/dataset1c/derived/AIC-Weights.RData")
+load("~/Documents/2021/Gaze-Cueing/Data/dataset2/derived/AIC-Weights.RData")
 # Plotting
 
 for (i in 1:S) {

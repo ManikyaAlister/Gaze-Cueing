@@ -2,28 +2,26 @@
 
 
 cd ~
-cd ~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset1c
-sed -i '' 's/dataset 1a/dataset 1c/g' *.R
+cd ~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset1a/
+sed -i '' 's/dataset1c/dataset2/g' *.R
 cd ~
-cd ~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset1c/
-sed -i '' 's/dataset1a/dataset1c/g' *.R
-
-
+cd ~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset1b/
+sed -i '' 's/dataset1c/dataset2/g' *.R
 cd ~
-cd ~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling-Unconstrained/dataset1a/
-sed -i '' 's/pCloud Drive/Documents/g' *.R
+cd ~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset2/
+sed -i '' 's/dataset1c/dataset2/g' *.R
+cd ~
+cd ~/Documents/2021/Gaze-Cueing/Manuscript-figures/
+sed -i '' 's/dataset1c/dataset2/g' *.R
 cd ~
 cd ~/Documents/2021/Gaze-Cueing/Modelling/dataset1a/
-sed -i '' 's/pCloud Drive/Documents/g' *.R
+sed -i '' 's/dataset1c/dataset2/g' *.R
 cd ~
 cd ~/Documents/2021/Gaze-Cueing/Modelling/dataset1b/
-sed -i '' 's/pCloud Drive/Documents/g' *.R
+sed -i '' 's/dataset1c/dataset2/g' *.R
 cd ~
-cd ~/Documents/2021/Gaze-Cueing/Modelling/dataset1c/
-sed -i '' 's/pCloud Drive/Documents/g' *.R
-cd ~
-cd ~/Documents/2021/Gaze-Cueing/Modelling-Unconstrained/dataset1a/
-sed -i '' 's/pCloud Drive/Documents/g' *.R
+cd ~/Documents/2021/Gaze-Cueing/Modelling/dataset2/
+sed -i '' 's/dataset1c/dataset2/g' *.R
 cd ~
 cd ~/Documents/2021/Gaze-Cueing/Recovery/
-sed -i '' 's/pCloud Drive/Documents/g' *.R
+sed -i '' 's/dataset1c/dataset2/g' *.R
