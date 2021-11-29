@@ -11,7 +11,7 @@ layout(mat=m,
 #par(mar=rep(0,4))
 par(mar=c(2.1,4.6,6,1))
 
-
+S = 41
 plot(x=100,y=100,xlim=c(0,S),ylim=c(-0.1,0.1),xlab="",ylab="",main= "Dataset 1a",xaxt="n",yaxt="n")
 load("Data/dataset1a/derived/magnitudes-params-incl.probs.RData")
 for (i in 1:S) {
@@ -23,6 +23,7 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(-0.1,0.1),xlab="",ylab="",main= "Dataset 1b",xaxt="n",yaxt="n")
 load("Data/dataset1b/derived/magnitudes-params-incl.probs.RData")
+S =41
 for (i in 1:S) {
   col=hcl(h=330,c=100,l=40) #Purple
   rect(i-0.5,0,i+0.5,table[i,"magnitude"], border = col, col = col)
@@ -31,8 +32,8 @@ axis(side=2, at=seq(-0.1,0.1,0.05), labels=seq(-0.1,0.1,0.05),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 
-
-plot(x=100,y=100,xlim=c(0,S),ylim=c(-0.1,0.1),xlab="",ylab="",main= "Dataset 1c",xaxt="n",yaxt="n")
+S =50
+plot(x=100,y=100,xlim=c(0,S),ylim=c(-0.1,0.1),xlab="",ylab="",main= "Dataset 2",xaxt="n",yaxt="n")
 load("Data/dataset2/derived/magnitudes-params-incl.probs.RData")
 for (i in 1:S) {
   col=hcl(h=330,c=100,l=40) #Purple
@@ -40,6 +41,17 @@ for (i in 1:S) {
 }
 axis(side=2, at=seq(-0.1,0.1,0.05), labels=seq(-0.1,0.1,0.05),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
+
+S =71
+plot(x=100,y=100,xlim=c(0,S),ylim=c(-0.1,0.1),xlab="",ylab="",main= "Dataset 3",xaxt="n",yaxt="n")
+load("Data/dataset3/derived/magnitudes-params-incl.probs.RData")
+for (i in 1:S) {
+  col=hcl(h=330,c=100,l=40) #Purple
+  rect(i-0.5,0,i+0.5,table[i,"magnitude"], border = col, col = col)
+}
+axis(side=2, at=seq(-0.1,0.1,0.05), labels=seq(-0.1,0.1,0.05),cex.axis=1.5)
+axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
+
 
  dev.off()
  

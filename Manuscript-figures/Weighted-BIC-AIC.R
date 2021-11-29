@@ -59,7 +59,7 @@ for (i in 1:S) {
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
-datasets = c("Dataset 1a", "Dataset 1b", "Dataset 1c")
+datasets = c("Dataset 1a", "Dataset 1b", "Dataset 2", "Dataset 3")
 
 mtext(side=2,line=3,datasets[1],cex=1, font = 2)
 mtext(side=3,line=0.8,"BIC",cex=1, font = 2)
@@ -207,7 +207,7 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
 
 load("~/Documents/2021/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
-
+S = 50
 # Plotting
 for (i in 1:S) {
   use.i=i
@@ -252,8 +252,104 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 mtext(side=2,line=3,datasets[3],cex=1, font = 2)
 
+S = 50
+
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
 load("~/Documents/2021/Gaze-Cueing/Data/dataset2/derived/AIC-Weights.RData")
+# Plotting
+
+for (i in 1:S) {
+  use.i=i
+  sumThing=0
+  
+  col=hcl(h=330,c=100,l=40) #Purple
+  rect(i-0.5,0,i+0.5,AICweights[use.i,"none"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"none"]
+  
+  col=hcl(h=130,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"z"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"z"] #green 
+  
+  col=hcl(h=220,c=100,l=40)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"v"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"v"] #Yellow
+  
+  col=hcl(h=420,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"v_z"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"v_z"] #Blue 
+  
+  col=hcl(h=180,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"t0"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"t0"] 
+  
+  col=hcl(h=280,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"z_t0"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"z_t0"] 
+  
+  col=hcl(h=380,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"v_t0"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"v_t0"] 
+  
+  col=hcl(h=80,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+AICweights[use.i,"complex"], border = col, col = col)
+  sumThing=sumThing+AICweights[use.i,"complex"] 
+  
+}
+axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
+axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
+
+S = 71
+
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
+
+load("~/Documents/2021/Gaze-Cueing/Data/dataset3/derived/BIC-Weights.RData")
+
+# Plotting
+for (i in 1:S) {
+  use.i=i
+  sumThing=0
+  
+  col=hcl(h=330,c=100,l=40) #Purple
+  rect(i-0.5,0,i+0.5,BICweights[use.i,"none"], border = col, col = col)
+  sumThing=sumThing+BICweights[use.i,"none"]
+  
+  col=hcl(h=130,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BICweights[use.i,"z"], border = col, col = col)
+  sumThing=sumThing+BICweights[use.i,"z"] #green 
+  
+  col=hcl(h=220,c=100,l=40)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BICweights[use.i,"v"], border = col, col = col)
+  sumThing=sumThing+BICweights[use.i,"v"] #Yellow
+  
+  col=hcl(h=420,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BICweights[use.i,"v_z"], border = col, col = col)
+  sumThing=sumThing+BICweights[use.i,"v_z"] #Blue 
+  
+  col=hcl(h=180,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BICweights[use.i,"t0"], border = col, col = col)
+  sumThing=sumThing+BICweights[use.i,"t0"] 
+  
+  col=hcl(h=280,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BICweights[use.i,"z_t0"], border = col, col = col)
+  sumThing=sumThing+BICweights[use.i,"z_t0"] 
+  
+  col=hcl(h=380,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BICweights[use.i,"v_t0"], border = col, col = col)
+  sumThing=sumThing+BICweights[use.i,"v_t0"] 
+  
+  col=hcl(h=80,c=100,l=70)
+  rect(i-0.5,sumThing,i+0.5,sumThing+BICweights[use.i,"complex"], border = col, col = col)
+  sumThing=sumThing+BICweights[use.i,"complex"] 
+  
+}
+axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
+axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
+
+
+mtext(side=2,line=3,datasets[4],cex=1, font = 2)
+
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
+load("~/Documents/2021/Gaze-Cueing/Data/dataset3/derived/AIC-Weights.RData")
 # Plotting
 
 for (i in 1:S) {

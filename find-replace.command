@@ -1,27 +1,17 @@
-#! /bin/bashREMOVE2RUN
+#! /bin/bash
 
 
 cd ~
-cd ~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset1a/
-sed -i '' 's/dataset1c/dataset2/g' *.R
+cd ~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset3/
+sed -i '' 's/dataset2/dataset3/g' *.R
+sed -i '' 's/Dataset2/dataset3/g' *.R
+sed -i '' 's/Dataset 2/dataset3/g' *.R
+sed -i '' 's/nSub = 50/nSub = 71/g' *.R
 cd ~
-cd ~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset1b/
-sed -i '' 's/dataset1c/dataset2/g' *.R
-cd ~
-cd ~/Documents/2021/Gaze-Cueing/Hierarchical-Modelling/dataset2/
-sed -i '' 's/dataset1c/dataset2/g' *.R
-cd ~
-cd ~/Documents/2021/Gaze-Cueing/Manuscript-figures/
-sed -i '' 's/dataset1c/dataset2/g' *.R
-cd ~
-cd ~/Documents/2021/Gaze-Cueing/Modelling/dataset1a/
-sed -i '' 's/dataset1c/dataset2/g' *.R
-cd ~
-cd ~/Documents/2021/Gaze-Cueing/Modelling/dataset1b/
-sed -i '' 's/dataset1c/dataset2/g' *.R
-cd ~
-cd ~/Documents/2021/Gaze-Cueing/Modelling/dataset2/
-sed -i '' 's/dataset1c/dataset2/g' *.R
-cd ~
-cd ~/Documents/2021/Gaze-Cueing/Recovery/
-sed -i '' 's/dataset1c/dataset2/g' *.R
+cd ~/Documents/2021/Gaze-Cueing/Modelling/dataset3/
+sed -i '' 's/dataset2/dataset3/g' *.R
+sed -i '' 's/Dataset2/dataset3/g' *.R
+sed -i '' 's/Dataset 2/dataset3/g' *.R
+sed -i '' 's/dataset2/dataset3/g' *.command
+sed -i '' 's/S = 50/S = 71/g' *.R
+sed -i '' 's/nSub = 50/nSub = 71/g' *.R
