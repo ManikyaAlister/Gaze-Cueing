@@ -1,7 +1,7 @@
 rm(list = ls())
 library(tidyverse)
 S = 50 #subjects
-setwd("~/Documents/2021/Gaze-Cueing")
+setwd("~/cloudstor/2021/Gaze-Cueing")
 ## Dataset2 ##
 ######## Load AIC and BIC for Each Model #######
 #Or Skip to lines 83/84 if already saved
@@ -466,12 +466,13 @@ legend("bottom", legend = c("t0 varies", "t0 does not vary"),
 dev.off()
 #### Quantitative Evaluations #####
 
+### Model Probabilities ###
+
 ## AIC ##
 
-mean_AICweights = apply(AICweights,2,mean) ##Check mean BIC weight of each model
+## Check mean AIC weight of each model
+mean_AICweights = round(sort(apply(AICweights,2,mean), decreasing = TRUE),2)
 save(mean_AICweights, file = "Data/dataset2/derived/mean_AICweights.Rdata")
-#v_z           none          v          z       z_t0       v_t0     complex    t0 
-#0.08022601 0.15017886 0.09736894 0.14654650 0.11403436 0.10362599 0.03862628 0.26939305 
 
 best_AIC = max.col(AICweights)
 
@@ -487,12 +488,18 @@ best_AIC = as.factor(best_AIC)
 best_AIC = summary(best_AIC)
 save(best_AIC, file = "Data/dataset2/derived/best_AIC.Rdata")
 
+## Calculate mean raw AICs
+
+raw_AIC = round(apply(AIC_comp, 2, mean),2)
+
+
 ## BIC ##
 
-mean_BICweights = apply(BICweights,2,mean) ##Check mean BIC weight of each model averaged across participants
+#Check mean BIC weight of each model averaged across participants
+mean_BICweights = round(sort(apply(BICweights,2,mean), decreasing = TRUE),2)
 save(mean_BICweights, file = "Data/dataset2/derived/mean_BICweights.Rdata")
-#v_z            none           v             z          z_t0    v_t0      complex      t0 
-#0.031704996 0.424263748 0.063179785 0.110303738 0.022516675 0.021236614 0.001318609 0.325475833 
+
+#Calculate no. of participants for which "x" model was best according to BIC  
 
 best_BIC = max.col(BICweights)
 
@@ -505,11 +512,73 @@ best_BIC = case_when(best_BIC == 1 ~ "v-z",
                      best_BIC == 7 ~ "complex",
                      best_BIC == 8 ~ "t0")
 best_BIC = as.factor(best_BIC)
-best_BIC = summary(best_BIC) #No. of participants for which "x" model was best according to BIC  
+best_BIC = summary(best_BIC) 
 save(best_BIC, file = "Data/dataset2/derived/best_BIC.Rdata")
-#Simple Model                       t0              v (drift rate) Model               v-z 
-# 22                                14                        1                        1 
-# z (starting point) Model 
-#         3 
+
+## Calculate mean raw BICs
+
+raw_BIC = round(apply(BIC_comp, 2, mean),2)
+
+
+## Make a table that I can paste straight into the latex document
+
+library(xtable)
+
+# convert AIC and BIC weights to percentages for manuscript table
+
+mean_BICweights_perc = mean_BICweights*100
+mean_AICweights_perc = mean_AICweights*100
+
+latex_table = cbind(
+  mean_BICweights_perc[order(factor(names(mean_BICweights_perc), levels = c('none', 't0', 'z', 'v', 'v_z', 'v_t0','z_t0','complex')))],
+  raw_BIC[order(factor(names(raw_BIC), levels = c('none', 't0', 'z', 'v', 'v_z', 'v_t0','z_t0','complex')))],
+  mean_AICweights_perc[order(factor(names(mean_AICweights_perc), levels = c('none', 't0', 'z', 'v', 'v_z', 'v_t0','z_t0','complex')))],
+  raw_AIC[order(factor(names(raw_AIC), levels = c('none', 't0', 'z', 'v', 'v_z', 'v_t0','z_t0','complex')))]
+)
+rownames(latex_table) = c('Simple', 't0', 'z', 'v', 'v-z', 't0-v','t0-z','Complex')
+colnames(latex_table) = c("BIC Probability (%)","BIC Raw","AIC Probability (%)","AIC Raw")
+
+class(latex_table)
+
+xtable::xtable(latex_table, digits = c(0,0,2,0,2)) #Paste output (from "Simple" to "Complex" straight into Latex)
+
+
+### Parameter Inclusion Probabilities ###
+
+# Inclusion probability AIC
+AIC_prob_z = NULL
+AIC_prob_v = NULL
+AIC_prob_t0 = NULL
+
+#Combine the probability of each model that assumes each respective parameter varies 
+for (i in 1:S) {
+  AIC_prob_z[i]=sum(AICweights[i,c("z","v_z", "complex", "z_t0")])
+  AIC_prob_v[i]=sum(AICweights[i,c("v","v_z", "complex", "v_t0")])
+  AIC_prob_t0[i]=sum(AICweights[i,c("t0","z_t0", "complex", "v_t0")])
+}
+AIC_incl_prob = cbind(AIC_prob_z, AIC_prob_v, AIC_prob_t0)
+AIC_incl_prob = apply(AIC_incl_prob, 2, mean) #Average across all participants 
+
+# Inclusion probability BIC
+BIC_prob_z = NULL
+BIC_prob_v = NULL
+BIC_prob_t0 = NULL
+
+#Combine the probability of each model that assumes each respective parameter varies 
+for (i in 1:S) {
+  BIC_prob_z[i]=sum(BICweights[i,c("z","v_z", "complex", "z_t0")])
+  BIC_prob_v[i]=sum(BICweights[i,c("v","v_z", "complex", "v_t0")])
+  BIC_prob_t0[i]=sum(BICweights[i,c("t0","z_t0", "complex", "v_t0")])
+}
+BIC_incl_prob = cbind(BIC_prob_z, BIC_prob_v, BIC_prob_t0)
+BIC_incl_prob_mean = round(apply(BIC_incl_prob, 2, mean),2) #Average across all participants 
+
+best_BIC_incl = max.col(BIC_incl_prob)
+best_BIC_incl = case_when(
+                    best_BIC_incl == 1 ~ "z",
+                    best_BIC_incl == 2 ~ "v",
+                    best_BIC_incl == 3 ~ "t0")
+best_BIC_incl = as.factor(best_BIC_incl)
+best_BIC_incl = summary(best_BIC_incl)
 
 

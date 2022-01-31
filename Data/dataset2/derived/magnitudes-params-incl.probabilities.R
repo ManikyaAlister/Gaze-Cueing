@@ -52,7 +52,7 @@ data = data %>%
   group_by(ID,Cond) %>%
   summarise(Time = mean(Time))
 
-data.1 = data.2 = filter(data, Cond == 1)
+data.1 = filter(data, Cond == 1) #The author accidentally reverse coded the data
 data.2 = filter(data, Cond == 2)
 time.2 = data.2$Time
 
@@ -60,7 +60,7 @@ data = cbind(data.1, time.2)
 data = select(data, -Cond)
 colnames(data) = c("ID", "Time.1", "Time.2")
 
-magnitude = data$Time.1 - data$Time.2 #Carlson (2016) reverse coded their data by accident such that cued trials were labeled as miscued trials 
+magnitude = data$Time.2 - data$Time.1 #Reminder that the original author reverse coded their data by accident such that cued trials were labeled as miscued trials 
 
 #Get mean parameter differences for each participant
 params =array(NA,c(S,6))

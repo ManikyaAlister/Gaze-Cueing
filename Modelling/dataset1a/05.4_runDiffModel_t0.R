@@ -4,7 +4,7 @@ rm(list=ls())
 library(tidyverse)
 library(rtdists)
 library(msm)
-setwd("~/Documents/2021/Gaze-Cueing")
+setwd("~/cloudstor/2021/Gaze-Cueing")
 source("Modelling/dataset1a/02_megaBackground.R")
 
 

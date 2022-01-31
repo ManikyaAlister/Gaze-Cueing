@@ -1,9 +1,9 @@
-## Dataset1c ##
+## Dataset2 ##
 
 
 
 rm(list = ls())
-setwd("~/Documents/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 library(tidyverse)
 library(jtools)
 
@@ -168,7 +168,7 @@ quantiles_z = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_z, y = qs*p.mean.2_z),shape = 0)+
   geom_line(aes(x = q.mean.2.2_z, y = qs*p.mean.2_z))+
-  labs(title = "Arrow z") +
+  labs(title = "z") +
   theme_apa()
 quantiles_z #view plot 
 ggsave(paste("Modelling/dataset2/08_Plots/quantiles-z.png", sep = ""), plot = quantiles_z)  

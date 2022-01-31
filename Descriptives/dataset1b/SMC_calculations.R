@@ -80,21 +80,21 @@ correlation = cor(cor_data)
 ri = correlation[1,2]
 ri = ri[[1]]
 
-m2i = data_all[1,1]
+m2i = data_all[2,2]
 m2i = m2i[[1]]
 
-m1i = data_all[2,1]
+m1i = data_all[1,2]
 m1i = m1i[[1]]
 
-sd2i = data_all[1,2]
+sd2i = data_all[2,3]
 sd2i = sd2i[[1]]
 
-sd1i = data_all[2,2]
+sd1i = data_all[1,3]
 sd1i = sd1i[[1]]
 
 ni = max(P$ID)
 
 # Calculate standardised mean change score
 
-smcc = escalc("SMCC", m1i = m1i, m2i = m2i, sd1i = sd1i, sd2i = sd2i, ri = ri, ni = ni)
+smcc1b = escalc("SMCC", m1i = m1i, m2i = m2i, sd1i = sd1i, sd2i = sd2i, ri = ri, ni = ni)
 

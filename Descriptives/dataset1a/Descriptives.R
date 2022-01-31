@@ -1,10 +1,11 @@
+rm(list = ls())
 setwd("~/Documents/2021/Gaze-Cueing")
 load("Data/dataset1a/derived/magnitudes-params-incl.probs.RData")
 
-mean_magnitude = mean(table$magnitude)
-sd_magnitude = sd(table$magnitude)
+mean_magnitude = round(mean(table$magnitude) * 1000, 2)  #cueing magnitude
+sd_magnitude = round(sd(table$magnitude) * 1000, 2)      #SD cueing magnitude    
 
-count_magnitudes = sum(table$magnitude > 0 )
+count_magnitudes = sum(table$magnitude > 0 )  #N participants with a positive cueing magnitude
 count_magnitudes 
 
 descriptives_1a = c(mean_magnitude, sd_magnitude, count_magnitudes)

@@ -1,9 +1,9 @@
-## Dataset1c ##
+## Dataset3 ##
 
 
 
 rm(list = ls())
-setwd("~/Documents/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 library(tidyverse)
 library(jtools)
 
@@ -54,7 +54,7 @@ p.mean.2=mean(allP[2,])
 ############################
 ###### v-z Model ######
 ###########################
-nsub = 50
+nsub = 71
 all.data_v_z = list()
 for (useSub in 1:nSub) {
   
@@ -81,11 +81,11 @@ for (s in 1:nSub) {
   }
 }
 
-allQ_v_z=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_v_z=array(unlist(tmp),c(length(qs),2,2,nsub))
 
 tmp=lapply(simData_v_z,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_v_z=array(unlist(tmp),c(2,50))
+allP_v_z=array(unlist(tmp),c(2,nsub))
 
 #Means for congruent cue condition
 q.mean.2.1_v_z=apply(allQ_v_z[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_v_z[,2,COND,]...)
@@ -143,11 +143,11 @@ for (s in nSub) {
   }
 }
 
-allQ_z=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_z=array(unlist(tmp),c(length(qs),2,2,nsub))
 
 tmp=lapply(simData_z,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_z=array(unlist(tmp),c(2,50))
+allP_z=array(unlist(tmp),c(2,nsub))
 
 #Means for congruent cue condition
 q.mean.2.1_z=apply(allQ_z[,2,1,],1,mean) 
@@ -205,11 +205,11 @@ for (s in nSub) {
   }
 }
 
-allQ_v=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_v=array(unlist(tmp),c(length(qs),2,2,nsub))
 
 tmp=lapply(simData_v,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_v=array(unlist(tmp),c(2,50))
+allP_v=array(unlist(tmp),c(2,nsub))
 
 #Means for congruent cue condition
 q.mean.2.1_v=apply(allQ_v[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_v[,2,COND,]...)
@@ -337,11 +337,11 @@ for (s in 1:nSub) {
   }
 }
 
-allQ_v_t0=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_v_t0=array(unlist(tmp),c(length(qs),2,2,nsub))
 
 tmp=lapply(simData_v_t0,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_v_t0=array(unlist(tmp),c(2,50))
+allP_v_t0=array(unlist(tmp),c(2,nsub))
 
 #Means for congruent cue condition
 q.mean.2.1_v_t0=apply(allQ_v_t0[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_v0_t0[,2,COND,]...)
@@ -403,11 +403,11 @@ for (s in 1:nSub) {
   }
 }
 
-allQ_z_t0=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_z_t0=array(unlist(tmp),c(length(qs),2,2,nsub))
 
 tmp=lapply(simData_z_t0,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_z_t0=array(unlist(tmp),c(2,50))
+allP_z_t0=array(unlist(tmp),c(2,nsub))
 
 #Means for congruent cue condition
 q.mean.2.1_z_t0=apply(allQ_z_t0[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_v0_t0[,2,COND,]...)
@@ -456,7 +456,7 @@ rm(all.dataComplex)
 
 tmp=lapply(simDataComplex,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in 1:50) {
+for (s in 1:nsub) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -468,11 +468,11 @@ for (s in 1:50) {
   }
 }
 
-allQComplex=array(unlist(tmp),c(length(qs),2,2,50))
+allQComplex=array(unlist(tmp),c(length(qs),2,2,nsub))
 
 tmp=lapply(simDataComplex,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allPComplex=array(unlist(tmp),c(2,50))
+allPComplex=array(unlist(tmp),c(2,nsub))
 
 #Means for congruent cue condition
 q.mean.2.1Complex=apply(allQComplex[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQComplex[,2,COND,]...)
@@ -520,7 +520,7 @@ rm(all.data_s)
 
 tmp=lapply(simData_s,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in 1:50) {
+for (s in 1:nsub) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -532,11 +532,11 @@ for (s in 1:50) {
   }
 }
 
-allQ_s=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_s=array(unlist(tmp),c(length(qs),2,2,nsub))
 
 tmp=lapply(simData_s,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_s=array(unlist(tmp),c(2,50))
+allP_s=array(unlist(tmp),c(2,nsub))
 
 #Means for congruent cue condition
 q.mean.2.1_s=apply(allQ_s[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_s[,2,COND,]...)

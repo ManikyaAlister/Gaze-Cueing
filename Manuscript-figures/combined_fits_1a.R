@@ -1,5 +1,7 @@
-setwd("~/Documents/2021/Gaze-Cueing/")
+setwd("~/cloudstor/Gaze-Cueing/")
 ## Dataset1a ##
+
+qs=seq(0.1,0.9,0.1) #Define quantiles 
 
 #Load data
 

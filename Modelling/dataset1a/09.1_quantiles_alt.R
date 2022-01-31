@@ -2,7 +2,7 @@
 # person 29 bad data 
 
 rm(list = ls())
-setwd("~/Documents/2021/Gaze-Cueing")
+setwd("~/cloudstor/2021/Gaze-Cueing")
 library(tidyverse)
 library(jtools)
 

@@ -3,7 +3,7 @@ rm(list=ls())
 library(tidyverse)
 library(rtdists)
 library(msm)
-setwd("~/Documents/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 source("Modelling/dataset3/02_megaBackground.R")
 
 
@@ -82,7 +82,7 @@ for (useSub in 1:nSub) {
 
 ##### Simulate Data Using Estimated Parameters ####
 conds = c(1,2)
-for(useSub in 1:50) {
+for(useSub in 1:nSub) {
   
   
   load(paste("Modelling/dataset3/07_Outputs/P",useSub,"_complex_Model.Rdata", sep = "")) #Loads through the datasets of each participant in nSub

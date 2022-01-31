@@ -1,5 +1,4 @@
-
-### dataset3 ###
+### Dataset3 ###
 
 setwd("~/Documents/2021/Gaze-Cueing")
 rm(list = ls())
@@ -56,7 +55,7 @@ load("Data/dataset3/clean/all-participants.RData")
 # Calculate mean & SD for cued and miscued conditions 
 
 data_all = P %>%
-  select(ID, Time, Cond) %>%
+  select(PID, Time, Cond) %>%
   group_by(Cond) %>%
   summarise(Mean = mean(Time), SD = sd(Time))
 
@@ -65,36 +64,38 @@ data_all = P %>%
 # Calculate correlation between cued and miscued trials
 
 cued = filter(P, Cond == 1) %>%
-  group_by(ID) %>%
+  group_by(PID) %>%
   summarise(Mean = mean(Time))
 
 miscued = filter(P, Cond == 2) %>%
-  group_by(ID) %>%
+  group_by(PID) %>%
   summarise(Mean = mean(Time))
 
 cor_data =  cbind(cued$Mean,miscued$Mean)           
 correlation = cor(cor_data) 
 
 # Calculate inputs for escalc
+data_all$Mean = as.numeric(data_all$Mean)
+data_all$SD = as.numeric(data_all$SD)
 
 ri = correlation[1,2]
 ri = ri[[1]]
 
-m2i = data_all[1,1]
+m2i = data_all[2,2]
 m2i = m2i[[1]]
 
-m1i = data_all[2,1]
+m1i = data_all[1,2]
 m1i = m1i[[1]]
 
-sd2i = data_all[1,2]
+sd2i = data_all[2,3]
 sd2i = sd2i[[1]]
 
-sd1i = data_all[2,2]
+sd1i = data_all[1,3]
 sd1i = sd1i[[1]]
 
-ni = max(P$ID)
+ni = as.numeric(max(P$PID))
 
 # Calculate standardised mean change score
 
-smcc = escalc("SMCC", m1i = m1i, m2i = m2i, sd1i = sd1i, sd2i = sd2i, ri = ri, ni = ni)
+smcc3 = escalc("SMCC", m1i = m1i, m2i = m2i, sd1i = sd1i, sd2i = sd2i, ri = ri, ni = ni)
 
