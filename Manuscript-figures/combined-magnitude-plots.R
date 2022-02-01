@@ -1,4 +1,4 @@
-setwd("~/cloudstor/2021/Gaze-Cueing/")
+setwd("~/cloudstor/Gaze-Cueing/")
 pdf(paste("Manuscript-figures/combined-magnitudes.pdf",sep=""),width=2*4,height=(2*2)+5)
 #create matrix "m" which is the size of how many plots I'm going to have. 0 is where there's no plots,
 m=matrix(1:12,nrow=6,byrow=T)
@@ -9,10 +9,10 @@ layout(mat=m,
        widths=c(0,1,0,1,0),#,1,0),
        heights=c(0,1,0,1,0,1,0))#,1,0,1,0,1,0))
 #par(mar=rep(0,4))
-par(mar=c(2.1,4.6,6,1))
+par(mar=c(4.6,4.6,6,1))
 
 S = 41
-plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="",ylab="",main= "Dataset 1a",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="Participant",ylab="Magnitude",main= "Dataset 1a",xaxt="n",yaxt="n")
 load("Data/dataset1a/derived/magnitudes-params-incl.probs.RData")
 table$magnitude = table$magnitude*1000
 for (i in 1:S) {
@@ -22,7 +22,7 @@ for (i in 1:S) {
 axis(side=2, at=seq(-100,100,50), labels=seq(-100,100,50),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
-plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="",ylab="",main= "Dataset 1b",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="Participant",ylab="Magnitude",main= "Dataset 1b",xaxt="n",yaxt="n")
 load("Data/dataset1b/derived/magnitudes-params-incl.probs.RData")
 table$magnitude = table$magnitude*1000
 S =41
@@ -35,7 +35,7 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 
 S =50
-plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="",ylab="",main= "Dataset 2",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="Participant",ylab="Magnitude",main= "Dataset 2",xaxt="n",yaxt="n")
 load("Data/dataset2/derived/magnitudes-params-incl.probs.RData")
 #table$magnitude = table$magnitude*-1
 table$magnitude = table$magnitude*1000
@@ -47,7 +47,7 @@ axis(side=2, at=seq(-100,100,50), labels=seq(-100,100,50),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 S =71
-plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="",ylab="",main= "Dataset 3",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="Participant",ylab="Magnitude",main= "Dataset 3",xaxt="n",yaxt="n")
 load("Data/dataset3/derived/magnitudes-params-incl.probs.RData")
 table$magnitude = table$magnitude*1000
 for (i in 1:S) {
