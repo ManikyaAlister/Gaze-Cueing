@@ -3,7 +3,7 @@
 
 
 rm(list = ls())
-setwd("~/cloudstor/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 library(tidyverse)
 library(jtools)
 
@@ -131,7 +131,7 @@ rm(all.data_z)
 
 tmp=lapply(simData_z,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in nSub) {
+for (s in 1:nSub) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -193,7 +193,7 @@ rm(all.data_v)
 
 tmp=lapply(simData_v,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in nSub) {
+for (s in 1:nSub) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)

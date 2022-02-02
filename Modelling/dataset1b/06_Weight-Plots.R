@@ -1,7 +1,7 @@
 rm(list = ls())
 library(tidyverse)
 S = 41 #subjects
-setwd("~/cloudstor/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 ## Dataset  1b ##
 ######## Load AIC and BIC for Each Model #######
 #Or Skip to lines 83/84 if already saved
@@ -119,8 +119,16 @@ colnames(AIC_comp) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0")
 BIC_comp = cbind(BIC_v_z, BIC_S, BIC_v, BIC_z, BIC_z_t0, BIC_v_t0, BIC_C, BIC_t0)
 colnames(BIC_comp) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0")
 
+# This method loads everything with the rows in reverse order so the following code amends this so it's in the correct order 
+
+AIC_comp = AIC_comp[nrow(AIC_comp):1,]
+BIC_comp = BIC_comp[nrow(AIC_comp):1,]
+
+# Save 
+
 save(AIC_comp, file = "Data/dataset1b/derived/AICs.Rdata")
 save(BIC_comp, file = "Data/dataset1b/derived/BICs.Rdata")
+
 
 ###########################
 ### Model Probabilities ##
@@ -240,9 +248,9 @@ for (s in 1:S) {
 }
 colnames(AICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0")
 
-
 save(AICweights, file = "Data/dataset1b/derived/AIC-Weights.RData")
 save(AIC_comp, file = "Data/dataset1b/derived/AICs.RData")
+
 
 #If I want to order by V model 
 # AICweights = AICweights[order(AICweights[,4]),]

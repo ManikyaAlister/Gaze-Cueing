@@ -1,5 +1,5 @@
 
-setwd("~/Documents/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 rm(list=ls())
 library(tidyverse)
 library(readxl)

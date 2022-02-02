@@ -1,7 +1,7 @@
 #### Dataset2 ####
 
 #Load Packages
-setwd("~/cloudstor/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 rm(list=ls())
 library(tidyverse)
 
@@ -93,11 +93,11 @@ for(i in 1:n) {
   n.accurate = length(accurate_trials$Resp)
   acc = n.accurate/length(data$Resp)
   if (acc < .8) {
-    save(data, file = paste("Data/dataset3/clean/rm-accuracy/P",i,".Rdata",sep=""))
+    save(data, file = paste("Data/dataset2/clean/rm-accuracy/P",i,".Rdata",sep=""))
   } else {
     data = filter(data, Time < 5) #Filter out responses slower than 5 seconds 
     data = filter(data, Time > 0.1)#Filter out responses faster than 0.1 seconds 
-    save(data, file = paste("Data/dataset3/clean/P",i,".Rdata",sep=""))
+    save(data, file = paste("Data/dataset2/clean/P",i,".Rdata",sep=""))
   }
   save(data, file = paste("Data/dataset2/clean/P",i,".Rdata",sep=""))
 }

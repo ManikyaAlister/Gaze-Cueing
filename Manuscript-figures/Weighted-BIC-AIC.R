@@ -10,13 +10,13 @@ layout(mat=m,
        widths=c(0,1,0,1,0),
        heights=c(0,1,0,1,0,1,0,1,0,1,0,1,0))
 #par(mar=rep(0,4))
-par(mar=c(1,4.6,3,8))
+par(mar=c(2,4.6,3,8))
 
 S = 41 #n participants
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
 
-load("~/cloudstor/2021/Gaze-Cueing/Data/dataset1a/derived/BIC-Weights.RData")
+load("~/cloudstor/Gaze-Cueing/Data/dataset1a/derived/BIC-Weights.RData")
 
 # Plotting
 for (i in 1:S) {
@@ -68,7 +68,7 @@ mtext(side=3,line=0.8,"BIC",cex=1, font = 2)
 
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
-load("~/cloudstor/2021/Gaze-Cueing/Data/dataset1a/derived/AIC-Weights.RData")
+load("~/cloudstor/Gaze-Cueing/Data/dataset1a/derived/AIC-Weights.RData")
 # Plotting
 
 for (i in 1:S) {
@@ -126,7 +126,7 @@ mtext(side=3,line=0.8,"AIC",cex=1, font = 2)
 par(xpd=FALSE)
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
 
-load("~/cloudstor/2021/Gaze-Cueing/Data/dataset1b/derived/BIC-Weights.RData")
+load("~/cloudstor/Gaze-Cueing/Data/dataset1b/derived/BIC-Weights.RData")
 
 # Plotting
 for (i in 1:S) {
@@ -173,7 +173,7 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 mtext(side=2,line=3,datasets[2],cex=1, font = 2)
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
-load("~/cloudstor/2021/Gaze-Cueing/Data/dataset1b/derived/AIC-Weights.RData")
+load("~/cloudstor/Gaze-Cueing/Data/dataset1b/derived/AIC-Weights.RData")
 # Plotting
 
 for (i in 1:S) {
@@ -219,7 +219,7 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
 
-load("~/cloudstor/2021/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
+load("~/cloudstor/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
 S = 50
 # Plotting
 for (i in 1:S) {
@@ -268,7 +268,7 @@ mtext(side=2,line=3,datasets[3],cex=1, font = 2)
 S = 50
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
-load("~/cloudstor/2021/Gaze-Cueing/Data/dataset2/derived/AIC-Weights.RData")
+load("~/cloudstor/Gaze-Cueing/Data/dataset2/derived/AIC-Weights.RData")
 # Plotting
 
 for (i in 1:S) {
@@ -316,7 +316,7 @@ S = 71
 #par(mar=c(4.6,4.6,3,6))
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
 
-load("~/cloudstor/2021/Gaze-Cueing/Data/dataset3/derived/BIC-Weights.RData")
+load("~/cloudstor/Gaze-Cueing/Data/dataset3/derived/BIC-Weights.RData")
 
 # Plotting
 for (i in 1:S) {
@@ -365,7 +365,7 @@ axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 mtext(side=2,line=3,datasets[4],cex=1, font = 2)
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
-load("~/cloudstor/2021/Gaze-Cueing/Data/dataset3/derived/AIC-Weights.RData")
+load("~/cloudstor/Gaze-Cueing/Data/dataset3/derived/AIC-Weights.RData")
 # Plotting
 
 for (i in 1:S) {
