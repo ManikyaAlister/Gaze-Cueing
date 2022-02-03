@@ -84,13 +84,13 @@ theta.names=c("a",paste("t0",conds,sep="."),
 
 phi.names=paste(rep(theta.names,each=2),rep(c("mu","sigma"),length(theta.names)),sep=".")
 
-savefile=paste("Hierarchical-Modelling/dataset3/07_Output/Hier_Complex_Model.Rdata",sep="")
+savefile=paste("Hierarchical-Modelling/z-unconstrained/dataset3/07_Output/Hier_Complex_Model.Rdata",sep="")
 
 
 
 
-source("Hierarchical-Modelling/dataset3/02_Hier_Background.R")
-source("Hierarchical-Modelling/dataset3/03_Hier_iterative.R")
+source("Hierarchical-Modelling/z-unconstrained/dataset3/02_Hier_Background.R")
+source("Hierarchical-Modelling/z-unconstrained/dataset3/03_Hier_iterative.R")
 
 save(theta,phi,weight,data,burnin,nmc,n.chains,theta.names,phi.names,conds,S,#logMarginalLikelihood,
      file=savefile)
