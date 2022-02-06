@@ -8,7 +8,7 @@
 #print(cor(as.vector(allQ[,2,2,]),as.vector(allQ_sim[,2,2,])))
 
 rm(list = ls())
-
+setwd("~/cloudstor/Gaze-Cueing")
 #load("Hierarchical-Modelling/07_Output/Hier_Complex_Model.RDdta")
 load("~/cloudstor/Gaze-Cueing/Hierarchical-Modelling/z-unconstrained/dataset3/07_Output/Hier_Complex_Model.Rdata")
 

@@ -8,9 +8,9 @@
 #print(cor(as.vector(allQ[,2,2,]),as.vector(allQ_sim[,2,2,])))
 
 rm(list = ls())
-
+setwd("~/cloudstor/Gaze-Cueing")
 #load("Hierarchical-Modelling/07_Output/Hier_Complex_Model.RDdta")
-load("~/cloudstor/2021/Gaze-Cueing/Hierarchical-Modelling/dataset2/07_Output/Hier_Complex_Model.Rdata")
+load("~/cloudstor/Gaze-Cueing/Hierarchical-Modelling/dataset2/07_Output/Hier_Complex_Model.Rdata")
 
 CI_z = quantile(phi[,"z.mu",],c(0.025,0.975))
 plot(density(phi[,"z.mu",],n = 4096),

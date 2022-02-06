@@ -1,6 +1,6 @@
 
 rm(list = ls())
-
+setwd("~/cloudstor/Gaze-Cueing")
 #load("Hierarchical-Modelling/07_Output/Hier_Complex_Model.RDdta")
 load("~/cloudstor/Gaze-Cueing/Hierarchical-Modelling/t0-unconstrained/dataset3/07_Output/Hier_Complex_Model.Rdata")
 
