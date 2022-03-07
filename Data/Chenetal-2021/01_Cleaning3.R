@@ -77,7 +77,7 @@ for (i in 10:80) {
     data$Validity == "C" ~ "Valid")
   data$Cond = case_when(data$Validity == "Valid" ~ 1, 
                         data$Validity == "Invalid" ~ 2)  
-  #REmove participants with <80% accuracy
+  #Remove participants with <80% accuracy
   accurate_trials = filter(data, Resp == 2)
   n.accurate = length(accurate_trials$Resp)
   acc = n.accurate/length(data$Resp)

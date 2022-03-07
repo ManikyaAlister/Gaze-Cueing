@@ -1,4 +1,4 @@
-setwd("~/cloudstor/2021/Gaze-Cueing/Manuscript-figures/")
+setwd("~/cloudstor/Gaze-Cueing/Manuscript-figures/")
 pdf(paste("combined-hier-param-densities.pdf",sep=""),width=3*4,height=(3*4))
 #create matrix "m" which is the size of how many plots I'm going to have. 0 is where there's no plots,
 m=matrix(1:18,nrow=6,byrow=T)

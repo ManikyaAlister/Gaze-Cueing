@@ -12,7 +12,7 @@ layout(mat=m,
 par(mar=c(4.6,4.6,6,1))
 
 S = 41
-plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="Participant",ylab="Magnitude",main= "Dataset 1a",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="",ylab="Magnitude",main= "Dataset 1a",xaxt="n",yaxt="n")
 load("Data/dataset1a/derived/magnitudes-params-incl.probs.RData")
 table$magnitude = table$magnitude*1000
 for (i in 1:S) {
@@ -21,8 +21,9 @@ for (i in 1:S) {
 }
 axis(side=2, at=seq(-100,100,50), labels=seq(-100,100,50),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
-plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="Participant",ylab="Magnitude",main= "Dataset 1b",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="",ylab="Magnitude",main= "Dataset 1b",xaxt="n",yaxt="n")
 load("Data/dataset1b/derived/magnitudes-params-incl.probs.RData")
 table$magnitude = table$magnitude*1000
 S =41
@@ -32,10 +33,10 @@ for (i in 1:S) {
 }
 axis(side=2, at=seq(-100,100,50), labels=seq(-100,100,50),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
-
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 S =50
-plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="Participant",ylab="Magnitude",main= "Dataset 2",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="",ylab="Magnitude",main= "Dataset 2",xaxt="n",yaxt="n")
 load("Data/dataset2/derived/magnitudes-params-incl.probs.RData")
 #table$magnitude = table$magnitude*-1
 table$magnitude = table$magnitude*1000
@@ -45,9 +46,10 @@ for (i in 1:S) {
 }
 axis(side=2, at=seq(-100,100,50), labels=seq(-100,100,50),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 S =71
-plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="Participant",ylab="Magnitude",main= "Dataset 3",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(-100,100),xlab="",ylab="Magnitude",main= "Dataset 3",xaxt="n",yaxt="n")
 load("Data/dataset3/derived/magnitudes-params-incl.probs.RData")
 table$magnitude = table$magnitude*1000
 for (i in 1:S) {
@@ -56,7 +58,7 @@ for (i in 1:S) {
 }
 axis(side=2, at=seq(-100,100,50), labels=seq(-100,100,50),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
-
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
  dev.off()
  

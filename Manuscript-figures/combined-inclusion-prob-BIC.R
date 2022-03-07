@@ -11,7 +11,7 @@ layout(mat=m,
 #par(mar=rep(0,4))
 #par(mar=c(2.1,4.6,6,0.5))
 #par(mar=rep(0,4))
-par(mar=c(2.1,4.6,6,1))
+par(mar=c(2.1,6,6,1))
 
 datasets = c("Dataset 1a", "Dataset 1b", "Dataset 2", "Dataset 3")
 
@@ -23,7 +23,7 @@ S = 41 #n participants
 #### t0 #####
 #And same principle for t0:
 
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 load("~/cloudstor/Gaze-Cueing/Data/dataset1a/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
@@ -41,11 +41,11 @@ for (i in 1:S) {
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
-mtext(side=2,line=3,datasets[1],cex=1, font = 2)
+mtext(side=2,line=4.2,datasets[1],cex=1, font = 2)
 mtext(side=3,line=0.8,"Non-decision time (t0)",cex=1, font = 2)
 
 ### z ###
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 load("~/cloudstor/Gaze-Cueing/Data/dataset1a/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
@@ -64,11 +64,11 @@ axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 mtext(side=3,line=0.8,"Starting point (z)",cex=1, font = 2)
-
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 ##### v ######
 #And same principle for v:
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",main=,xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -85,7 +85,7 @@ axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 mtext(side=3,line=0.8,"Drift rate (v)",cex=1, font = 2)
-
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 #### Dataset 1b ######
 
@@ -94,7 +94,7 @@ S = 41 #n participants
 #### t0 #####
 #And same principle for t0:
 
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 load("~/cloudstor/Gaze-Cueing/Data/dataset1b/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
@@ -112,10 +112,11 @@ for (i in 1:S) {
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
-mtext(side=2,line=3,datasets[2],cex=1, font = 2)
+mtext(side=2,line=4.2,datasets[2],cex=1, font = 2)
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 ### z ###
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 load("~/cloudstor/Gaze-Cueing/Data/dataset1b/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
@@ -132,12 +133,12 @@ for (i in 1:S) {
 }
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
-
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 
 ##### v ######
 #And same principle for v:
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",main=,xaxt="n",yaxt="n")
 load("~/cloudstor/Gaze-Cueing/Data/dataset1b/derived/BIC-Weights.RData")
 for (i in 1:S) {
   use.i=i
@@ -153,6 +154,7 @@ for (i in 1:S) {
 }
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 #### Dataset 2 ######
 
@@ -161,7 +163,7 @@ S = 50 #n participants
 #### t0 #####
 #And same principle for t0:
 
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 load("~/cloudstor/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
@@ -179,10 +181,11 @@ for (i in 1:S) {
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
-mtext(side=2,line=3,datasets[3],cex=1, font = 2)
+mtext(side=2,line=4.2,datasets[3],cex=1, font = 2)
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 ### z ###
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 load("~/cloudstor/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
@@ -199,10 +202,11 @@ for (i in 1:S) {
 }
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 ##### v ######
 #And same principle for v:
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",main=,xaxt="n",yaxt="n")
 load("~/cloudstor/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
 for (i in 1:S) {
   use.i=i
@@ -218,7 +222,7 @@ for (i in 1:S) {
 }
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
-
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 #### Dataset 3 ######
 
@@ -227,7 +231,7 @@ S = 71 #n participants
 #### t0 #####
 #And same principle for t0:
 
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 load("~/cloudstor/Gaze-Cueing/Data/dataset3/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
@@ -245,11 +249,12 @@ for (i in 1:S) {
 axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
-mtext(side=2,line=3,datasets[4],cex=1, font = 2)
+mtext(side=2,line=4.2,datasets[4],cex=1, font = 2)
 mtext(side=3,line=0.8,"Non-decision time (t0)",cex=1, font = 2)
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 ### z ###
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 load("~/cloudstor/Gaze-Cueing/Data/dataset3/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
@@ -268,11 +273,11 @@ axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 mtext(side=3,line=0.8,"Starting point (z)",cex=1, font = 2)
-
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 ##### v ######
 #And same principle for v:
-plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main=,xaxt="n",yaxt="n")
+plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",main=,xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -289,7 +294,7 @@ axis(side=2, at=seq(0,1,0.5), labels=seq(0,1,0.5),cex.axis=1.5)
 axis(side=1, at=seq(0,S,S), labels=seq(0,S,S), cex.axis=1.5)
 
 mtext(side=3,line=0.8,"Drift rate (v)",cex=1, font = 2)
-
+mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 
 dev.off()

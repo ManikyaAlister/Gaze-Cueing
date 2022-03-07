@@ -1,7 +1,7 @@
 #### Dataset1a ####
 
 #Load Packages
-setwd("~/cloudstor/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 rm(list=ls())
 library(tidyverse)
 
@@ -14,7 +14,7 @@ P = filter(P, CueType == "Face")
 
 original.length = length(P$Trial)
 
-#Wrangle and rename variables into a format that DDM script will recognize
+# Wrangle and rename variables into a format that DDM script will recognize
 P = cbind(ID = P$ParticipantID,
 Validity = P$Validity,
 Time = P$ReactionTime/1000,

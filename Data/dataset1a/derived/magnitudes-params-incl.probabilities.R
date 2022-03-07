@@ -1,6 +1,6 @@
 rm(list = ls())
 library(tidyverse)
-setwd("~/Documents/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 
 load("Data/dataset1a/derived/BICs.Rdata")
 

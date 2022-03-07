@@ -584,4 +584,10 @@ best_BIC_incl = case_when(
 best_BIC_incl = as.factor(best_BIC_incl)
 best_BIC_incl = summary(best_BIC_incl)
 
+# Calculate how many participants had more than 50% prob. of being best described by a model allowing x parameter to vary
+t0.5 = sum((BICweights[,"t0"]>.5)==T)
+z.5 = sum((BICweights[,"z"]>.5)==T)
+v.5 = sum((BICweights[,"v"]>.5)==T)
+
+
 

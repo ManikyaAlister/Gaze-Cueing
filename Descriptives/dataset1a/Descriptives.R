@@ -1,5 +1,5 @@
 rm(list = ls())
-setwd("~/Documents/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 load("Data/dataset1a/derived/magnitudes-params-incl.probs.RData")
 
 mean_magnitude = round(mean(table$magnitude) * 1000, 2)  #cueing magnitude
