@@ -1,12 +1,15 @@
 # Gaze-Cueing
 
+This repository contains all of the data, scripts, and output* used for analyses in the paper "An Evidence Accumulation Account of the Gaze Cueing Effect: A Computational Modelling Investigation", by Alister, McKay, Sewell, and Evans. 
+
+*some of the ouptu was too large for github but is available on the OSF. 
 ## Folder key: 
 
 Archive: old scripts that are no longer relevant 
 
 Data: all of the raw, clean, and derived data pertaining to each of the datasets including the code used to clean the raw data 
 
-Descriptives: scripts for calculating the gaze cueing magnitudes and standardised mean change score. 
+Descriptives: scripts for calculating descriptive statistics reported in the manuscript including the gaze cueing magnitudes, and standardised mean change scores.
 
 Hierarchical modelling: scripts for running the hierarchical model and the hierarchical model anlayses. 
 
@@ -16,10 +19,4 @@ Modelling: scripts for running the individual-level models and the individual-le
 
 Recovery: scripts for running the recovery analysis.
 
-## Dataset key: 
-
-Dataset1a - Gregory & Jackson (2020) faces only 
-
-Dataset1b - Gregory & Jackson (2020) arrows only 
-
-Dataset2 - Carlson (2016)
+Exploritory analyses: scripts for calculating the corrleations between datasets reported in the manuscript. 

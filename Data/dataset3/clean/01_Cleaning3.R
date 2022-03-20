@@ -11,7 +11,7 @@ n = 80
 
 rm_error = c(11, 32, 80) #participants removed due to errors in data collection.
 for (i in rm_error) {
-  data = read.delim(file = paste("Data/Chenetal-2021/AT_",i,"_RESULTS_FILE.txt", sep = ""))
+  data = read.delim(file = paste("Data/dataset3/raw/AT_",i,"_RESULTS_FILE.txt", sep = ""))
   save(data, file = paste("Data/dataset3/clean/rm-error/P",i,".Rdata",sep=""))
 }
 
@@ -30,7 +30,7 @@ ntrials_post = NULL
 # Clean data 
 for (i in 1:9) { 
   if(i %in% c(11, 32, 44, 59, 60, 61, 62, 63, 80)) next #skip over missing participant (44), errors in data collection, and data saved as .xlsx
-  data = read.delim(file = paste("Data/Chenetal-2021/AT_0",i,"_RESULTS_FILE.txt", sep = ""))
+  data = read.delim(file = paste("Data/dataset3/raw/AT_0",i,"_RESULTS_FILE.txt", sep = ""))
   data$PID = i
   data = select(data, PID, name_trial__, RESPONSE_TIME, RESPONSE_ACCURACY, trial_type, gaze_direct)
   names(data) = c("PID", "trial", "Time", "Resp", "Validity", "Stim")
@@ -63,7 +63,7 @@ for (i in 1:9) {
 
 for (i in 10:80) { 
   if(i %in% c(11, 32, 44, 59, 60, 61, 62, 63, 80)) next #skip over missing participant (44), errors in data collection, and data saved as .xlsx
-  data = read.delim(file = paste("Data/Chenetal-2021/AT_",i,"_RESULTS_FILE.txt", sep = ""))
+  data = read.delim(file = paste("Data/dataset3/raw/AT_",i,"_RESULTS_FILE.txt", sep = ""))
   data$PID = i
   data = select(data, PID, name_trial__, RESPONSE_TIME, RESPONSE_ACCURACY, trial_type, gaze_direct)
   names(data) = c("PID", "trial", "Time", "Resp", "Validity", "Stim")
@@ -93,7 +93,7 @@ for (i in 10:80) {
 }
 
 for (i in 59:63) { 
-  data = read_xlsx(paste("Data/Chenetal-2021/",i,"_loc.xlsx", sep = ""))
+  data = read_xlsx(paste("Data/dataset3/raw/",i,"_loc.xlsx", sep = ""))
   data$PID = i
   data = select(data, PID, name_trial__, RESPONSE_TIME, RESPONSE_ACCURACY, trial_type, gaze_direct)
   names(data) = c("PID", "trial", "Time", "Resp", "Validity", "Stim")

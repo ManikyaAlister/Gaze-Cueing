@@ -8,7 +8,7 @@ library(tidyverse)
 
 
 #Load data
-P = read_csv("Data/dataset1-raw/Study1RawData .csv")
+P = read_csv("Data/dataset1a/raw/Study1RawData .csv")
 P = filter(P, Block == "Main") 
 P = filter(P, CueType == "Face") 
 
@@ -25,8 +25,8 @@ P = as.data.frame(P)
 P$ID = as.numeric(P$ID) 
 P = mutate(P, Cond = case_when(Validity == "Valid" ~ 1, 
                            Validity == "Invalid" ~ 2))
-P = filter(P, Time < 5) #Filter out responses slower than 5 seconds (8 trials)
-P = filter(P, Time > 0.1) #Filter out responses faster than 0.1 seconds (12 trials)
+P = filter(P, Time < 5) #Filter out responses slower than 5 seconds 
+P = filter(P, Time > 0.1) #Filter out responses faster than 0.1 seconds
 
 P$Time=as.numeric(P$Time)
 P$Resp=as.numeric(P$Resp)

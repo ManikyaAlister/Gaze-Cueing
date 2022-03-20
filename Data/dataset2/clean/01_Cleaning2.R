@@ -8,7 +8,7 @@ library(tidyverse)
 
 
 #Load data
-data = read_csv("Data/Carlson-2016/Carlson 2016 Raw Data.csv")
+data = read_csv("Data/dataset2/raw/Carlson 2016 Raw Data.csv")
 
 original.length = length(data$Subject)
 
