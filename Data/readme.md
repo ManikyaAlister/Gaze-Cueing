@@ -10,9 +10,9 @@ Dataset3 - Chen, Z., McCrackin, S. D., Morgan, A., & Itier, R. J. (2021). The Ga
 
 raw - raw data provided by the original authors
 
-clean - cleaned data used for analyses including the *cleaning script*\\
-     rm-accuracy - participants excluded due to accuracy exclusion criteria\\
-     rm-error -participants flagged by original authors as having an "error" in data collection\\
+clean - cleaned data used for analyses including the *cleaning script*  
+     rm-accuracy - participants excluded due to accuracy exclusion criteria  
+     rm-error -participants flagged by original authors as having an "error" in data collection  
 
 derived - derived data including key results from analyses such as AIC and BIC raw values and weights, quantiles of response time distributions for model fits, and a data set (and the script for creating it) containing the cueing magnitude, mean parameter estimates, and model probabilities for each participant. 
 
