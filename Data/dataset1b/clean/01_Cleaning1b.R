@@ -33,7 +33,7 @@ n = max(P$ID)
 
 filtered.length = length(P$Time)
 trials.rm = length(P$Time) - original.length
-trials.rm.percent = trials.rm/filtered.length #percentage of trials excluded 9,819
+trials.rm.percent = trials.rm/filtered.length # percentage of trials excluded 
 
 
 save(P, file = "Data/dataset1b/clean/all-participants.RData")
