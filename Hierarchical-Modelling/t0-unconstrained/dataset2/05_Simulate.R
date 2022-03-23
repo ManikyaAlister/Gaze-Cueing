@@ -3,7 +3,7 @@ rm(list = ls())
 library(rtdists)
 setwd("~/cloudstor/Gaze-Cueing")
 
-load("Hierarchical-Modelling/dataset1b/07_Output/Hier_Complex_Model.Rdata") #Load parameters
+load("Hierarchical-Modelling/t0-unconstrained/dataset2/07_Output/Hier_Complex_Model.Rdata") #Load parameters
 
 posterior_means = apply(theta, c(2,3), mean) #Check parameters
 
@@ -43,5 +43,5 @@ for (cond in conds) {
 
 }
 
-save(simData, file = "Data/dataset1b/Hier-Model-Predictions/complex.RData")
+save(simData, file = "Data/dataset2/Hier-Model-Predictions/t0-unconstrained/complex.RData") # Naming complex even though it's not technically the full complex model so that less code needs to be changed
 

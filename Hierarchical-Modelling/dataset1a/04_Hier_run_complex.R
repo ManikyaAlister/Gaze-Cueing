@@ -61,16 +61,14 @@ log.dens.like = function (x,data,par.names) {
       stop("Error")
     }
     
-    #z=x[paste("z",cond,sep=".")]
+
     sv=0
     sz=0
     st0=0
     s=1
     tmp=ddiffusion(rt=data$Time[data$Cond==cond],response=data$Resp[data$Cond==cond],z=z*a,a=a,v=v,t0=t0-(st0/2),s=s,sv=sv,sz=sz,st0=st0)
     out=out+sum(log(pmax(tmp,1e-10)))
-    #tmp1=ddiffusion(rt=data$Time[data$Stim=="Left" & data$Cond==cond],response=data$Resp[data$Stim=="Left" & data$Cond==cond],z=z*a,a=a,v=v,t0=t0-(st0/2),s=s,sv=sv,sz=sz,st0=st0)
-    #tmp2=ddiffusion(rt=data$Time[data$Stim=="Right" & data$Cond==cond],response=data$Resp[data$Stim=="Right" & data$Cond==cond],z=(1-z)*a,a=a,v=v,t0=t0-(st0/2),s=s,sv=sv,sz=sz,st0=st0)
-    #out=out+sum(log(pmax(c(tmp1,tmp2),1e-10)))
+
   }
   out
   

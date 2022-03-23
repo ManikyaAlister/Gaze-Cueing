@@ -22,7 +22,6 @@ all.data=list()
 
 
 for (useSub in 1:nSub) {
-  if(useSub %in% c(11, 32, 29, 32, 34, 39, 44, 64, 75, 80)) next
   load(paste("Data/dataset3/clean/P",useSub,".Rdata",sep=""))
   
   newSeed=Sys.time()
@@ -66,9 +65,7 @@ log.dens.like = function (x,data,par.names) {
     s=1
     tmp=ddiffusion(rt=data$Time[data$Cond==cond],response=data$Resp[data$Cond==cond],z=z*a,a=a,v=v,t0=t0-(st0/2),s=s,sv=sv,sz=sz,st0=st0)
     out=out+sum(log(pmax(tmp,1e-10)))
-    #tmp1=ddiffusion(rt=data$Time[data$Stim=="Left" & data$Cond==cond],response=data$Resp[data$Stim=="Left" & data$Cond==cond],z=z*a,a=a,v=v,t0=t0-(st0/2),s=s,sv=sv,sz=sz,st0=st0)
-    #tmp2=ddiffusion(rt=data$Time[data$Stim=="Right" & data$Cond==cond],response=data$Resp[data$Stim=="Right" & data$Cond==cond],z=(1-z)*a,a=a,v=v,t0=t0-(st0/2),s=s,sv=sv,sz=sz,st0=st0)
-    #out=out+sum(log(pmax(c(tmp1,tmp2),1e-10)))
+
   }
   out
   

@@ -1,12 +1,9 @@
 rm(list = ls())
-#### Script to generate predictided data with the complex model ###
+#### Script to generate predicted data with the hierarchical model ###
 library(rtdists)
-setwd("~/cloudstor/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 
-# v = drift rate 
-# z = starting point
-
-load("Hier_Complex_Model.Rdata") #Load parameters
+load("Hierarchical-Modelling/dataset3/07_Output/Hier_Complex_Model.Rdata") #Load parameters
 
 posterior_means = apply(theta, c(2,3), mean) #Check parameters
 
@@ -28,7 +25,7 @@ blah=theta[tmp2,,s,tmp3]
 
 
 for (cond in conds) {
-  currParams=c(blah["a"],NA,blah[paste("v", cond, sep = ".")],blah["t0"])
+  currParams=c(blah["a"],NA,blah[paste("v", cond, sep = ".")],blah[paste("t0",cond,sep = ".")])
   names(currParams)=c("a","z","v","t0")
   ## Below omitted for simple and V model
   if (cond=="Valid") {
@@ -43,24 +40,8 @@ for (cond in conds) {
   simData[[s]]$Cond=c(simData[[s]]$Cond,rep(cond,length(tmp$rt)))
 }
 
-#simData = list(simData)
 
 }
 
-save(simData, file = "Data/Hier-Model-Predictions/complex.RData")
+save(simData, file = "Data/dataset3/Hier-Model-Predictions/complex.RData")
 
-
-# For later 
-# max(weight)
-#use function to change to BIC/AIC
-#Plot differences for posteriors of z and v in complex model. theta where z1 is culumn name - theta where zt is a column name
-
-# diffDistZ=theta[,"z.1",]-theta[,"z.2",]
-
-# Get AIC and BIC
-#6 because 6 params
-
-#AIC_C = -2*apply(weight,3,max)+ 2*6 
-#save(AIC_C, file = "Comparisons/AIC_C.RData")
-#BIC_C = log(length(data$Time))*6-2*apply(weight,3,max)
-#save(BIC_C, file = "Comparisons/BIC_C.RData")

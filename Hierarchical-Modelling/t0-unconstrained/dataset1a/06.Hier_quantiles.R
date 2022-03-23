@@ -50,7 +50,7 @@ p.mean.1.1=mean(allP[2,]) #I'm not sure if this is indexed properly. See below.
 ########### Redo everything for simData (simulated data) ###########
 
 # Load in predicted data generated from complex DDM (simData)
-load("Data/dataset1a/hier-model-predictions/complex.RData")
+load("Data/dataset1a/hier-model-predictions/t0-unconstrained/complex.RData")
 
 
 tmp=lapply(simData,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
@@ -90,7 +90,7 @@ p.mean.1.1_Sim=mean(allP_sim[2,])
 #----------- Plotting ---------#
 #------------------------------#
 
-pdf("Hierarchical-Modelling/dataset1a/08_plots/quantiles.pdf",width=7,height=7)
+pdf("Hierarchical-Modelling/t0-unconstrained/dataset1a/08_plots/quantiles.pdf",width=7,height=7)
 
 plot(q.mean.2.1,qs*p.mean.1.1,pch=16, cex = 0.9, cex.lab = .9, xlab = "", ylab = "", main = "Hier. Complex Model", xlim = c(.2,.6)) 
 points(q.mean.2.1_Sim,qs*p.mean.1.1_Sim,pch=17, cex = 0.9, type = "l")
