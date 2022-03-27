@@ -22,7 +22,6 @@ all.data=list()
 
 
 for (useSub in 1:nSub) {
-  if(useSub %in% c(11, 32, 29, 32, 34, 39, 44, 64, 75, 80)) next
   load(paste("Data/dataset3/clean/P",useSub,".Rdata",sep=""))
   
   newSeed=Sys.time()
