@@ -1,5 +1,4 @@
 
-# person 29 bad data 
 
 rm(list = ls())
 setwd("~/cloudstor/Gaze-Cueing")

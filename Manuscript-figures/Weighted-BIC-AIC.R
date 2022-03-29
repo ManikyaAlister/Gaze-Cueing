@@ -1,5 +1,5 @@
-setwd("~/cloudstor/Gaze-Cueing/Manuscript-figures/")
-pdf(paste("combined-weighted-BIC-AIC.pdf",sep=""),width=3*3+1,height=(4*3)+3)
+setwd("~/cloudstor/Gaze-Cueing/")
+pdf("Manuscript-figures/combined-weighted-BIC-AIC.pdf",width=3*3+1,height=(4*3)+3)
 #create matrix "m" which is the size of how many plots I'm going to have. 0 is where there's no plots,
 m=matrix(1:12,nrow=6,byrow=T)
 m=rbind(0,cbind(0,m,0),0)
@@ -16,7 +16,7 @@ S = 41 #n participants
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability", xaxt="n",yaxt="n")
 
-load("~/cloudstor/Gaze-Cueing/Data/dataset1a/derived/BIC-Weights.RData")
+load("Data/dataset1a/derived/BIC-Weights.RData")
 
 # Plotting
 for (i in 1:S) {
@@ -69,7 +69,7 @@ mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",main=,xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset1a/derived/AIC-Weights.RData")
+load("Data/dataset1a/derived/AIC-Weights.RData")
 # Plotting
 
 for (i in 1:S) {
@@ -128,7 +128,7 @@ mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 par(xpd=FALSE)
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 
-load("~/cloudstor/Gaze-Cueing/Data/dataset1b/derived/BIC-Weights.RData")
+load("Data/dataset1b/derived/BIC-Weights.RData")
 
 # Plotting
 for (i in 1:S) {
@@ -176,7 +176,7 @@ mtext(side=2,line=4.2,datasets[2],cex=1, font = 2)
 mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",main=,xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset1b/derived/AIC-Weights.RData")
+load("Data/dataset1b/derived/AIC-Weights.RData")
 # Plotting
 
 for (i in 1:S) {
@@ -223,7 +223,7 @@ mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 S = 50
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 
-load("~/cloudstor/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
+load("Data/dataset2/derived/BIC-Weights.RData")
 # Plotting
 for (i in 1:S) {
   use.i=i
@@ -272,7 +272,7 @@ mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 S = 50
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",main=,xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset2/derived/AIC-Weights.RData")
+load("Data/dataset2/derived/AIC-Weights.RData")
 # Plotting
 
 for (i in 1:S) {
@@ -322,7 +322,7 @@ S = 71
 #par(mar=c(4.6,4.6,3,6))
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
 
-load("~/cloudstor/Gaze-Cueing/Data/dataset3/derived/BIC-Weights.RData")
+load("Data/dataset3/derived/BIC-Weights.RData")
 
 # Plotting
 for (i in 1:S) {
@@ -372,7 +372,7 @@ mtext(side=2,line=4.2,datasets[4],cex=1, font = 2)
 mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",main=,xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset3/derived/AIC-Weights.RData")
+load("Data/dataset3/derived/AIC-Weights.RData")
 # Plotting
 
 for (i in 1:S) {

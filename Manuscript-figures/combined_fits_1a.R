@@ -114,10 +114,11 @@ points(q.mean.2.2Complex,qs*p.mean.2Complex,pch=2, type = "l", cex = 0.9)
 points(q.mean.2.2,qs*p.mean.2,pch=1, cex = 0.9)
 
 plot(x = 0,xaxt = "n",yaxt = "n",xlab = "",ylab = "",bty = "n",pch = 16,cex = 0.00001)
-legend(x = .8, y = .2,               # Add legend to plot
+legend(x = .65, y = .4,               # Add legend to plot
        legend = c("Observed cued", "Observed miscued", "Predicted cued", "Predicted miscued"),
        lty = c(0,0,1,1),
-       pch = c(16,1,17,2))
+       pch = c(16,1,17,2),
+       cex = 2)
       
 
 

@@ -1,16 +1,17 @@
 
 rm(list=ls())
-setwd("~/Documents/2021/Gaze-Cueing/Recovery")
-
+setwd("~/cloudstor/Gaze-Cueing")
+setwd("Recovery") 
 library(msm)
+
 source("02_simulate-DIFF.R")
 library(lhs)
 
 
 
-#When in the same working directory as the C code, this line will compile the code (first time usage, like installing a package)
 
-# system("R CMD SHLIB DIFF.c")
+#When in the same working directory as the C code, this line will compile the code (first time usage, like installing a package)
+system("R CMD SHLIB DIFF.c")
 
 # Set up hypercube
 

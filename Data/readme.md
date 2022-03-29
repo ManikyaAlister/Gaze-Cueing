@@ -1,3 +1,6 @@
+
+None of the data made available here was collected by us. Data Sets 1a, 1b, and 3 had already been made publicly available by the original authors and we have made Data Set 2 available with permission from the original author. 
+
 # Dataset key: 
 
 Dataset1a (faces only) and Dataset 1b (arrows only) - Gregory, S. E., & Jackson, M. C. (2020). Increased perceptual distraction and task demand enhances gaze and non-biological cuing effects. Quarterly Journal of Experimental Psychology, 1747021820959633. https://doi.org/10.1177/1747021820959633

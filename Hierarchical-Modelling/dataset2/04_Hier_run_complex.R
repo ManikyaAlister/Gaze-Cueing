@@ -2,7 +2,7 @@ rm(list=ls())
 library(tidyverse)
 library(rtdists)
 library(msm)
-setwd("~/cloudstor/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 source("Hierarchical-Modelling/dataset2/01_Hier_Megabackground.R")
 
 

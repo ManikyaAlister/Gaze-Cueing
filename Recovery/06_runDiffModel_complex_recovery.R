@@ -3,7 +3,7 @@ rm(list=ls())
 library(tidyverse)
 library(rtdists)
 library(msm)
-setwd("~/Documents/2021/Gaze-Cueing/Recovery")
+setwd("~/cloudstor/Gaze-Cueing/Recovery")
 
 source("04_megaBackground.R")
 
@@ -83,7 +83,4 @@ for (useSub in 1:nSub) {
        file=savefile)
 }
 
-# I get this error on the 4th participant every single time: on_parameter(response = response, a = a, v = v,  : 
-# response needs to be either 'upper', 'lower', or as.numeric(response) %in% 1:2!
-#Check parameters
-apply(theta, 2, max)
+

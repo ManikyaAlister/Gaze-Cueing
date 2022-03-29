@@ -1,5 +1,5 @@
-setwd("~/cloudstor/Gaze-Cueing/Manuscript-figures/")
-pdf(paste("combined-hier-param-densities.pdf",sep=""),width=3*4,height=(3*4))
+setwd("~/cloudstor/Gaze-Cueing/")
+pdf("Manuscript-figures/combined-hier-param-densities.pdf",width=3*4,height=(3*4))
 #create matrix "m" which is the size of how many plots I'm going to have. 0 is where there's no plots,
 m=matrix(1:18,nrow=6,byrow=T)
 m=rbind(0,cbind(0,m,0),0)
@@ -19,7 +19,7 @@ datasets = c("Dataset 1a", "Dataset 1b", "Dataset 2", "Dataset 3")
 
 #### Dataset 1a ######
 
-load("~/cloudstor/2021/Gaze-Cueing/Hierarchical-Modelling/dataset1a/07_Output/Hier_Complex_Model.Rdata")
+load("Hierarchical-Modelling/dataset1a/07_Output/Hier_Complex_Model.Rdata")
 
 CI_t0 = quantile(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],c(0.025,0.5, 0.975), na.rm = TRUE)
 plot(density(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],n = 4965), main = "", ylab = "", na.rm = T)
@@ -48,7 +48,7 @@ mtext(side=3,line=0.8,"Drift rate (v) difference",cex=1, font = 2)
 
 ###### Dataset 1b ##########
 
-load("~/cloudstor/2021/Gaze-Cueing/Hierarchical-Modelling/dataset1b/07_Output/Hier_Complex_Model.Rdata")
+load("Hierarchical-Modelling/dataset1b/07_Output/Hier_Complex_Model.Rdata")
 
 
 CI_t0 = quantile(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],c(0.025,0.5, 0.975))
@@ -75,7 +75,7 @@ mtext(side=1,line=3.5,paste("M = ",round(CI_v[2], 3), ", CI Lower = ", round(CI_
 
 ###### Dataset 2 ##########
 
-load("~/cloudstor/2021/Gaze-Cueing/Hierarchical-Modelling/dataset2/07_Output/Hier_Complex_Model.Rdata")
+load("Hierarchical-Modelling/dataset2/07_Output/Hier_Complex_Model.Rdata")
 
 CI_t0 = quantile(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],c(0.025,0.5, 0.975))
 plot(density(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],n = 7000), main = "", ylab = "")
@@ -101,7 +101,7 @@ mtext(side=1,line=3.5,paste("M = ",round(CI_v[2], 3), ", CI Lower = ", round(CI_
 
 #### Dataset 3 ######
 
-load("~/cloudstor/2021/Gaze-Cueing/Hierarchical-Modelling/dataset3/07_Output/Hier_Complex_Model.Rdata")
+load("Hierarchical-Modelling/dataset3/07_Output/Hier_Complex_Model.Rdata")
 
 CI_t0 = quantile(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],c(0.05,0.5, 0.95), na.rm = TRUE)
 plot(density(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],n = 10000), main = "", ylab = "", na.rm = T)

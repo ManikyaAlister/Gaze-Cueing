@@ -1,5 +1,5 @@
-setwd("~/cloudstor/Gaze-Cueing/Manuscript-figures/")
-pdf(paste("combined-inclusion-prob-BIC.pdf",sep=""),width=3*4,height=(4*4)+3)
+setwd("~/cloudstor/Gaze-Cueing/")
+pdf("Manuscript-figures/combined-inclusion-prob-BIC.pdf",width=3*4,height=(4*4)+3)
 #create matrix "m" which is the size of how many plots I'm going to have. 0 is where there's no plots,
 m=matrix(1:18,nrow=6,byrow=T)
 m=rbind(0,cbind(0,m,0),0)
@@ -24,7 +24,7 @@ S = 41 #n participants
 #And same principle for t0:
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset1a/derived/BIC-Weights.RData")
+load("Data/dataset1a/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
   use.i=i
@@ -46,7 +46,7 @@ mtext(side=3,line=0.8,"Non-decision time (t0)",cex=1, font = 2)
 
 ### z ###
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset1a/derived/BIC-Weights.RData")
+load("Data/dataset1a/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
   use.i=i
@@ -95,7 +95,7 @@ S = 41 #n participants
 #And same principle for t0:
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset1b/derived/BIC-Weights.RData")
+load("Data/dataset1b/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
   use.i=i
@@ -117,7 +117,7 @@ mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 ### z ###
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset1b/derived/BIC-Weights.RData")
+load("Data/dataset1b/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
   use.i=i
@@ -139,7 +139,7 @@ mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 ##### v ######
 #And same principle for v:
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",main=,xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset1b/derived/BIC-Weights.RData")
+load("Data/dataset1b/derived/BIC-Weights.RData")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -164,7 +164,7 @@ S = 50 #n participants
 #And same principle for t0:
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
+load("Data/dataset2/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
   use.i=i
@@ -186,7 +186,7 @@ mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 ### z ###
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
+load("Data/dataset2/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
   use.i=i
@@ -207,7 +207,7 @@ mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 ##### v ######
 #And same principle for v:
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",main=,xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset2/derived/BIC-Weights.RData")
+load("Data/dataset2/derived/BIC-Weights.RData")
 for (i in 1:S) {
   use.i=i
   sumThing=0
@@ -232,7 +232,7 @@ S = 71 #n participants
 #And same principle for t0:
 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset3/derived/BIC-Weights.RData")
+load("Data/dataset3/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
   use.i=i
@@ -255,7 +255,7 @@ mtext(side=1,line=0.8,"Participant",cex=.7, font = 1)
 
 ### z ###
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="Probability",xaxt="n",yaxt="n")
-load("~/cloudstor/Gaze-Cueing/Data/dataset3/derived/BIC-Weights.RData")
+load("Data/dataset3/derived/BIC-Weights.RData")
 
 for (i in 1:S) {
   use.i=i

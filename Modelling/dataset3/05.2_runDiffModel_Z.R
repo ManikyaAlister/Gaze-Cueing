@@ -1,7 +1,7 @@
 ##### dataset3 ######
 
 rm(list=ls())
-setwd("~/cloudstor/2021/Gaze-Cueing")
+setwd("~/cloudstor/Gaze-Cueing")
 library(tidyverse)
 library(rtdists)
 library(msm)
