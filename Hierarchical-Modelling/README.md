@@ -16,7 +16,9 @@ These contain the hierarchical modelling analyses shown in the manuscript. Each 
 
 - 06.Hier_quantiles.R: generates the model fits.   
 
-- 09_Hier-param-density.R: calculates the differences in parameter estimates across conditions.   
+- 09_Hier-param-density.R: calculates the differences in parameter estimates across conditions.
+
+- 07_Output: IMPORTANT FOR RUNNING SCRIPTS 04,05,06,09: for dataset3 of each model, there needs to be a folder called 07_Output, otherwise the models won't run (this is the folder the output is saved into). All of the other datasets should already have this, but we were not able to upload the hierarchical modelling output from dataset3 to GitHub as they were too large, but they can be found on the OSF: https://osf.io/ghket/, so if you just want to see the output, you can find them there. If you are trying to reproduce our analyses from scratch, just make sure there is a folder called "07_Output" in each subfolder where the model scripts are. This applies to dataset3 below as well. 
 
 ## Folders labeled dataset1a-dataset3
 
