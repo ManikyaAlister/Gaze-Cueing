@@ -11,7 +11,7 @@ Dataset3 - Chen, Z., McCrackin, S. D., Morgan, A., & Itier, R. J. (2021). The Ga
 
 ## Subfolder key: 
 
-raw - raw data provided by the original authors
+- raw: raw data provided by the original authors  
 
 - clean: cleaned data used for analyses including the *cleaning script*  
      - rm-accuracy: participants excluded due to accuracy exclusion criteria  
