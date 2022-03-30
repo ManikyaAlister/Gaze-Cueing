@@ -15,4 +15,4 @@ Each data set will have the following scripts, ordered based on what should be r
 
 - 06_Weight-Plots.R: calculates the AIC and BIC weighted model probabilities and parameter inclusion probabilities. 
 
--07_quantiles: scripts for generating the model fits (quantile plots).
+- 07_quantiles: scripts for generating the model fits (quantile plots).

@@ -1,5 +1,5 @@
 
-None of the data made available here was collected by us. Data Sets 1a, 1b, and 3 had already been made publicly available by the original authors and we have made Data Set 2 available with permission from the original author. 
+None of the data made available here were collected by us. Data Sets 1a, 1b, and 3 had already been made publicly available by the original authors and we have made Data Set 2 available with permission from the original author. 
 
 # Dataset key: 
 
@@ -13,13 +13,13 @@ Dataset3 - Chen, Z., McCrackin, S. D., Morgan, A., & Itier, R. J. (2021). The Ga
 
 raw - raw data provided by the original authors
 
-clean - cleaned data used for analyses including the *cleaning script*  
-     rm-accuracy - participants excluded due to accuracy exclusion criteria  
-     rm-error -participants flagged by original authors as having an "error" in data collection  
+- clean: cleaned data used for analyses including the *cleaning script*  
+     - rm-accuracy: participants excluded due to accuracy exclusion criteria  
+     - rm-error: participants flagged by original authors as having an "error" in data collection  
 
-derived - derived data including key results from analyses such as AIC and BIC raw values and weights, quantiles of response time distributions for model fits, and a data set (and the script for creating it) containing the cueing magnitude, mean parameter estimates, and model probabilities for each participant. 
+- derived: derived data including key results from analyses such as AIC and BIC raw values and weights, quantiles of response time distributions for model fits, and a data set (and the script for creating it) containing the cueing magnitude, mean parameter estimates, and model probabilities for each participant. 
 
-model-predictions - model predictions of the individual-level models used to calculate model fits. 
+- model-predictions: model predictions of the individual-level models used to calculate model fits. 
 
-hier-model-predictions - same as above but for hierarchical analyses 
+- hier-model-predictions: same as above but for hierarchical analyses 
 
