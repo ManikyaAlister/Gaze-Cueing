@@ -11,7 +11,7 @@ library(lhs)
 
 
 #When in the same working directory as the C code, this line will compile the code (first time usage, like installing a package)
-system("R CMD SHLIB DIFF.c")
+system("R CMD SHLIB DIFF.c") # <--- Make sure to run this first before trying to source
 
 # Set up hypercube
 
