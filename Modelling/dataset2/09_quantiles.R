@@ -1,19 +1,20 @@
-## Dataset2 ##
-
 
 
 rm(list = ls())
-setwd("~/cloudstor/Gaze-Cueing")
-library(tidyverse)
-library(jtools)
+lib = .libPaths("~/Library/Frameworks/R.framework/Versions/4.1/Resources/library")
+library(here, lib.loc = lib)
+library(jtools, lib.loc = lib)
+library(ggplot2, lib.loc = lib)
 
+dataset = "dataset2"
 nSub = 50
+
 
 ####### Observed Data ########
 all.data=list() 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset2/clean/P",useSub,".Rdata",sep=""))
+  load(here(paste("Data/",dataset,"/clean/P",useSub,".Rdata",sep="")))
   
   
   all.data[[useSub]]=data
@@ -54,11 +55,11 @@ p.mean.2=mean(allP[2,])
 ############################
 ###### v-z Model ######
 ###########################
-nsub = 50
+
 all.data_v_z = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset2/model-predictions/P",useSub,"_v-z.RData",sep=""))
+  load(here(paste("Data/",dataset,"/model-predictions/P",useSub,"_v-z.RData",sep="")))
   
   all.data_v_z[[useSub]]=sim
   
@@ -81,11 +82,11 @@ for (s in 1:nSub) {
   }
 }
 
-allQ_v_z=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_v_z=array(unlist(tmp),c(length(qs),2,2,41))
 
 tmp=lapply(simData_v_z,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_v_z=array(unlist(tmp),c(2,50))
+allP_v_z=array(unlist(tmp),c(2,41))
 
 #Means for congruent cue condition
 q.mean.2.1_v_z=apply(allQ_v_z[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_v_z[,2,COND,]...)
@@ -109,19 +110,19 @@ quantiles_v_z = ggplot()+
   geom_line(aes(x = q.mean.2.2_v_z, y = qs*p.mean.2_v_z))+
   theme_apa()
 quantiles_v_z #View plot 
-ggsave(paste("Modelling/dataset2/08_Plots/quantiles-v-z.png", sep = ""), plot = quantiles_v_z)
+ggsave(here(paste("Modelling/",dataset,"/08_Plots/quantiles-v-z.png", sep = "")), plot = quantiles_v_z)
 
 ###########################
 ######### Z Model #########
 ###########################
 
 # Load in only the predicted data generated from z DDM (simData)
-nsub = 50
+
 all.data_z = list()
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset2/model-predictions/P",useSub,"_z.RData",sep=""))
+  load(here(paste("Data/",dataset,"/model-predictions/P",useSub,"_z.RData",sep="")))
   
   all.data_z[[useSub]]=sim
   
@@ -143,11 +144,11 @@ for (s in 1:nSub) {
   }
 }
 
-allQ_z=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_z=array(unlist(tmp),c(length(qs),2,2,41))
 
 tmp=lapply(simData_z,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_z=array(unlist(tmp),c(2,50))
+allP_z=array(unlist(tmp),c(2,41))
 
 #Means for congruent cue condition
 q.mean.2.1_z=apply(allQ_z[,2,1,],1,mean) 
@@ -168,26 +169,26 @@ quantiles_z = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_z, y = qs*p.mean.2_z),shape = 0)+
   geom_line(aes(x = q.mean.2.2_z, y = qs*p.mean.2_z))+
-  labs(title = "z") +
+  labs(title = " z") +
   theme_apa()
 quantiles_z #view plot 
-ggsave(paste("Modelling/dataset2/08_Plots/quantiles-z.png", sep = ""), plot = quantiles_z)  
+ggsave(here(paste("Modelling/",dataset,"/08_Plots/quantiles-z.png", sep = "")), plot = quantiles_z)  
 
 
 ###########################
 ######### V Model #########
 ###########################
 
-nsub = 50
+
 all.data_v = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset2/model-predictions/P",useSub,"_v.RData",sep=""))
+  load(here(paste("Data/",dataset,"/model-predictions/P",useSub,"_v.RData",sep="")))
   
   all.data_v[[useSub]]=sim
   
 }
-#Something wrong with how I generated the Z data 
+
 simData_v=all.data_v
 rm(all.data_v)
 
@@ -205,11 +206,11 @@ for (s in 1:nSub) {
   }
 }
 
-allQ_v=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_v=array(unlist(tmp),c(length(qs),2,2,41))
 
 tmp=lapply(simData_v,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_v=array(unlist(tmp),c(2,50))
+allP_v=array(unlist(tmp),c(2,41))
 
 #Means for congruent cue condition
 q.mean.2.1_v=apply(allQ_v[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_v[,2,COND,]...)
@@ -231,10 +232,10 @@ quantiles_v = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_v, y = qs*p.mean.2_v),shape = 0)+
   geom_line(aes(x = q.mean.2.2_v, y = qs*p.mean.2_v))+
-  labs(title = "Arrow  v")+
+  labs(title = "v")+
   theme_apa()
 quantiles_v # view plot
-ggsave(paste("Modelling/dataset2/08_Plots/quantiles-v.png", sep = ""), plot = quantiles_v)
+ggsave(here(paste("Modelling/",dataset,"/08_Plots/quantiles-v.png", sep = "")), plot = quantiles_v)
 
 
 ###########################
@@ -243,12 +244,11 @@ ggsave(paste("Modelling/dataset2/08_Plots/quantiles-v.png", sep = ""), plot = qu
 
 
 # Load in predicted data generated from z DDM (simData)
-nsub = 50
+
 all.data_t0 = list()
-dataset = 1 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset2/model-predictions/P",useSub,"_t0.RData",sep=""))
+  load(here(paste("Data/",dataset,"/model-predictions/P",useSub,"_t0.RData",sep="")))
   
   all.data_t0[[useSub]]=sim
   
@@ -297,10 +297,10 @@ quantiles_t0 = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_t0, y = qs*p.mean.2_t0),shape = 0)+
   geom_line(aes(x = q.mean.2.2_t0, y = qs*p.mean.2_t0))+
-  labs(title = "Arrow  t0")+
+  labs(title = "t0")+
   theme_apa()
 quantiles_t0 # view plot
-ggsave("Modelling/dataset2/08_Plots/quantiles-t0.png", plot = quantiles_t0)
+ggsave(here(paste0("Modelling/",dataset,"/08_Plots/quantiles-t0.png")), plot = quantiles_t0)
 
 
 ###########################
@@ -309,12 +309,11 @@ ggsave("Modelling/dataset2/08_Plots/quantiles-t0.png", plot = quantiles_t0)
 
 
 # Load in predicted data generated from z DDM (simData)
-nsub = 50
+
 all.data_v_t0 = list()
-dataset = 1 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset2/model-predictions/P",useSub,"_v-t0.RData",sep=""))
+  load(here(paste("Data/",dataset,"/model-predictions/P",useSub,"_v-t0.RData",sep="")))
   
   all.data_v_t0[[useSub]]=sim
   
@@ -337,11 +336,11 @@ for (s in 1:nSub) {
   }
 }
 
-allQ_v_t0=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_v_t0=array(unlist(tmp),c(length(qs),2,2,41))
 
 tmp=lapply(simData_v_t0,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_v_t0=array(unlist(tmp),c(2,50))
+allP_v_t0=array(unlist(tmp),c(2,41))
 
 #Means for congruent cue condition
 q.mean.2.1_v_t0=apply(allQ_v_t0[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_v0_t0[,2,COND,]...)
@@ -363,10 +362,10 @@ quantiles_v_t0 = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_v_t0, y = qs*p.mean.2_v_t0),shape = 0)+
   geom_line(aes(x = q.mean.2.2_v_t0, y = qs*p.mean.2_v_t0))+
-  labs(title = "Arrow  v-t0")+
+  labs(title = "v-t0")+
   theme_apa()
 quantiles_v_t0 # view plot
-ggsave("Modelling/dataset2/08_Plots/quantiles-v-t0.png", plot = quantiles_v_t0)
+ggsave(here(paste0("Modelling/",dataset,"/08_Plots/quantiles-v-t0.png")), plot = quantiles_v_t0)
 
 
 ###########################
@@ -375,12 +374,11 @@ ggsave("Modelling/dataset2/08_Plots/quantiles-v-t0.png", plot = quantiles_v_t0)
 
 
 # Load in predicted data generated from z DDM (simData)
-nsub = 50
+
 all.data_z_t0 = list()
-dataset = 1 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset2/model-predictions/P",useSub,"_z-t0.RData",sep=""))
+  load(here(paste("Data/",dataset,"/model-predictions/P",useSub,"_z-t0.RData",sep="")))
   
   all.data_z_t0[[useSub]]=sim
   
@@ -403,11 +401,11 @@ for (s in 1:nSub) {
   }
 }
 
-allQ_z_t0=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_z_t0=array(unlist(tmp),c(length(qs),2,2,41))
 
 tmp=lapply(simData_z_t0,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_z_t0=array(unlist(tmp),c(2,50))
+allP_z_t0=array(unlist(tmp),c(2,41))
 
 #Means for congruent cue condition
 q.mean.2.1_z_t0=apply(allQ_z_t0[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_v0_t0[,2,COND,]...)
@@ -429,10 +427,10 @@ quantiles_z_t0 = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_z_t0, y = qs*p.mean.2_z_t0),shape = 0)+
   geom_line(aes(x = q.mean.2.2_z_t0, y = qs*p.mean.2_z_t0))+
-  labs(title = "Arrow  z-t0")+
+  labs(title = "z-t0")+
   theme_apa()
 quantiles_z_t0 # view plot
-ggsave(filename = "Modelling/dataset2/08_Plots/quantiles_z-t0.png", plot = quantiles_z_t0)
+ggsave(filename = here(paste0("Modelling/",dataset,"/08_Plots/quantiles_z-t0.png")), plot = quantiles_z_t0)
 
 
 ###################################
@@ -441,11 +439,11 @@ ggsave(filename = "Modelling/dataset2/08_Plots/quantiles_z-t0.png", plot = quant
 
 
 # Load in predicted data generated from z DDM (simData)
-nsub = 50
+
 all.dataComplex= list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset2/model-predictions/P",useSub,"_complex.RData",sep=""))
+  load(here(paste("Data/",dataset,"/model-predictions/P",useSub,"_complex.RData",sep="")))
   
   all.dataComplex[[useSub]]=sim
   
@@ -456,7 +454,7 @@ rm(all.dataComplex)
 
 tmp=lapply(simDataComplex,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in 1:50) {
+for (s in 1:41) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -468,11 +466,11 @@ for (s in 1:50) {
   }
 }
 
-allQComplex=array(unlist(tmp),c(length(qs),2,2,50))
+allQComplex=array(unlist(tmp),c(length(qs),2,2,41))
 
 tmp=lapply(simDataComplex,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allPComplex=array(unlist(tmp),c(2,50))
+allPComplex=array(unlist(tmp),c(2,41))
 
 #Means for congruent cue condition
 q.mean.2.1Complex=apply(allQComplex[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQComplex[,2,COND,]...)
@@ -495,21 +493,21 @@ quantiles_complex = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2Complex, y = qs*p.mean.2Complex),shape = 0)+
   geom_line(aes(x = q.mean.2.2Complex, y = qs*p.mean.2Complex))+
-  labs(title = "Arrow  All Paramaters Model")+
+  labs(title = "All Paramaters Model")+
   theme_apa()
 quantiles_complex #view plot
-ggsave("Modelling/dataset2/08_Plots/quantiles-complex.png", plot = quantiles_complex)
+ggsave(here(paste0("Modelling/",dataset,"/08_Plots/quantiles-complex.png")), plot = quantiles_complex)
 
 ###########################
 ####### Simple Model ######
 ###########################
 
 # Load in predicted data generated from z DDM (simData)
-nsub = 50
+
 all.data_s = list()
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset2/model-predictions/P",useSub,"_simple.RData",sep=""))
+  load(here(paste("Data/",dataset,"/model-predictions/P",useSub,"_simple.RData",sep="")))
   
   all.data_s[[useSub]]=sim
   
@@ -520,7 +518,7 @@ rm(all.data_s)
 
 tmp=lapply(simData_s,function(x) tapply(x$Time,list(x$Resp,x$Cond),quantile,qs))
 
-for (s in 1:50) {
+for (s in 1:41) {
   if (nrow(tmp[[s]])==1) {
     tmp[[s]]=rbind(list(rep(NA,length(qs)),rep(NA,length(qs))),tmp[[s]])
     rownames(tmp[[s]])=c(1,2)
@@ -532,11 +530,11 @@ for (s in 1:50) {
   }
 }
 
-allQ_s=array(unlist(tmp),c(length(qs),2,2,50))
+allQ_s=array(unlist(tmp),c(length(qs),2,2,41))
 
 tmp=lapply(simData_s,function(x) tapply(x$Resp==2,x$Cond,mean))
 
-allP_s=array(unlist(tmp),c(2,50))
+allP_s=array(unlist(tmp),c(2,41))
 
 #Means for congruent cue condition
 q.mean.2.1_s=apply(allQ_s[,2,1,],1,mean) #Cond == 1 is congruent cues (from allQ_s[,2,COND,]...)
@@ -559,53 +557,54 @@ quantiles_simple = ggplot()+
   geom_point(aes(x = q.mean.2.2, y = qs*p.mean.2), shape = 15)+
   geom_point(aes(x = q.mean.2.2_s, y = qs*p.mean.2_s),shape = 0)+
   geom_line(aes(x = q.mean.2.2_s, y = qs*p.mean.2_s))+
-  labs(title = "Arrow  Simple Model")+
+  labs(title = "Simple Model")+
   theme_apa()
 quantiles_simple #view plot
-ggsave("Modelling/dataset2/08_Plots/quantiles-simple.png", plot = quantiles_simple)
+ggsave(here(paste0("Modelling/",dataset,"/08_Plots/quantiles-simple.png")), plot = quantiles_simple)
 
+### Save Quantile Data for Manuscript Figure ###
 
-save(p.mean.1, file = "Data/dataset2/derived/p.mean.1.Rdata")
-save(p.mean.1_s, file = "Data/dataset2/derived/p.mean.1_simple.Rdata")
-save(p.mean.1_t0, file = "Data/dataset2/derived/p.mean.1_t0.Rdata")
-save(p.mean.1_z, file = "Data/dataset2/derived/p.mean.1_z.Rdata")
-save(p.mean.1_v, file = "Data/dataset2/derived/p.mean.1_v.Rdata")
-save(p.mean.1_z_t0, file = "Data/dataset2/derived/p.mean.1_t0-z.Rdata")
-save(p.mean.1_v_t0, file = "Data/dataset2/derived/p.mean.1_t0-v.Rdata")
-save(p.mean.1_v_z, file = "Data/dataset2/derived/p.mean.1_z-v.Rdata")
-save(p.mean.1Complex, file = "Data/dataset2/derived/p.mean.1_complex.Rdata")
+save(p.mean.1, file = here(paste0("Data/",dataset,"/derived/p.mean.1.Rdata")))
+save(p.mean.1_s, file = here(paste0("Data/",dataset,"/derived/p.mean.1_simple.Rdata")))
+save(p.mean.1_t0, file = here(paste0("Data/",dataset,"/derived/p.mean.1_t0.Rdata")))
+save(p.mean.1_z, file = here(paste0("Data/",dataset,"/derived/p.mean.1_z.Rdata")))
+save(p.mean.1_v, file = here(paste0("Data/",dataset,"/derived/p.mean.1_v.Rdata")))
+save(p.mean.1_z_t0, file = here(paste0("Data/",dataset,"/derived/p.mean.1_t0-z.Rdata")))
+save(p.mean.1_v_t0, file = here(paste0("Data/",dataset,"/derived/p.mean.1_t0-v.Rdata")))
+save(p.mean.1_v_z, file = here(paste0("Data/",dataset,"/derived/p.mean.1_z-v.Rdata")))
+save(p.mean.1Complex, file = here(paste0("Data/",dataset,"/derived/p.mean.1_complex.Rdata")))
 
-save(p.mean.2, file = "Data/dataset2/derived/p.mean.2.Rdata")
-save(p.mean.2_s, file = "Data/dataset2/derived/p.mean.2_simple.Rdata")
-save(p.mean.2_t0, file = "Data/dataset2/derived/p.mean.2_t0.Rdata")
-save(p.mean.2_z, file = "Data/dataset2/derived/p.mean.2_z.Rdata")
-save(p.mean.2_v, file = "Data/dataset2/derived/p.mean.2_v.Rdata")
-save(p.mean.2_z_t0, file = "Data/dataset2/derived/p.mean.2_t0-z.Rdata")
-save(p.mean.2_v_t0, file = "Data/dataset2/derived/p.mean.2_t0-v.Rdata")
-save(p.mean.2_v_z, file = "Data/dataset2/derived/p.mean.2_z-v.Rdata")
-save(p.mean.2Complex, file = "Data/dataset2/derived/p.mean.2_complex.Rdata")
+save(p.mean.2, file = here(paste0("Data/",dataset,"/derived/p.mean.2.Rdata")))
+save(p.mean.2_s, file = here(paste0("Data/",dataset,"/derived/p.mean.2_simple.Rdata")))
+save(p.mean.2_t0, file = here(paste0("Data/",dataset,"/derived/p.mean.2_t0.Rdata")))
+save(p.mean.2_z, file = here(paste0("Data/",dataset,"/derived/p.mean.2_z.Rdata")))
+save(p.mean.2_v, file = here(paste0("Data/",dataset,"/derived/p.mean.2_v.Rdata")))
+save(p.mean.2_z_t0, file = here(paste0("Data/",dataset,"/derived/p.mean.2_t0-z.Rdata")))
+save(p.mean.2_v_t0, file = here(paste0("Data/",dataset,"/derived/p.mean.2_t0-v.Rdata")))
+save(p.mean.2_v_z, file = here(paste0("Data/",dataset,"/derived/p.mean.2_z-v.Rdata")))
+save(p.mean.2Complex, file = here(paste0("Data/",dataset,"/derived/p.mean.2_complex.Rdata")))
 
 #Q Meens
 
-save(q.mean.2.1, file = "Data/dataset2/derived/q.mean.2.1.Rdata")
-save(q.mean.2.1_s, file = "Data/dataset2/derived/q.mean.2.1_simple.Rdata")
-save(q.mean.2.1_t0, file = "Data/dataset2/derived/q.mean.2.1_t0.Rdata")
-save(q.mean.2.1_z, file = "Data/dataset2/derived/q.mean.2.1_z.Rdata")
-save(q.mean.2.1_v, file = "Data/dataset2/derived/q.mean.2.1_v.Rdata")
-save(q.mean.2.1_z_t0, file = "Data/dataset2/derived/q.mean.2.1_t0-z.Rdata")
-save(q.mean.2.1_v_t0, file = "Data/dataset2/derived/q.mean.2.1_t0-v.Rdata")
-save(q.mean.2.1_v_z, file = "Data/dataset2/derived/q.mean.2.1_z-v.Rdata")
-save(q.mean.2.1Complex, file = "Data/dataset2/derived/q.mean.2.1_complex.Rdata")
+save(q.mean.2.1, file = here(paste0("Data/",dataset,"/derived/q.mean.2.1.Rdata")))
+save(q.mean.2.1_s, file = here(paste0("Data/",dataset,"/derived/q.mean.2.1_simple.Rdata")))
+save(q.mean.2.1_t0, file = here(paste0("Data/",dataset,"/derived/q.mean.2.1_t0.Rdata")))
+save(q.mean.2.1_z, file = here(paste0("Data/",dataset,"/derived/q.mean.2.1_z.Rdata")))
+save(q.mean.2.1_v, file = here(paste0("Data/",dataset,"/derived/q.mean.2.1_v.Rdata")))
+save(q.mean.2.1_z_t0, file = here(paste0("Data/",dataset,"/derived/q.mean.2.1_t0-z.Rdata")))
+save(q.mean.2.1_v_t0, file = here(paste0("Data/",dataset,"/derived/q.mean.2.1_t0-v.Rdata")))
+save(q.mean.2.1_v_z, file = here(paste0("Data/",dataset,"/derived/q.mean.2.1_z-v.Rdata")))
+save(q.mean.2.1Complex, file = here(paste0("Data/",dataset,"/derived/q.mean.2.1_complex.Rdata")))
 
-save(q.mean.2.2, file = "Data/dataset2/derived/q.mean.2.2.Rdata")
-save(q.mean.2.2_s, file = "Data/dataset2/derived/q.mean.2.2_simple.Rdata")
-save(q.mean.2.2_t0, file = "Data/dataset2/derived/q.mean.2.2_t0.Rdata")
-save(q.mean.2.2_z, file = "Data/dataset2/derived/q.mean.2.2_z.Rdata")
-save(q.mean.2.2_v, file = "Data/dataset2/derived/q.mean.2.2_v.Rdata")
-save(q.mean.2.2_z_t0, file = "Data/dataset2/derived/q.mean.2.2_t0-z.Rdata")
-save(q.mean.2.2_v_t0, file = "Data/dataset2/derived/q.mean.2.2_t0-v.Rdata")
-save(q.mean.2.2_v_z, file = "Data/dataset2/derived/q.mean.2.2_z-v.Rdata")
-save(q.mean.2.2Complex, file = "Data/dataset2/derived/q.mean.2.2_complex.Rdata")
+save(q.mean.2.2, file = here(paste0("Data/",dataset,"/derived/q.mean.2.2.Rdata")))
+save(q.mean.2.2_s, file = here(paste0("Data/",dataset,"/derived/q.mean.2.2_simple.Rdata")))
+save(q.mean.2.2_t0, file = here(paste0("Data/",dataset,"/derived/q.mean.2.2_t0.Rdata")))
+save(q.mean.2.2_z, file = here(paste0("Data/",dataset,"/derived/q.mean.2.2_z.Rdata")))
+save(q.mean.2.2_v, file = here(paste0("Data/",dataset,"/derived/q.mean.2.2_v.Rdata")))
+save(q.mean.2.2_z_t0, file = here(paste0("Data/",dataset,"/derived/q.mean.2.2_t0-z.Rdata")))
+save(q.mean.2.2_v_t0, file = here(paste0("Data/",dataset,"/derived/q.mean.2.2_t0-v.Rdata")))
+save(q.mean.2.2_v_z, file = here(paste0("Data/",dataset,"/derived/q.mean.2.2_z-v.Rdata")))
+save(q.mean.2.2Complex, file = here(paste0("Data/",dataset,"/derived/q.mean.2.2_complex.Rdata")))
 
 
 

@@ -1,11 +1,11 @@
 ## Dataset  1b ##
 rm(list=ls())
 
-setwd("~/cloudstor/Gaze-Cueing")
+lib = .libPaths("~/Library/Frameworks/R.framework/Versions/4.1/Resources/library")
 
-library(tidyverse)
-library(rtdists)
-library(msm)
+library(here, lib.loc = lib)
+library(rtdists, lib.loc = lib)
+library(msm, lib.loc = lib)
 source(file = "Modelling/dataset1b/02_megaBackground.R")
 
 conds=c(1,2)

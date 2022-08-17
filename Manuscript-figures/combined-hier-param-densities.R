@@ -13,7 +13,7 @@ layout(mat=m,
 #par(mar=rep(0,4))
 par(mar=c(6,6,3,3), ann =  FALSE)
 
-datasets = c("Dataset 1a", "Dataset 1b", "Dataset 2", "Dataset 3")
+datasets = c("Dataset 1a", "Dataset 2", "Dataset 3")
 
 
 
@@ -46,33 +46,6 @@ mtext(side=3,line=0.8,"Drift rate (v) difference",cex=1, font = 2)
 #### t0 #####
 #And same principle for t0:
 
-###### Dataset 1b ##########
-
-load("Hierarchical-Modelling/dataset1b/07_Output/Hier_Complex_Model.Rdata")
-
-
-CI_t0 = quantile(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],c(0.025,0.5, 0.975))
-plot(density(phi[,"t0.1.mu",]-phi[,"t0.2.mu",],n = 7000), main = "", ylab = "")
-abline(v=0,col="red")
-
-mtext(side=1,line=3.5,paste("M = ",round(CI_t0[2], 3),", CI Lower = ", round(CI_t0[1], 3),",", " CI Upper = ", round(CI_t0[3],3), sep =""),cex=1, font = 1)
-mtext(side=2,line=3,datasets[2],cex=1, font = 2)
-
-CI_z = quantile(phi[,"z.mu",]-(1-phi[,"z.mu",]),c(0.025,0.5, 0.975))
-plot(density(phi[,"z.mu",]-(1-phi[,"z.mu",]),n = 7000), main = "", ylab = "")
-abline(v=0,col="red")
-
-mtext(side=1,line=3.5,paste("M = ",round(CI_z[2], 3),", CI Lower = ", round(CI_z[1], 3),",", " CI Upper = ", round(CI_z[3],3), sep =""),cex=1, font = 1)
-
-CI_v = quantile(phi[,"v.1.mu",]-phi[,"v.2.mu",],c(0.025,0.5, 0.975))
-plot(density(phi[,"v.1.mu",]-phi[,"v.2.mu",],n = 7000),main ="", ylab = "")
-abline(v=0,col="red")
-
-mtext(side=1,line=3.5,paste("M = ",round(CI_v[2], 3), ", CI Lower = ", round(CI_v[1], 3),",", " CI Upper = ", round(CI_v[3],3),sep =""),cex=1, font = 1)
-
-
-
-
 ###### Dataset 2 ##########
 
 load("Hierarchical-Modelling/dataset2/07_Output/Hier_Complex_Model.Rdata")
@@ -95,9 +68,6 @@ plot(density(phi[,"v.1.mu",]-phi[,"v.2.mu",],n = 7000),main ="", ylab = "")
 abline(v=0,col="red")
 
 mtext(side=1,line=3.5,paste("M = ",round(CI_v[2], 3), ", CI Lower = ", round(CI_v[1], 3),",", " CI Upper = ", round(CI_v[3],3),sep =""),cex=1, font = 1)
-
-
-
 
 #### Dataset 3 ######
 

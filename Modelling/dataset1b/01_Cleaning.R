@@ -1,7 +1,7 @@
 #Load Packages
-setwd("~/cloudstor/Gaze-Cueing")
+lib = .libPaths("~/Library/Frameworks/R.framework/Versions/4.1/Resources/library")
 rm(list=ls())
-library(tidyverse)
+library(here, lib.loc = lib)
 
 
 

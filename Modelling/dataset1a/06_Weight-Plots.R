@@ -1,21 +1,24 @@
 rm(list = ls())
-library(tidyverse)
-S = 41 #subjects
-setwd("~/cloudstor/Gaze-Cueing")
+
+lib = .libPaths("~/Library/Frameworks/R.framework/Versions/4.1/Resources/library")
+library(here, lib.loc = lib)
+library(dplyr, lib.loc = lib)
 ## Dataset  1a ##
 ######## Load AIC and BIC for Each Model #######
 #Or Skip to lines 83/84 if already saved
 #---------------------------------------------------------------------------------------------------
 ## v_z model ##
 
-# Create blank vectors so the loop knows what to fill in
+dataset = "dataset1a"
+S = 41 #subjects
 
+# Create blank vectors so the loop knows what to fill in
 AIC_v_z = NULL
 BIC_v_z = NULL 
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v-z_Model.RData", sep = ""))
+  load(here(paste("Modelling/",dataset,"/07_Outputs/P",p,"_v-z_Model.RData", sep = "")))
   AIC_v_z = rbind(AIC, AIC_v_z)
   BIC_v_z = rbind(BIC, BIC_v_z)
   
@@ -30,7 +33,7 @@ AIC_S = NULL
 BIC_S = NULL 
 
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"Simple_Model.RData", sep = ""))
+  load(here(paste("Modelling/",dataset,"/07_Outputs/P",p,"Simple_Model.RData", sep = "")))
   AIC_S = rbind(AIC, AIC_S)
   BIC_S = rbind(BIC, BIC_S)
 
@@ -43,7 +46,7 @@ AIC_v = NULL
 BIC_v = NULL 
 
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v_Model.RData", sep = ""))
+  load(here(paste("Modelling/",dataset,"/07_Outputs/P",p,"_v_Model.RData", sep = "")))
   AIC_v = rbind(AIC, AIC_v)
   BIC_v = rbind(BIC, BIC_v)
 }
@@ -56,7 +59,7 @@ BIC_z = NULL
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_z_Model.RData", sep = ""))
+  load(here(paste("Modelling/",dataset,"/07_Outputs/P",p,"_z_Model.RData", sep = "")))
   AIC_z = rbind(AIC, AIC_z)
   BIC_z = rbind(BIC, BIC_z)
 }
@@ -67,7 +70,7 @@ AIC_t0 = NULL
 BIC_t0 = NULL 
 
 for (p in 1:S) { 
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_t0_Model.RData", sep = ""))
+  load(here(paste("Modelling/",dataset,"/07_Outputs/P",p,"_t0_Model.RData", sep = "")))
   AIC_t0 = rbind(AIC, AIC_t0)
   BIC_t0 = rbind(BIC, BIC_t0)
 }
@@ -79,7 +82,7 @@ BIC_z_t0 = NULL
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_outputs/P",p,"_z-t0_Model.RData", sep = ""))
+  load(here(paste("Modelling/",dataset,"/07_outputs/P",p,"_z-t0_Model.RData", sep = "")))
   AIC_z_t0 = rbind(AIC, AIC_z_t0)
   BIC_z_t0 = rbind(BIC, BIC_z_t0)
 }
@@ -92,7 +95,7 @@ BIC_v_t0 = NULL
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_v-t0_Model.RData", sep = ""))
+  load(here(paste("Modelling/",dataset,"/07_Outputs/P",p,"_v-t0_Model.RData", sep = "")))
   AIC_v_t0 = rbind(AIC, AIC_v_t0)
   BIC_v_t0 = rbind(BIC, BIC_v_t0)
 }
@@ -105,7 +108,7 @@ BIC_C = NULL
 
 #Loop in each data set and combine to create a vector of AIC and BIC respectively for each participant
 for (p in 1:S) { #Loop in each data set
-  load(paste("Modelling/dataset1a/07_Outputs/P",p,"_complex_Model.RData", sep = ""))
+  load(here(paste("Modelling/",dataset,"/07_Outputs/P",p,"_complex_Model.RData", sep = "")))
   AIC_C = rbind(AIC, AIC_C)
   BIC_C = rbind(BIC, BIC_C)
 }
@@ -126,15 +129,15 @@ BIC_comp = BIC_comp[nrow(AIC_comp):1,]
 
 # Save
 
-save(AIC_comp, file = "Data/dataset1a/derived/AICs.Rdata")
-save(BIC_comp, file = "Data/dataset1a/derived/BICs.Rdata")
+save(AIC_comp, file = here(paste0("Data/",dataset,"/derived/AICs.Rdata")))
+save(BIC_comp, file = here(paste0("Data/",dataset,"/derived/BICs.Rdata")))
 
 ###########################
 ### Model Probabilities ##
 ###########################
 
-load("Data/dataset1a/derived/BICs.Rdata")
-load("Data/dataset1a/derived/AICs.Rdata")
+load(here(paste0("Data/",dataset,"/derived/BICs.Rdata")))
+load(here(paste0("Data/",dataset,"/derived/AICs.Rdata")))
 
 getWeights=function(x) {
   useX = x*(-0.5) # Transform BIC/AIC to a chi square distribution
@@ -174,11 +177,11 @@ BICweights_null = filter(BICweights_tmp, none >= .5) #participants for which the
 participants_alt = BICweights_alt$ID #Create a vector of all the participants who best fitted alternative models 
 participants_null = BICweights_null$ID #And then for null 
 
-save(participants_alt, file = "Data/dataset1a/derived/participants_alt.Rdata")
-save(participants_null, file = "Data/dataset1a/derived/participants_null.Rdata")
+save(participants_alt, file = here(paste0("Data/",dataset,"/derived/participants_alt.Rdata")))
+save(participants_null, file = here(paste0("Data/",dataset,"/derived/participants_null.Rdata")))
 
-save(BICweights, file = "Data/dataset1a/derived/BIC-Weights.RData")
-save(BIC_comp, file = "Data/dataset1a/derived/BICs.RData")
+save(BICweights, file = here(paste0("Data/",dataset,"/derived/BIC-Weights.RData")))
+save(BIC_comp, file = here(paste0("Data/",dataset,"/derived/BICs.RData")))
 
 #If I want to order by V model 
 # BICweights = BICweights[order(BICweights[,4]),]
@@ -187,7 +190,7 @@ save(BIC_comp, file = "Data/dataset1a/derived/BICs.RData")
 
 S = 41 #n participants
 
-png("Modelling/dataset1a/08_Plots/weighted-prob-BIC.png")
+png(here(paste0("Modelling/",dataset,"/08_Plots/weighted-prob-BIC.png")))
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face BIC",xaxt="n",yaxt="n")
 
 # Plotting
@@ -247,8 +250,8 @@ for (s in 1:S) {
 colnames(AICweights) = c("v_z", "none", "v", "z", "z_t0", "v_t0", "complex", "t0")
 
 
-save(AICweights, file = "Data/dataset1a/derived/AIC-Weights.RData")
-save(BIC_comp, file = "Data/dataset1a/derived/BICs.RData")
+save(AICweights, file = here(paste0("Data/",dataset,"/derived/AIC-Weights.RData")))
+save(BIC_comp, file = here(paste0("Data/",dataset,"/derived/BICs.RData")))
 
 #If I want to order by V model 
 # AICweights = AICweights[order(AICweights[,4]),]
@@ -256,7 +259,7 @@ save(BIC_comp, file = "Data/dataset1a/derived/BICs.RData")
 # Plot
 
 S = 41 #n participants
-png("Modelling/dataset1a/08_Plots/weighted-prob-AIC.png")
+png(here(paste0("Modelling/",dataset,"/08_Plots/weighted-prob-AIC.png")))
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face AIC",xaxt="n",yaxt="n")
 
 # Plotting
@@ -317,7 +320,7 @@ dev.off()
 #### z #####
 
 #To get a inclusion probability for z, we just add the models that have z and don’t have z:
-png("Modelling/dataset1a/08_Plots/inclusion-prob-BIC-z.png")  
+png(here(paste0("Modelling/",dataset,"/08_Plots/inclusion-prob-BIC-z.png")))  
   plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face z Inclusion Probability BIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
@@ -342,7 +345,7 @@ legend("bottom", legend = c("z varies", "z does not vary"),
 dev.off()
 ##### v ######
 #And same principle for v:
-png("Modelling/dataset1a/08_Plots/inclusion-prob-BIC-v.png")    
+png(here(paste0("Modelling/",dataset,"/08_Plots/inclusion-prob-BIC-v.png")))
   plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face v Inclusion Probability BIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
@@ -368,7 +371,7 @@ dev.off()
 
 #### t0 #####
 #And same principle for t0:
-png("Modelling/dataset1a/08_Plots/inclusion-prob-BIC-t0.png")  
+png(here(paste0("Modelling/",dataset,"/08_Plots/inclusion-prob-BIC-t0.png")))
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face t0 Inclusion Probability BIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
@@ -396,7 +399,7 @@ dev.off()
 #### z #####
 
 #To get a inclusion probability for z, we just add the models that have z and don’t have z:
-png("Modelling/dataset1a/08_Plots/inclusion-prob-AIC-z.png")  
+png(here(paste0("Modelling/",dataset,"/08_Plots/inclusion-prob-AIC-z.png")))  
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face z Inclusion Probability AIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
@@ -421,7 +424,7 @@ legend("bottom", legend = c("z varies", "z does not vary"),
 dev.off()
 ##### v ######
 #And same principle for v:
-png("Modelling/dataset1a/08_Plots/inclusion-prob-AIC-v.png")  
+png(here(paste0("Modelling/",dataset,"/08_Plots/inclusion-prob-AIC-v.png")))  
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face v Inclusion Probability AIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
@@ -447,7 +450,7 @@ legend("bottom", legend = c("v varies", "v does not vary"),
 dev.off()
 #### t0 #####
 #And same principle for t0:
-png("Modelling/dataset1a/08_Plots/inclusion-prob-AIC-t0.png")  
+png(here(paste0("Modelling/",dataset,"/08_Plots/inclusion-prob-AIC-t0.png"))) 
 plot(x=100,y=100,xlim=c(0,S),ylim=c(0,1),xlab="",ylab="",main="Face t0 Inclusion Probability AIC",xaxt="n",yaxt="n")
 for (i in 1:S) {
   use.i=i
@@ -478,7 +481,7 @@ dev.off()
 # Calculate mean AIC weight of each model averaged across participants 
 
 mean_AICweights = round(sort(apply(AICweights,2,mean), decreasing = TRUE),2) 
-save(mean_AICweights, file = "Data/dataset1a/derived/mean_AICweights.Rdata")
+save(mean_AICweights, file = here(paste0("Data/",dataset,"/derived/mean_AICweights.Rdata")))
 
 best_AIC = max.col(AICweights)
 
@@ -492,7 +495,7 @@ best_AIC = case_when(best_AIC == 1 ~ "v-z",
                      best_AIC == 8 ~ "t0")
 best_AIC = as.factor(best_AIC)
 best_AIC = summary(best_AIC)
-save(best_AIC, file = "Data/dataset1a/derived/best_AIC.Rdata")
+save(best_AIC, file = here(paste0("Data/",dataset,"/derived/best_AIC.Rdata")))
 
 ## Calculate mean raw AICs
 
@@ -502,7 +505,7 @@ raw_AIC = round(apply(AIC_comp, 2, mean),2)
 
 #Calculate mean BIC weight of each model averaged across participants
 mean_BICweights = round(sort(apply(BICweights,2,mean), decreasing = TRUE),2)
-save(mean_BICweights, file = "Data/dataset1a/derived/mean_BICweights.Rdata")
+save(mean_BICweights, file = here(paste0("Data/",dataset,"/derived/mean_BICweights.Rdata")))
 
 best_BIC = max.col(BICweights)
 
@@ -517,7 +520,7 @@ best_BIC = case_when(best_BIC == 1 ~ "v-z",
                      best_BIC == 8 ~ "t0")
 best_BIC = as.factor(best_BIC)
 best_BIC = summary(best_BIC) 
-save(best_BIC, file = "Data/dataset1a/derived/best_BIC.Rdata")
+save(best_BIC, file = here(paste0("Data/",dataset,"/derived/best_BIC.Rdata")))
 
 ## Calculate mean raw BIC scores
 

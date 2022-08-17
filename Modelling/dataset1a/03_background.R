@@ -20,6 +20,9 @@ tmpP1=grep("a",theta.names,perl=TRUE)
 tmpP2=grep("t0",theta.names,perl=TRUE)
 tmpP3=grep("v",theta.names,perl=TRUE)
 tmpP4=grep("z",theta.names,perl=TRUE)
+tmpP5 = grep("sv",theta.names,perl = TRUE)
+tmpP6 = grep("sz",theta.names,perl = TRUE)
+tmpP7 = grep("st0",theta.names,perl = TRUE)
 
 
 start.points=rep(NA,n.pars)
@@ -27,24 +30,38 @@ start.points[tmpP1]=1
 start.points[tmpP2]=0.3
 start.points[tmpP3]=3
 start.points[tmpP4]=0.5
+start.points[tmpP5]=1
+start.points[tmpP6]=0.2
+start.points[tmpP7]=0.2
+
 
 start.points.sd=rep(NA,n.pars)
 start.points.sd[tmpP1]=0.5
 start.points.sd[tmpP2]=0.1
 start.points.sd[tmpP3]=1
 start.points.sd[tmpP4]=0.15
+start.points.sd[tmpP5]=0.5
+start.points.sd[tmpP6]=0.2
+start.points.sd[tmpP7]=0.2
 
 lower.bounds=rep(NA,n.pars)
 lower.bounds[tmpP1]=0
 lower.bounds[tmpP2]=0
 lower.bounds[tmpP3]=-Inf
 lower.bounds[tmpP4]=0
+lower.bounds[tmpP5]=0
+lower.bounds[tmpP6]=0
+lower.bounds[tmpP7]=0
 
 upper.bounds=rep(NA,n.pars)
 upper.bounds[tmpP1]=Inf
 upper.bounds[tmpP2]=Inf
 upper.bounds[tmpP3]=Inf
 upper.bounds[tmpP4]=1
+upper.bounds[tmpP5]=Inf
+upper.bounds[tmpP6]=1
+upper.bounds[tmpP7]=1
+
 
 
 
@@ -89,6 +106,27 @@ if (length(tmp)>0) {
   }
 }
 
+tmp=grep("sv",theta.names,value=TRUE)
+if (length(tmp)>0) {
+  for (n in 1:length(tmp)) {
+    tmp2=tmp[n]
+    prior[[tmp2]]=c(1,0.5)
+  }
+}
 
+tmp=grep("sz",theta.names,value=TRUE)
+if (length(tmp)>0) {
+  for (n in 1:length(tmp)) {
+    tmp2=tmp[n]
+    prior[[tmp2]]=c(0.2,0.2)
+  }
+}
 
+tmp=grep("st0",theta.names,value=TRUE)
+if (length(tmp)>0) {
+  for (n in 1:length(tmp)) {
+    tmp2=tmp[n]
+    prior[[tmp2]]=c(0.2,0.2)
+  }
+}
 

@@ -1,11 +1,11 @@
-##### Dataset1a ######
+##### dataset1a ######
 
 rm(list=ls())
-setwd("~/cloudstor/Gaze-Cueing")
-library(tidyverse)
-library(rtdists)
-library(msm)
-source("Modelling/dataset1a/02_megaBackground.R")
+lib = .libPaths("~/Library/Frameworks/R.framework/Versions/4.1/Resources/library")
+library(here, lib.loc = lib)
+library(rtdists, lib.loc = lib)
+library(msm, lib.loc = lib)
+source(here("Modelling/dataset1a/02_megaBackground.R"))
 
 conds=c(1,2)
   
@@ -18,7 +18,7 @@ conds=c(1,2)
 
 for (useSub in 1:nSub) {
   
-  load(paste("Data/dataset1a/clean/P",useSub,".Rdata",sep=""))
+  load(here(paste("Data/dataset1a/clean/P",useSub,".Rdata",sep="")))
   
   newSeed=Sys.time()
   set.seed(as.numeric(newSeed))
@@ -41,9 +41,9 @@ for (useSub in 1:nSub) {
       } else {
         stop("Error")
       }
-      sv=0
-      sz=0
-      st0=0
+      sv=x["sv"]
+      sz=x["sz"]*a 
+      st0=x["st0"]*t0*2
       s=1
       tmp=ddiffusion(rt=data$Time[data$Cond==cond],response=data$Resp[data$Cond==cond],z=z*a,a=a,v=v,t0=t0-(st0/2),s=s,sv=sv,sz=sz,st0=st0)
       out=out+sum(log(pmax(tmp,1e-10)))
@@ -57,12 +57,12 @@ for (useSub in 1:nSub) {
   
   theta.names=c("a","t0",
                 "v",
-                "z")
+                "z","sv","sz","st0")
   
-  savefile=paste("Modelling/dataset1a/07_Outputs/P",useSub,"_z_Model.Rdata",sep="")
+  savefile=here(paste("Modelling/dataset1a/07_Outputs/P",useSub,"_z_Model.Rdata",sep=""))
   
-  source("Modelling/dataset1a/03_background.R")
-  source("Modelling/dataset1a/04_runIterativeProcess.R")
+  source(here("Modelling/dataset1a/03_background.R"))
+  source(here("Modelling/dataset1a/04_runIterativeProcess.R"))
   
   n.pars = length(theta.names)
   
@@ -81,7 +81,7 @@ conds = c(1,2)
 for(useSub in 1:nSub) {
   
   
-  load(paste("Modelling/dataset1a/07_Outputs/P",useSub,"_z_Model.Rdata",sep="")) #Loads through the datasets of each participant in nSub
+  load(here(paste("Modelling/dataset1a/07_Outputs/P",useSub,"_z_Model.Rdata",sep=""))) #Loads through the datasets of each participant in nSub
   #posterior_means = apply(theta, 2, mean) #This code just gets the mean parameter estimates of each data set (not necessary for the loop)
   
   
@@ -95,8 +95,8 @@ for(useSub in 1:nSub) {
   blah=theta[tmp2,,tmp3]
   
   for (cond in conds) { # Loops through each cue condition (congruent and incongruent)
-    currParams=c(blah["a"],NA,blah["v"],blah["t0"]) # Sets the value of parameters. 
-    names(currParams)=c("a","z","v","t0")  #Sets the names of the parameters
+    currParams=c(blah["a"],NA,blah["v"],blah["t0"],blah["sv"],blah["sz"],blah["st0"]) # Sets the value of parameters. 
+    names(currParams)=c("a","z","v","t0","sv","sz","st0")  #Sets the names of the parameters
     if (cond==conds[1]) {
       currParams["z"]=blah["z"]
     } else if (cond==conds[2]) {
@@ -105,14 +105,14 @@ for(useSub in 1:nSub) {
       stop("Error")
     }
     
-    tmp=rdiffusion(n=1000,a=currParams["a"],v=currParams["v"],t0=currParams["t0"],z=currParams["z"]*currParams["a"]) # Runs diffusion model to generated data with estimated parameters
+    tmp=rdiffusion(n=1000,a=currParams["a"],v=currParams["v"],t0=currParams["t0"],z=currParams["z"]*currParams["a"],sz = currParams["sz"],sv = currParams["sv"],st0 = currParams["st0"]) # Runs diffusion model to generated data with estimated parameters
     simData$Time=c(simData$Time,tmp$rt) # Populates the RT column in the simulated data
     simData$Resp=c(simData$Resp,tmp$response) # Populates the Resp column in the simulated data 
     simData$Cond=c(simData$Cond,rep(cond,length(tmp$rt)))} # Populates the Cond column in the simulated data
   
   sim = as.data.frame(simData) #Convert the simulated data from List format to data frame format
   
-  save(sim, file = paste("Data/dataset1a/Model-Predictions/P",useSub,"_z.Rdata", sep = ""))
+  save(sim, file = here(paste("Data/dataset1a/Model-Predictions/P",useSub,"_z.Rdata", sep = "")))
   
 }
  
