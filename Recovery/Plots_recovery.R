@@ -1,7 +1,7 @@
 
 rm(list = ls())
-setwd("~/Documents/2021/Gaze-Cueing/Recovery")
-
+library(here)
+setwd(here())
 # Set up empty data frames for generated parameters (allGenParamas) and estimated parameters (allMeanTheta)
 
 allGenParams=NULL
@@ -11,7 +11,7 @@ allMeanTheta=NULL
 n = 100
 
 for (p in 1:n) { #Loop in each data set
-  load(paste("Fits_recovery/fits_recovery_P",p,".RData", sep = ""))
+  load(paste("Recovery/Fits_recovery/fits_recovery_P",p,".RData", sep = ""))
   
   #Rearrange and take out unnecessary values from the generated parameters 
   tmp = c(genParams[2,2], genParams[3,1], genParams[3,2], genParams[4,1], genParams[4,2], genParams[1,2])
@@ -32,12 +32,9 @@ allGenParams$t0Diff = allGenParams$t0.0.5 - allGenParams$`t0.-0.5`
 allMeanTheta$t0Diff = allMeanTheta$t0.0.5 - allMeanTheta$`t0.-0.5`
 
 #Save the generated parameters
-save(allGenParams, file = "All_Fits/Generated_Paramaters.RData")
-save(allMeanTheta, file = "All_Fits/Estimated_Paramaters.RData")
+save(allGenParams, file = "Recovery/All_Fits/Generated_Paramaters.RData")
+save(allMeanTheta, file = "Recovery/All_Fits/Estimated_Paramaters.RData")
 
-#If I want to reload
-load("~/Documents/2021/Gaze-Cueing/Recovery/All_Fits/Estimated_Paramaters.RData")
-load("~/Documents/2021/Gaze-Cueing/Recovery/All_Fits/Generated_Paramaters.RData")
 
 cor_vDiff = cor(allGenParams[,"vDiff"],allMeanTheta[,"vDiff"])
 cor_z = cor(allGenParams[,"z"],allMeanTheta[,"z"])
