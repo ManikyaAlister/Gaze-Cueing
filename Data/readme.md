@@ -1,9 +1,9 @@
 
-None of the data made available here were collected by us. Data Sets 1a, 1b, and 3 had already been made publicly available by the original authors and we have made Data Set 2 available with permission from the original author. 
+None of the data made available here were collected by us. Data Sets 1a and 3 had already been made publicly available by the original authors and we have made Data Set 2 available with permission from the original author. 
 
 # Dataset key: 
 
-Dataset1a (faces only) and Dataset 1b (arrows only) - Gregory, S. E., & Jackson, M. C. (2020). Increased perceptual distraction and task demand enhances gaze and non-biological cuing effects. Quarterly Journal of Experimental Psychology, 1747021820959633. https://doi.org/10.1177/1747021820959633
+Dataset1a (faces only) - Gregory, S. E., & Jackson, M. C. (2020). Increased perceptual distraction and task demand enhances gaze and non-biological cuing effects. Quarterly Journal of Experimental Psychology, 1747021820959633. https://doi.org/10.1177/1747021820959633
 
 Dataset2 - Carlson, J. M. (2016). Facilitated orienting underlies fearful face-enhanced gaze cueing of spatial location. Cogent Psychology, 3(1), 1147120. https://doi.org/10.1080/23311908.2016.1147120
 

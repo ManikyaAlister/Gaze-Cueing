@@ -10,7 +10,7 @@ Some of the output may not be exactly the same as that which is reported in the 
 
 01.download-packages: will download all of the packages necessary to run this script
 
-find-replace.command: if you have a mac, just replace all instances of <YOUR/DIRECTORY> with with the path to your working directory in order to run the scripts in this project. I'm unsure whether this will work on other operating systems, but I'm sure a similar command would exist that works in a similar way or you can just change the working directories manually. 
+find-replace.command: if you have a mac, just replace all instances of <YOUR/DIRECTORY> with with the path to your working directory in order to run the scripts in this project. I'm unsure whether this will work on other operating systems, but I'm sure a similar command would exist that works in a similar way or you can just change the working directories manually. Or just use here().
 
 Archive: old scripts that are no longer relevant 
 
