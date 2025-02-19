@@ -1,10 +1,10 @@
 .Rproj.user
-.Rhistory
-.RData
+#.Rhistory
+#.RData
 .Ruserdata
 Hierarchical-Modelling/dataset3/07_Output/*
 Hierarchical-Modelling/z-unconstrained/dataset3/07_Output/*
 Hierarchical-Modelling/t0-unconstrained/dataset3/07_Output/*
 Hierarchical-Modelling/v-unconstrained/dataset3/07_Output/*
 Manuscripts-Presentations/*
-Archive
+#Archive

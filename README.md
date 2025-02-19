@@ -1,6 +1,9 @@
 # Gaze-Cueing
 
-This repository contains all of the data, scripts, and output* used for analyses in the paper "An Evidence Accumulation Account of the Gaze Cueing Effect: A Computational Modelling Investigation", by Alister, McKay, Sewell, and Evans. 
+This repository contains all of the data, scripts, and output* used for analyses in the paper "Uncovering the cognitive mechanisms underlying the gaze-cueing effect", by Alister, McKay, Sewell, and Evans. 
+
+** small update 19th Feb 2025: ** removed some redundant files and removed absolute file paths. I first started this project when I was only a year or so into learning to code so plz don't judge me too harshly. 
+Feel free to reach out if you have any questions. 
 
 Some of the output may not be exactly the same as that which is reported in the manuscript as they were recently reproduced and each iteration will produce slightly different results, but the conclusions remain the same. 
 
@@ -8,22 +11,16 @@ Some of the output may not be exactly the same as that which is reported in the 
 
 ## Folder/File key: 
 
-01.download-packages: will download all of the packages necessary to run this script
+To download all necessary packages, run `renv::restore()` in the R console. 
 
-find-replace.command: if you have a mac, just replace all instances of <YOUR/DIRECTORY> with with the path to your working directory in order to run the scripts in this project. I'm unsure whether this will work on other operating systems, but I'm sure a similar command would exist that works in a similar way or you can just change the working directories manually. Or just use here().
+- `Data`: all of the raw, clean, and derived data pertaining to each of the datasets including the code used to clean the raw data 
 
-Archive: old scripts that are no longer relevant 
+- `Descriptives`: scripts for calculating descriptive statistics reported in the manuscript including the gaze cueing magnitudes, and standardised mean change scores.
 
-Data: all of the raw, clean, and derived data pertaining to each of the datasets including the code used to clean the raw data 
+- `Hierarchical modelling`: scripts for running the hierarchical model and the hierarchical model analyses. 
 
-Descriptives: scripts for calculating descriptive statistics reported in the manuscript including the gaze cueing magnitudes, and standardised mean change scores.
+- `Manuscript figures`: scripts for creating all of the figures in the manuscript and the corresponding figures themselves.
 
-Hierarchical modelling: scripts for running the hierarchical model and the hierarchical model analyses. 
+- `Modelling`: scripts for running the individual-level models and the individual-level modelling analyses. 
 
-Manuscript figures: scripts for creating all of the figures in the manuscript and the corresponding figures themselves.
-
-Modelling: scripts for running the individual-level models and the individual-level modelling analyses. 
-
-Recovery: scripts for running the recovery analysis.
-
-Exploratory analyses: scripts for calculating the correlation between datasets reported in the manuscript. 
+- `Recovery`: scripts for running the recovery analysis.
