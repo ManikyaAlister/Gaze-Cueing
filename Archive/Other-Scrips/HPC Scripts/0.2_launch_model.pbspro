@@ -1,9 +1,0 @@
-#!/bin/bash
-
-#PBS -A UQ-SBS-Psy
-
-#PBS -l select=1:ncpus=24:intel=true:mem=60GB,walltime=18:00:00
-
-module load R/3.6.0+tidyverse+rstan+rtdists
-
-cat /30days/s4435475/Gaze-Cueing/0.3_run_model.sh | shell -s ${RUN}
