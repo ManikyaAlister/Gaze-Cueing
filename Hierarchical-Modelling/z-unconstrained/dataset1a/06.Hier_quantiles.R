@@ -1,5 +1,6 @@
 rm(list = ls())
-setwd("~/cloudstor/Gaze-Cueing")
+library(here)
+setwd(here())
 library(tidyverse)
 library(jtools)
 nSub = 41

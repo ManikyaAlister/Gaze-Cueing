@@ -1,6 +1,7 @@
 
 rm(list=ls())
-setwd("~/cloudstor/Gaze-Cueing")
+library(here)
+setwd(here())
 setwd("Recovery") 
 library(msm)
 

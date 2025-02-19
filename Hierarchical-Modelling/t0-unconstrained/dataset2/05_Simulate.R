@@ -1,7 +1,8 @@
 rm(list = ls())
 #### Script to generate predicted data with the hierarchical model ###
 library(rtdists)
-setwd("~/cloudstor/Gaze-Cueing")
+library(here)
+setwd(here())
 
 load("Hierarchical-Modelling/t0-unconstrained/dataset2/07_Output/Hier_Complex_Model.Rdata") #Load parameters
 

@@ -3,7 +3,8 @@ rm(list=ls())
 library(tidyverse)
 library(rtdists)
 library(msm)
-setwd("~/cloudstor/Gaze-Cueing")
+library(here)
+setwd(here())
 source("Hierarchical-Modelling/dataset1b/01_Hier_Megabackground.R")
 
 
